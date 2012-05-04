@@ -4,6 +4,7 @@ gem 'rails', '3.1.3'
 gem 'json'
 gem 'jquery-rails'
 gem 'omniauth-identity'
+gem 'omniauth-twitter'
 
 group :assets do
         gem 'sass-rails',   '~> 3.1.5'
