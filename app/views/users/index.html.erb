@@ -24,17 +24,11 @@
 
 <br />
 
-<%= link_to 'New User', new_user_path %>
-
-
-
-
 
 <% if current_user %>
   Welcome <%= current_user.name %>!
   <%= link_to "Sign Out", signout_path %>
 <% else %>
-  <%= link_to "Twitter", "/auth/twitter" %>
   <br />
   <p>
   <%= link_to "Create an account with your email", new_identity_path %> or Sign In below.
