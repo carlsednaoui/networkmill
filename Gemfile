@@ -5,6 +5,8 @@ gem 'json'
 gem 'jquery-rails'
 gem 'omniauth-identity'
 gem 'omniauth-twitter'
+# To use ActiveModel has_secure_password
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 group :assets do
         gem 'sass-rails',   '~> 3.1.5'
