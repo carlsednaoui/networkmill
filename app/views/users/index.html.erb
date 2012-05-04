@@ -25,3 +25,30 @@
 <br />
 
 <%= link_to 'New User', new_user_path %>
+
+
+
+
+
+<% if current_user %>
+  Welcome <%= current_user.name %>!
+  <%= link_to "Sign Out", signout_path %>
+<% else %>
+  <br />
+  <p>
+  <%= link_to "Create an account with your email", new_identity_path %> or Sign In below.
+  </p>
+  <br />
+
+  <%= form_tag "/auth/identity/callback" do %>
+    <div class="field">
+      <%= label_tag :auth_key, "Registered Email" %>
+      <%= text_field_tag :auth_key %>
+    </div>
+    <div class="field">
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+    </div>
+    <div class="actions"><%= submit_tag "Sign In", :class => "btn btn-primary" %></div>
+  <% end %>
+<% end %>
