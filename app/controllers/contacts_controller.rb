@@ -1,11 +1,10 @@
 class ContactsController < ApplicationController
   before_filter :require_current_user
-  before_filter :require_contact_belongs_to_current_user, :only => [:edit, :update, :destroy]
 
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.all
+    @contacts = Contact.find_all_by_user_id(current_user)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -84,11 +83,4 @@ class ContactsController < ApplicationController
       format.json { head :ok }
     end
   end
-
-  private
-
-  def require_contact_belongs_to_current_user
-    @contact = current_user.contacts.find(params[:id])
-  end
-
 end
