@@ -1,5 +1,19 @@
-@user = User.find_by_id(1)
+user = User.find_by_id(1)
+
+@contact_bucket = Array.new
+def create_contact_bucket(user_id)
+   contacts = Contact.find_all_by_user_id(user_id)
+   contacts.each do |contact|
+	@contact_bucket.push contact.id
+   end
+end
+
+def get_contacts_from_contact_bucket(contact_bucket, contact_intensity)
+  puts contact_bucket.inspect
+  puts contact_intensity
+
+end
 
 
-@contacts = Contact.find_all_by_user_id(@user.id)
-puts @contacts
+create_contact_bucket(user)
+get_contacts_from_contact_bucket(@contact_bucket, user.contact_intensity)
