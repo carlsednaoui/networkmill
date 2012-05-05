@@ -4,7 +4,7 @@ Networkmill::Application.routes.draw do
   match "/dashboard" => "home#dashboard"
 
   resources :identities
-  resources :users
+#  resources :users
   resources :contacts
 
   match "/auth/:provider/callback" => "sessions#create"
