@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20120504033746) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.boolean  "desktop_client"
+    t.boolean  "desktop_client", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "provider"

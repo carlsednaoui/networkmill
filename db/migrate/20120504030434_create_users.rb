@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :name
       t.string :email
-      t.boolean :desktop_client
+      t.boolean :desktop_client, :default => false
 
       t.timestamps
     end
