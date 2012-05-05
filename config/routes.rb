@@ -1,6 +1,8 @@
 Networkmill::Application.routes.draw do
   root :to => "home#index"
 
+  match "/dashboard" => "home#dashboard"
+
   resources :identities
   resources :users
   resources :contacts
