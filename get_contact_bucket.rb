@@ -9,9 +9,13 @@ def create_contact_bucket(user_id)
 end
 
 def get_contacts_from_contact_bucket(contact_bucket, contact_intensity)
-  puts contact_bucket.inspect
-  puts contact_intensity
-
+  @contact_bucket = contact_bucket
+  puts "contacts to email:"
+  to_email = @contact_bucket.first(contact_intensity)
+  puts to_email
+  @contact_bucket.shift(contact_intensity)
+  puts "contacts left:"
+  puts @contact_bucket.inspect
 end
 
 
