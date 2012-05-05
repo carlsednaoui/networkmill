@@ -20,8 +20,12 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :desktop_client %><br />
+    <%= f.label :desktop_client, "I use an e-mail desktop client" %>
     <%= f.check_box :desktop_client %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_intensity, "I'd like to get in touch with" %>
+    <%= f.text_field :contact_intensity, :size => 2 %> contacts per week.
   </div>
   <div class="actions">
     <%= f.submit %>
