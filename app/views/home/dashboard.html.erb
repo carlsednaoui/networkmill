@@ -1,7 +1,8 @@
 <h1>Hi <%= @user.name %>, this is your dashboard</h1>
 
 <p>
-<%= link_to "Manage Contacts", contacts_path %>
+<%= link_to "Manage Contacts", contacts_path %><br />
+<%= link_to "Manage Your Preferences", edit_user_path(@user) %>
 </p>
 
 <br />
