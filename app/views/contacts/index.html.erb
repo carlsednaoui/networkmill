@@ -7,7 +7,6 @@
     <th>Frequency</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @contacts.each do |contact| %>
@@ -16,7 +15,6 @@
     <td><%= contact.email %></td>
     <td><%= contact.frequency %></td>
     <td><%= link_to 'Show', contact %></td>
-    <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
     <td><%= link_to 'Destroy', contact, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
@@ -24,4 +22,5 @@
 
 <br />
 
-<%= link_to 'New Contact', new_contact_path %>
+<%= link_to 'New Contact', new_contact_path %> |
+<%= link_to 'Go Back to Dashboard', dashboard_path %>
