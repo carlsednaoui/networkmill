@@ -37,7 +37,6 @@ def send_email(user)
   puts user.contacts_to_email
 end
 
-
 #create_contact_bucket(user)
 get_contacts_to_email(user)
 send_email(user)

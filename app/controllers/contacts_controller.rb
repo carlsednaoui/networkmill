@@ -46,6 +46,8 @@ class ContactsController < ApplicationController
     @contact = Contact.new(params[:contact])
     @contact.user = current_user
 
+    user.contact_bocket.push @contact.id
+
     respond_to do |format|
       if @contact.save
         format.html { redirect_to contacts_url, notice: 'Contact was successfully created.' }

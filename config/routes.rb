@@ -4,8 +4,11 @@ Networkmill::Application.routes.draw do
   match "/dashboard" => "home#dashboard"
 
   resources :identities
-  resources :users
   resources :contacts
+
+  resources :users, :only => [:create, :show, :update]
+  #Allow users to edit their profiles
+  get '/edit_profile' => 'users#edit', :as => 'edit_user'
 
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout
