@@ -6,6 +6,7 @@ def create_contact_bucket(user_id)
   contacts.each do |contact|
     @contact_bucket.push contact.id
   end
+  return @contact_bucket
 end
 
 def get_contacts_from_contact_bucket(contact_bucket, contact_intensity)
