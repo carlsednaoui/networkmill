@@ -4,6 +4,8 @@ class CreateContacts < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.string :frequency
+      t.integer :user_id
+      t.string :state
 
       t.timestamps
     end
