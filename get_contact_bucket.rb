@@ -1,34 +1,37 @@
 user = User.find_by_id(1)
 
-def create_contact_bucket(user_id)
-  user = User.find_by_id(user_id)
+def create_contact_bucket(user)
   @contact_bucket = []
-  user.contact_bucket = @contact_bucket
-  user.save!
-  
-  contacts = Contact.find_all_by_user_id(user_id)
+
+  contacts = Contact.find_all_by_user_id(user.id)
   contacts.each do |contact|
     @contact_bucket.push contact.id
   end
-  return @contact_bucket
+
+  user.contact_bucket = @contact_bucket
+  user.save!
 end
 
-def get_contacts_from_contact_bucket(contact_bucket, contact_intensity)
-  send_email(contact_bucket.first(contact_intensity))
-  contact_bucket.shift(contact_intensity)
+def get_contacts_to_email(user)
+  user_contact_bucket = user.contact_bucket
+
+  user.contacts_to_email = user_contact_bucket.first(user.contact_intensity)
+  user_contact_bucket.shift(user.contact_intensity)
+  user.save!
 end
 
-def contacts_left(contact_bucket)
+def contacts_left(user_id)
   puts "These are the contacts left in your bucket"
-  puts contact_bucket
+  puts User.find_by_id(user_id).contact_bucket
 end
 
-def send_email(contacts_to_email)
+def send_email(user)
   puts "Hey you, you should email these contacts:"
-  puts contacts_to_email
+  puts user.contacts_to_email
 end
 
 
-create_contact_bucket(user.id)
-get_contacts_from_contact_bucket(@contact_bucket, user.contact_intensity)
-contacts_left(@contact_bucket)
+create_contact_bucket(user)
+get_contacts_to_email(user)
+send_email(user)
+#contacts_left(user.id)
