@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20120506220207) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.boolean  "in_rotation", :default => true
+    t.string   "in_rotation"
   end
 
   create_table "identities", :force => true do |t|
