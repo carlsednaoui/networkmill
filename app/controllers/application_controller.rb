@@ -15,4 +15,11 @@ class ApplicationController < ActionController::Base
       redirect_to "/"
     end
   end
+
+  def user_is_current_user
+    unless current_user == User.find(session[:user_id])
+      flash[:error] = "You do not have access to this data."
+      redirect_to "/"
+    end
+  end
 end

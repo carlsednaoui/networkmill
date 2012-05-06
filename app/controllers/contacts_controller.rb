@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   before_filter :require_current_user
+  before_filter :require_contact_belongs_to_current_user, :only => [:show, :edit, :update, :destroy]
 
   # GET /contacts
   # GET /contacts.json
@@ -82,5 +83,9 @@ class ContactsController < ApplicationController
       format.html { redirect_to contacts_url }
       format.json { head :ok }
     end
+  end
+
+  def require_contact_belongs_to_current_user
+    @contact = current_user.contacts.find(params[:id])
   end
 end

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_current_user
+  before_filter :user_is_current_user, :only => [:show, :edit, :update, :delete]
 
   # GET /users
   # GET /users.json
