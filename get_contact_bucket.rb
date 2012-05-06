@@ -1,7 +1,11 @@
 user = User.find_by_id(1)
 
 def create_contact_bucket(user_id)
-  @contact_bucket = Array.new
+  user = User.find_by_id(user_id)
+  @contact_bucket = []
+  user.contact_bucket = @contact_bucket
+  user.save!
+  
   contacts = Contact.find_all_by_user_id(user_id)
   contacts.each do |contact|
     @contact_bucket.push contact.id
@@ -25,6 +29,6 @@ def send_email(contacts_to_email)
 end
 
 
-create_contact_bucket(user)
+create_contact_bucket(user.id)
 get_contacts_from_contact_bucket(@contact_bucket, user.contact_intensity)
 contacts_left(@contact_bucket)

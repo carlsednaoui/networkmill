@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120505161420) do
+ActiveRecord::Schema.define(:version => 20120506182945) do
 
   create_table "contacts", :force => true do |t|
     t.string   "name"
@@ -39,6 +39,9 @@ ActiveRecord::Schema.define(:version => 20120505161420) do
     t.string   "provider"
     t.string   "uid"
     t.integer  "contact_intensity"
+    t.string   "contact_bucket"
+    t.string   "contacts_to_email"
+    t.string   "contacts_emailed"
   end
 
 end
