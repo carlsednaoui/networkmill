@@ -4,3 +4,5 @@
 - Create mailer part
 - Finish building the contact rotations logic
 - Set up app to allow users to reset password (with Devise)
+
+- Do not allow user to ask for a 'contact intensity' that is higher than the number of contacts they have in their list, or we'll have many bugs on our hands. For example, if a user sets contact intensity to 10 then only has 3 people on their list, we will end up repeating the same people. I disallowed this in the random picking method, so currently it will throw an error, but we should handle this with a validation or on the front end.
