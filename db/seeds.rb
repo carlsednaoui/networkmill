@@ -1,4 +1,5 @@
-@user = User.create(:name => "seed user", :email => "seed@user.com", :password => "password")
+User.create(:name => "seed user", :email => "seed@user.com", :password => "password")
+@user = User.find_by_email("seed@user.com")
 Contact.create(:name => "seed contact 1", :email => "seed1@mail.com", :user_id => @user.id, :state => :in)
 Contact.create(:name => "seed contact 2", :email => "seed2@mail.com", :user_id => @user.id, :state => :in)
 Contact.create(:name => "seed contact 3", :email => "seed3@mail.com", :user_id => @user.id, :state => :in)
