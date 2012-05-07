@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
-  before_filter :require_current_user, :except => [:index]
-
+  before_filter :authenticate_user!, :only => :dashboard
   def index
   end
 

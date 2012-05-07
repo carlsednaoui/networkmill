@@ -1,6 +1,5 @@
 class ContactsController < ApplicationController
-  before_filter :require_current_user
-  before_filter :require_contact_belongs_to_current_user, :only => [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   def index
     @contacts = Contact.find_all_by_user_id(current_user)
@@ -44,9 +43,5 @@ class ContactsController < ApplicationController
     @contact.destroy
 
     redirect_to contacts_url
-  end
-
-  def require_contact_belongs_to_current_user
-    @contact = current_user.contacts.find(params[:id])
   end
 end

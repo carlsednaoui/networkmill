@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_current_user
-  before_filter :user_is_current_user, :only => [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   def index
     @users = User.find_all_by_id(current_user)
@@ -31,12 +30,5 @@ class UsersController < ApplicationController
   def destroy
     current_user.destroy
     redirect_to root_url
-  end
-
-  def user_is_current_user
-    unless current_user == User.find(session[:user_id])
-      flash[:error] = "You do not have access to this data."
-      redirect_to "/"
-    end
   end
 end

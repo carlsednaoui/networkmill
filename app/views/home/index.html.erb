@@ -1,25 +1,9 @@
-<% if current_user %>
-  <p>Welcome <%= current_user.name %>!</p>
-  <%= link_to "Go to You Dashboard", dashboard_path %> 
+<br />
+<%= link_to "Sign Up", "/users/sign_up" %>
+<br />
+<%= link_to "Sign In", "/users/sign_in" %>
 
-  <br />
-  <%= link_to "Sign Out", signout_path %>
-<% else %>
-  <br />
-  <p>
-  <%= link_to "Create an account with your email", new_identity_path %> or Sign In below.
-  </p>
-  <br />
-  <%= form_tag "/auth/identity/callback" do %>
-    <div class="field">
-      <%= label_tag :auth_key, "Registered Email" %>
-      <%= text_field_tag :auth_key %>
-    </div>
-    <div class="field">
-      <%= label_tag :password %>
-      <%= password_field_tag :password %>
-    </div>
-    <div class="actions"><%= submit_tag "Sign In", :class => "btn btn-primary" %></div>
-  <% end %>
-<% end %>
-
+<br />
+<%= link_to "Dashboard", dashboard_path %>
+<br />
+<%= link_to "sign out", destroy_user_session_path, :method => :delete %>
