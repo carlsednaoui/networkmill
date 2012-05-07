@@ -4,9 +4,7 @@ class Contact < ActiveRecord::Base
 
   validates_presence_of :email
   validates_format_of :email, :with => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
-
-  #need to fix this
-  validates_uniqueness_of :user && :email, :message => "already exists as a contact."
+  validates_uniqueness_of :email, :scope => :user_id, :message => "already exists as a contact."
 
   scope :in_rotation, where(:state => :in)
   scope :last_week, where(:state => :just_used)
