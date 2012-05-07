@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
   #removed attr_accesible for :password_confirmation
   attr_accessible :name, :email, :desktop_client, :contact_intensity, :password, :remember_me
 
-
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
