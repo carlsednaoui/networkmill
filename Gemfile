@@ -16,7 +16,6 @@ end
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'sqlite3-ruby'
 end
 
 group :production do
