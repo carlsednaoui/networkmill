@@ -14,9 +14,11 @@ class User < ActiveRecord::Base
   def reset_list_if_needed
     if contacts_in_rotation.count < contact_intensity
       puts "resetting list"
-      contacts.each { |c| c.state = :in } 
+      contacts.each { |c| c.state = :in }
+      return true
     else
       puts "no need to reset"
+      return false
     end
   end
 
