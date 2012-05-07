@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   # this should be removed and put in the controller. But later
   def default_values
     self.contact_intensity = 3
-    self.desktop_client = false
+    self.desktop_client = 'false'
   end
 
   # Picks n random contacts from the ones that are in rotation
