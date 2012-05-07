@@ -3,6 +3,11 @@ class User < ActiveRecord::Base
   #removed attr_accesible for :password_confirmation
   attr_accessible :name, :email, :desktop_client, :contact_intensity, :password, :remember_me
 
+  before_save :default_values
+  def default_values
+    self.contact_intensity = '3'
+  end
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
