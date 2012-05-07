@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :contacts
-  attr_accessible :name, :email, :desktop_client, :contact_intensity, :password, :remember_me
+  attr_accessible :name, :email, :desktop_client, :contact_intensity, :password, :password_confirmation, :remember_me
   before_create :default_values
 
   # Include default devise modules. Others available are:
@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   # this should be removed and put in the controller. But later
   def default_values
     self.contact_intensity = 3
-    self.desktop_client = false
+    self.desktop_client = 'false'
   end
 
   # Picks n random contacts from the ones that are in rotation
@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 
   def pick_random_contacts(n)
     result = []
-    return false if n > contacts_in_rotation.count
+    return nil if n > contacts_in_rotation.count
     while result.count < n
       reset_list if contacts_in_rotation.count == 0
       contact = contacts_in_rotation.shuffle.first
