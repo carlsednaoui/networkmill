@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :contacts
-  attr_accessible :name, :email, :desktop_client, :contact_intensity, :password, :password_confirmation, :remember_me
+  #removed attr_accesible for :password_confirmation
+  attr_accessible :name, :email, :desktop_client, :contact_intensity, :password, :remember_me
 
 
   # Include default devise modules. Others available are:

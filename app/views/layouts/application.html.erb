@@ -17,7 +17,16 @@
     <% end %>
     <!--Validation is above-->
 
-    <%= link_to "Home", "/" %>
+    <div id="user_nav">
+      <%= link_to "Home", "/" %> |
+      <% if user_signed_in? %>
+      <%= link_to "Dashboard", dashboard_path %> |
+	Signed in as <%= current_user.email %>. Not you?
+	<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+      <% else %>
+	<%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+      <% end %>
+    </div>
 
     <%= yield %>
 
