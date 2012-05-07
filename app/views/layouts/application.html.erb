@@ -7,6 +7,15 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <!--Validation is below-->
+    <% flash.each do |key, value|%>
+      <div class="alert">
+	<div id="flash_<%= key %>">
+	  <%= value %>
+	</div>
+      </div>
+    <% end %>
+    <!--Validation is above-->
 
     <%= link_to "Home", "/" %>
 
