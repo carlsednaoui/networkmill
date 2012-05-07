@@ -7,29 +7,27 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
+  # this should be removed and put in the controller. But later
   def default_values
     self.contact_intensity = 3
     self.desktop_client = false
   end
 
-  # picks n random contacts from the ones that are in rotation
-  # if the list is depleted, resets the list. This results in
-  # completely fluid random picks with no loss
-
-  # There is a small bug here - if one is picked and the list is
-  # reset, the same one can be added again, resulting in a double pick.
-  # I'm working on this, but the solution is pretty complex : (
+  # Picks n random contacts from the ones that are in rotation
+  # - resets the list as soon as it's finished a rotation
+  # - won't return one contact more than once per list
+  # - returns false if you ask for more contacts than the user has (to prevent doubling)
 
   def pick_random_contacts(n)
     result = []
-    n.times do
+    return false if n > contacts_in_rotation.count
+    while result.count < n
       reset_list if contacts_in_rotation.count == 0
       contact = contacts_in_rotation.shuffle.first
-      puts "============================"
-      puts "added #{contact.id}"
-      puts "============================"
-      result << contact
-      contact.update_attributes :state => :out
+      unless result.include?(contact)
+        result << contact
+        contact.update_attributes :state => :out
+      end
     end
     return result
   end
