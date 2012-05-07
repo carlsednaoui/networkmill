@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   before_save :default_values
   def default_values
     self.contact_intensity = '3'
+    self.desktop_client = 'false'
   end
 
   # Include default devise modules. Others available are:
