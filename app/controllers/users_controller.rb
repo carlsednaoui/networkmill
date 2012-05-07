@@ -21,9 +21,9 @@ class UsersController < ApplicationController
     @user = current_user
 
     if @user.update_attributes(params[:user])
-      redirect_to dashboard_path, notice: 'User was successfully updated.'
+      redirect_to dashboard_path, :notice => 'User was successfully updated.'
     else
-      render action: "edit", notice: 'Saved failed'
+      render action: "edit", :notice => 'Saved failed'
     end
   end
 
