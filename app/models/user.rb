@@ -2,6 +2,11 @@ class User < ActiveRecord::Base
   has_many :contacts
   attr_accessible :name, :email, :desktop_client, :contact_intensity, :password, :remember_me
   before_create :default_values
+ # after_create :send_welcome_mail
+
+  def send_welcome_mail
+     UserMailer.welcome_email(self.email).deliver
+  end
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
