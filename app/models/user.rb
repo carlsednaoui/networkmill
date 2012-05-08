@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 #Need to relook at this
   def pick_random_contacts(n)
     result = []
-#    return nil if n > contacts_in_rotation.count
+    return nil if n > contacts.count
     while result.count < n
       reset_list if contacts_in_rotation.count == 0
       contact = contacts_in_rotation.shuffle.first
