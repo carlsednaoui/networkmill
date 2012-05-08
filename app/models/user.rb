@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   end
 
   def contacts_in_rotation
-    contacts.select{ |c| c == :in }
+    contacts.select{ |c| c.in_rotation? }
   end
 
   def reset_list
