@@ -1,5 +1,7 @@
 <h1>Editing Your Preferences</h1>
-
+<% if @user.name.blank? %>
+  <h2>Let's get to know each other, why don't you tell us your name?</h2>
+<% end %>
 <%= render 'form' %>
 
 <%= link_to 'Go Back to Dashboard', dashboard_path %>
