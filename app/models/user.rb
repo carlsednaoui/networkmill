@@ -42,6 +42,9 @@ class User < ActiveRecord::Base
   end
 
   def reset_list
-    contacts.each { |c| c.state = :in }
+    contacts.each do |c| 
+      c.state = :in
+      c.save!
+    end
   end
 end
