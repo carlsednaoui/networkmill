@@ -37,12 +37,13 @@ class User < ActiveRecord::Base
     return result
   end
 
+  #**To look over with Jeff
   def contacts_in_rotation
-    contacts.select{ |c| c.in_rotation? }
+    #contacts.select{ |c| c.in_rotation? }
+    contacts.select{ |c| c = "in" }
   end
 
   def reset_list
     contacts.each { |c| c.state = :in }
   end
-
 end
