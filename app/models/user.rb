@@ -23,9 +23,10 @@ class User < ActiveRecord::Base
   # - won't return one contact more than once per list
   # - returns false if you ask for more contacts than the user has (to prevent doubling)
 
+#Need to relook at this
   def pick_random_contacts(n)
     result = []
-    return nil if n > contacts_in_rotation.count
+#    return nil if n > contacts_in_rotation.count
     while result.count < n
       reset_list if contacts_in_rotation.count == 0
       contact = contacts_in_rotation.shuffle.first
