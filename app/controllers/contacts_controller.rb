@@ -20,7 +20,7 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(params[:contact])
     @contact.user = current_user
-    @contact.state = :in
+    @contact.state = "in"
 
     if @contact.save
       redirect_to contacts_url, :notice => 'Contact was successfully created.'

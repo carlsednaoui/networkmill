@@ -4,7 +4,7 @@ User.create(:name => "seed user", :email => "networkmill@gmail.com", :password =
 
 for c in (1..10)
   @contacts = @user.contacts.count + 1
-  Contact.create(:name => "seed contact " + @contacts.to_s, :email => "seed" + @contacts.to_s + "@mail.com", :user_id => @user.id, :state => :in)
+  Contact.create(:name => "seed contact " + @contacts.to_s, :email => "seed" + @contacts.to_s + "@mail.com", :user_id => @user.id, :state => "in")
 end
 
 puts "---------------------------------------------------------------------"

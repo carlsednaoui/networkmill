@@ -31,19 +31,19 @@ class User < ActiveRecord::Base
       contact = contacts_in_rotation.shuffle.first
       unless result.include?(contact)
         result << contact
-        contact.update_attributes :state => :out
+        contact.update_attributes :state => "out"
       end
     end
     return result
   end
 
   def contacts_in_rotation
-    contacts.select{ |c| c.in_rotation? }
+    contacts.select{ |c| c.state == "in" }
   end
 
   def reset_list
     contacts.each do |c| 
-      c.state = :in
+      c.state = "in"
       c.save!
     end
   end
