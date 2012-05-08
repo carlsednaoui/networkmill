@@ -2,8 +2,15 @@ html
   height: 100%
 
 body
-  border-left: 10px solid #FF3200
   height: 100%
+
+.sliver
+  background: image-url("gradient.png") repeat-y
+  width: 10px
+  position: absolute
+  left: 0
+  height: 100%
+  -webkit-animation: gradient-move 60s infinite
 
 #container
   width: 960px
@@ -16,9 +23,19 @@ header
 
   .logo a
     +ir("logo.png", 200px 31px)
+    +transition
     display: block
     float: left
+
+    &:hover
+      opacity: .8
 
   .status
     float: right
     padding-top: 7px
+
+@-webkit-keyframes gradient-move
+  0%
+    background-position: 0 0
+  100%
+    background-position: 0 1216px
