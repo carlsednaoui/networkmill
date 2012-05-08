@@ -1,5 +1,5 @@
-User.create(:name => "seed user", :email => "seed@user.com", :password => "password")
-@user = User.find_by_email("seed@user.com")
+User.create(:name => "seed user", :email => "networkmill@gmail.com", :password => "ilovetonetwork")
+@user = User.find_by_email("networkmill@gmail.com")
 
 
 for c in (1..10)
@@ -8,6 +8,6 @@ for c in (1..10)
 end
 
 puts "---------------------------------------------------------------------"
-puts "database seeded - login for example user is seed@user.com // password"
+puts "database seeded - login for example user is networkmill@gmail.com // ilovetonetwork"
 puts "database seeded - created " + c.to_s + " contacts for example user" 
 puts "---------------------------------------------------------------------"
