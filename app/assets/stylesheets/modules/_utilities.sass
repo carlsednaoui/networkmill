@@ -107,7 +107,7 @@
 // ex. +bg(../img/other.jpg, center center, repeat)
 
 =bg($path, $position: unquote(""), $repeat: no-repeat)
-  background: url(unquote($path)) $position $repeat
+  background: image-url(quote($path)) $position $repeat
 
 // Mixin: Bold
 // It's just faster to type +bold than font-weight: bold
@@ -186,7 +186,7 @@
     +bg(unquote($img-path))
   @if type-of($dimensions) == list
     width: nth($dimensions, 1)
-    height: nth($dimensions, 3)
+    height: nth($dimensions, 2)
   @else if $dimensions == false
     // all is well
   @else
