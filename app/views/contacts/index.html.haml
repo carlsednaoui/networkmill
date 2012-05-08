@@ -1,0 +1,20 @@
+%h1 All contacts
+
+%table
+  %tr
+    %th Name
+    %th Email
+
+  - @contacts.each do |contact|
+    %tr
+      %td= contact.name
+      %td= contact.email
+      %td
+        = link_to 'Edit', edit_contact_path(contact)
+        |
+      %td= link_to 'Delete Contact', contact, confirm: 'Are you sure?', method: :delete
+
+%br
+
+= link_to 'New Contact', new_contact_path
+= link_to 'Go Back to Dashboard', dashboard_path
