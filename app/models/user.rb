@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   # - won't return one contact more than once per list
   # - returns false if you ask for more contacts than the user has (to prevent doubling)
 
-#Need to relook at this
+#Need to relook at this, but everything seems to work
   def pick_random_contacts(n)
     result = []
     return nil if n > contacts.count
@@ -47,5 +47,14 @@ class User < ActiveRecord::Base
       c.state = "in"
       c.save!
     end
+  end
+
+  def run_the_mill(user)
+    contacts = pick_random_contacts(user.contact_intensity)
+    send_contacts_email(user,contacts)
+  end
+
+  def send_contacts_email(user, contacts)
+    UserMailer.send_contacts(user, contacts).deliver
   end
 end

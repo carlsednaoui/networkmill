@@ -1,0 +1,8 @@
+<h1>Hey you!</h1>
+
+<p>You should email these awesome people:</p>
+
+<% @contacts.each do |c| %>
+	<%= c.name %>,
+	<%= c.email %>
+<% end %>
