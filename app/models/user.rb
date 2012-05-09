@@ -2,10 +2,12 @@ class User < ActiveRecord::Base
   has_many :contacts
   attr_accessible :name, :email, :desktop_client, :contact_intensity, :password, :remember_me
   before_create :default_values
- # after_create :send_welcome_mail
+
+  #This will send users a welcome email when they sign up
+  # after_create :send_welcome_mail
 
   def send_welcome_mail
-     UserMailer.welcome_email(self.email).deliver
+    UserMailer.welcome_email(self.email).deliver
   end
 
   # Include default devise modules. Others available are:
@@ -23,7 +25,7 @@ class User < ActiveRecord::Base
   # - won't return one contact more than once per list
   # - returns false if you ask for more contacts than the user has (to prevent doubling)
 
-#Need to relook at this, but everything seems to work
+  #Need to relook at this, but everything seems to work
   def pick_random_contacts(n)
     result = []
     return nil if n > contacts.count
@@ -31,8 +33,8 @@ class User < ActiveRecord::Base
       reset_list if contacts_in_rotation.count == 0
       contact = contacts_in_rotation.shuffle.first
       unless result.include?(contact)
-        result << contact
-        contact.update_attributes :state => "out"
+	result << contact
+	contact.update_attributes :state => "out"
       end
     end
     return result
@@ -44,8 +46,7 @@ class User < ActiveRecord::Base
 
   def reset_list
     contacts.each do |c| 
-      c.state = "in"
-      c.save!
+      c.update_attributes :state => "in"
     end
   end
 
