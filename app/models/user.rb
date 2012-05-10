@@ -25,16 +25,17 @@ class User < ActiveRecord::Base
   # - won't return one contact more than once per list
   # - returns false if you ask for more contacts than the user has (to prevent doubling)
 
-  #Need to relook at this, but everything seems to work
+  # Need to relook at this, but everything seems to work
   def pick_random_contacts(n)
     result = []
     return nil if n > contacts.count
+    move_just_sent_to_out
     while result.count < n
       reset_list if contacts_in_rotation.count == 0
       contact = contacts_in_rotation.shuffle.first
       unless result.include?(contact)
 	result << contact
-	contact.update_attributes :state => "out"
+	contact.update_attributes :state => "just_sent"
       end
     end
     return result
@@ -44,17 +45,30 @@ class User < ActiveRecord::Base
     contacts.select{ |c| c.state == "in" }
   end
 
+  def contacts_just_sent
+    contacts.select{ |c| c.state == "just_sent" }
+  end
+
+  def move_just_sent_to_out
+    just_sent = contacts_just_sent
+    just_sent.each do |c|
+      c.update_attributes :state => "out"
+    end
+  end
+
   def reset_list
     contacts.each do |c| 
       c.update_attributes :state => "in"
     end
   end
 
+  # This is where the magic happens
   def run_the_mill(user)
     contacts = pick_random_contacts(user.contact_intensity)
     send_contacts_email(user,contacts)
   end
 
+  # Send user the people he/she should contact this week
   def send_contacts_email(user, contacts)
     UserMailer.send_contacts(user, contacts).deliver
   end
