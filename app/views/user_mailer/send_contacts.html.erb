@@ -2,7 +2,11 @@
 
 <p>You should email these awesome people:</p>
 
-<% @contacts.each do |c| %>
-	<%= c.name %>,
-	<%= c.email %>
-<% end %>
+<ul>
+  <% @contacts.each do |c| %>
+    <li>
+    <%= c.name %> - 
+    <%= c.email %>
+    </li>
+  <% end %>
+</ul>

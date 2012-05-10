@@ -6,6 +6,10 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'haml', '3.1.4'
 
+# Use delayed job to send emails
+gem 'daemons'
+gem 'delayed_job_active_record'
+
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
