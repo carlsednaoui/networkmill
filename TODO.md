@@ -5,5 +5,30 @@
 
 # Notes
 - From Devise "Ensure you have defined default url options in your environments files. Here is an example of default_url_options appropriate for a development environment in config/environments/development.rb: config.action_mailer.default_url_options = { :host => 'localhost:3000' } In production, :host should be set to the actual host of your application."
-- To run delayed job in development use $rake jobs:work
-- To run delated job in production http://railscasts.com/episodes/171-delayed-job-revised && https://devcenter.heroku.com/articles/delayed-job
+- run mailer: rake mill:all
+- single: rake mill:single[1]
+
+# The Future
+- Task that looks users with less than 5 contacts and reminds them
+- A property on user so that we can say they were already reminded
+- A way for the user to "deactivate" account
+- A way to unsubscribe (link to account settings in email)
+- User has_many Emails (user_id, sent_to, body, contacts)
+- Create an email on the user as soon as it gets sent, make sure that's working
+- Disable everything if you have less than 5 contacts
+- User edit page - should be able to change password and such through devise
+- Introduction on first login
+  - ask for your name
+  - ask for desktop client or not
+  - gmail connect piece (low priority)
+  - set how many people you want to get per email
+
+# Mobile App
+- Namespace, get m.networkmill.com to pull it up
+- Login screen
+- Mobile dashboard (picture - carrierwave, personal message, event queue checkbox)
+- Networking screen (form w/ name, email, and optional personalized message)
+- When send gets hit, friend sent email immediately, you get an email sent or queued
+- Logic for queueing in event mode
+  - if event mode, add to queue, send 5 hours later
+  - if not send it right away

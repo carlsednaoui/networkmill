@@ -24,7 +24,6 @@ class User < ActiveRecord::Base
   # - resets the list as soon as it's finished a rotation
   # - won't return one contact more than once per list
   # - returns false if you ask for more contacts than the user has (to prevent doubling)
-
   # Need to relook at this, but everything seems to work
   def pick_random_contacts(n = contact_intensity)
     result = []
