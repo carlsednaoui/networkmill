@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # after_create :send_welcome_mail
 
   def send_welcome_mail
-    UserMailer.welcome_email(self.email).deliver
+    UserMailer.delay(queue: "the_mill").welcome_email(self.email)
   end
 
   # Include default devise modules. Others available are:
