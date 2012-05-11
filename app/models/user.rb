@@ -70,6 +70,6 @@ class User < ActiveRecord::Base
 
   # Send user the people he/she should contact this week
   def send_contacts_email(user, contacts)
-    UserMailer.send_contacts(user, contacts).deliver
+    UserMailer.delay(queue: "the_mill").send_contacts(user, contacts)
   end
 end
