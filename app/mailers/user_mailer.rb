@@ -14,5 +14,6 @@ class UserMailer < ActionMailer::Base
   		@contacts << Contact.find_by_id(c)
   	end
   	mail to: user.email, subject: "Awesome People to Contact This Week"
+    puts "sent email to #{user.email}!"
   end
 end

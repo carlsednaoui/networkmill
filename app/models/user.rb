@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # after_create :send_welcome_mail
 
   def send_welcome_mail
-    UserMailer.delay(queue: "the_mill").welcome_email(self.email)
+    UserMailer.welcome_email(self.email).deliver
   end
 
   # Include default devise modules. Others available are:
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   # - returns false if you ask for more contacts than the user has (to prevent doubling)
 
   # Need to relook at this, but everything seems to work
-  def pick_random_contacts(n)
+  def pick_random_contacts(n = contact_intensity)
     result = []
     return nil if n > contacts.count
     move_just_sent_to_out
@@ -34,8 +34,8 @@ class User < ActiveRecord::Base
       reset_list if contacts_in_rotation.count == 0
       contact = contacts_in_rotation.shuffle.first
       unless result.include?(contact)
-	result << contact
-	contact.update_attributes :state => "just_sent"
+        result << contact
+        contact.update_attributes :state => "just_sent"
       end
     end
     return result
@@ -62,14 +62,4 @@ class User < ActiveRecord::Base
     end
   end
 
-  # This is where the magic happens
-  def run_the_mill(user)
-    contacts = pick_random_contacts(user.contact_intensity)
-    send_contacts_email(user,contacts)
-  end
-
-  # Send user the people he/she should contact this week
-  def send_contacts_email(user, contacts)
-    UserMailer.delay(queue: "the_mill").send_contacts(user, contacts)
-  end
 end
