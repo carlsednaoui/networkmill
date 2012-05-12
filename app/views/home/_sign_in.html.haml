@@ -1,6 +1,6 @@
 = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  = f.email_field :email, placeholder: 'email'
-  = f.password_field :password, placeholder: 'password'
+  = f.email_field :email, placeholder: 'email', class: 'email-field'
+  = f.password_field :password, placeholder: 'password', class: 'password-field'
 
   / - if devise_mapping.rememberable?
   /   = f.check_box :remember_me
@@ -9,4 +9,4 @@
   - if devise_mapping.recoverable? && controller_name != 'passwords'
     = link_to "forgot password?", new_password_path(resource_name), class: 'forgot-pass'
 
-  = f.submit "hit it &raquo;".html_safe
+  = f.submit "hit it &raquo;".html_safe, class: 'form-submit'

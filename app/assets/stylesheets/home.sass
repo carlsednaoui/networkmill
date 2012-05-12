@@ -39,3 +39,36 @@
 
       &:first-child
         margin-top: 11px
+
+.underlay
+  +d(100%)
+  background: rgba(0,0,0,.6)
+  position: absolute
+  top: 0
+  left: 0
+  display: none
+
+#sign-up
+  display: none
+  position: absolute
+  z-index: 5
+  background: white
+  +round(7px)
+  +box-shadow(7px 7px 14px rgba(0,0,0,.7))
+
+  h4
+    +simple-gradient(#292929, 7%)
+    margin: 0
+    padding: 9px 0
+    text-align: center
+    color: #fff
+    border-radius: 7px 7px 0 0
+    text-shadow: 0 0 1px rgba(#000, .3)
+
+  .new_user
+    padding: 20px
+
+
+
+
+

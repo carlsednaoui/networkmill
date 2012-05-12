@@ -3,7 +3,7 @@ $ ->
   # ---------------------------------------
   # Sign in menu logic
   # ---------------------------------------
-  
+
   signin_timer = null
 
   signin_menu_out = ->
@@ -22,3 +22,20 @@ $ ->
     clearTimeout signin_timer
   , ->
     signin_menu_out()
+
+
+  # ---------------------------------------
+  # Sign up modal logic
+  # ---------------------------------------
+
+  $('.sign-up').click ->
+    lpos = (960-370)/2
+    tpos = ($(window).height()-169)/2
+    $('#sign-up').css({ left: lpos, top: tpos }).fadeIn 400
+    $('.underlay').fadeIn 400
+    document.onkeydown = (e) -> $('.underlay').click() if e.keyCode == 27
+    false
+
+  $('.underlay').click ->
+    $('#sign-up').fadeOut 400
+    $(this).fadeOut 400
