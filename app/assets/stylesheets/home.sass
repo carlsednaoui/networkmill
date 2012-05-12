@@ -24,7 +24,18 @@
     font-size: 1.6em
     background: image-url("line.png") top center no-repeat, image-url("line.png") bottom center no-repeat
 
-  ul
-    +inline-list(216px)
-    width: 670px
-    margin: 40px auto
+  .summary
+    +inline-list(131px)
+    width: 700px
+    margin: 30px auto
+    +group
+
+    p
+      font-size: 14px
+
+    li
+      text-align: center
+      width: 146px
+
+      &:first-child
+        margin-top: 11px
