@@ -52,12 +52,16 @@ header
     .sign-in
       +reset-link
       +bold
-      background: #E2E2E2
       padding: 8px 20px
       border-top-left-radius: 7px
       border-top-right-radius: 7px
+      +transition(background .4s)
+
+      &.active
+        background: #E2E2E2
 
   #new_user
+    display: none
     background: #E2E2E2
     position: absolute
     z-index: 2
