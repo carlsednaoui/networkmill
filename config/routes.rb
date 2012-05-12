@@ -5,6 +5,10 @@ Networkmill::Application.routes.draw do
   resources :contacts
   resources :users, :only => [:new, :create, :update]
 
-  get '/edit_profile' => 'users#edit', :as => 'edit_user' # overriding resources
+  # overriding devise edit profil path
+	devise_scope :user do
+  	get "/edit_profile" => "devise/registrations#edit", :as => 'edit_user'
+	end
+
   get "/dashboard" => "home#dashboard", :as => 'dashboard'
 end
