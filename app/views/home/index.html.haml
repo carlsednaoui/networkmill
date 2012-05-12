@@ -2,3 +2,14 @@
   %img{ src: 'assets/splash.png', alt: 'networkmill' }
   .wrap
     = link_to "sign up, free &raquo;".html_safe, new_user_registration_path, class: 'sign-up'
+
+#home
+  %h2 networkmill keeps track of your contacts and makes sure you stay in touch
+
+  %ul.summary
+    %li
+      =image_tag 'step1.png'
+    %li
+      =image_tag 'step2.png'
+    %li
+      =image_tag 'step3.png'

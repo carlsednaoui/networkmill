@@ -30,9 +30,27 @@ header
     &:hover
       opacity: .8
 
+  nav ul
+    +inline-list(35px)
+    float: left
+    margin-top: 5px
+    margin-left: 35px
+
+    a
+      +reset-link
+      +opacity(.5)
+      +transition(opacity .25s ease)
+
+      &:hover
+        +opacity(.8)
+
   .status
     float: right
     padding-top: 7px
+
+    a
+      +reset-link
+      +bold
 
 @-webkit-keyframes gradient-move
   0%

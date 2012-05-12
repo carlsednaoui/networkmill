@@ -11,6 +11,14 @@
   #container
     %header
       .logo= link_to 'networkmill', root_path
+      %nav
+        %ul
+          %li
+            %a{ href: '#' } about
+          %li
+            %a{ href: '#' } download
+          %li
+            %a{ href: '#' } contact
 
       .status
         - if user_signed_in?
@@ -18,8 +26,6 @@
           %small
             = link_to "sign out", destroy_user_session_path, :method => :delete
         - else
-          = link_to "sign up", new_user_registration_path
-          or
           = link_to "sign in", new_user_session_path
 
     - flash.each do |k,v|
