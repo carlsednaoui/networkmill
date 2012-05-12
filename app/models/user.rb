@@ -61,4 +61,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def low_contacts?
+    threshold = 5
+    return true if contacts.count < threshold
+  end
 end
