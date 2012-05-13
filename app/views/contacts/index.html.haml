@@ -4,11 +4,13 @@
   %tr
     %th Name
     %th Email
+    %th Notes
 
   - @contacts.each do |contact|
     %tr
       %td= contact.name
       %td= contact.email
+      %td= contact.note
       %td
         = link_to 'Edit', edit_contact_path(contact)
         |
