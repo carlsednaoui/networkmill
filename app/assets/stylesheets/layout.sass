@@ -48,6 +48,16 @@ header
   .status
     float: right
     padding-top: 7px
+    position: relative
+
+    .account
+      padding: 10px 15px
+      border-top-left-radius: 7px
+      border-top-right-radius: 7px
+      +transition(background .4s)
+
+      &.active
+        background: #E2E2E2
 
     .sign-in
       +reset-link
@@ -59,6 +69,27 @@ header
 
       &.active
         background: #E2E2E2
+
+    .dropdown
+      display: none
+      position: absolute
+      right: 0
+      background: #E2E2E2
+      top: 27px
+      padding: 10px 61px
+      border-bottom-left-radius: 7px
+      border-bottom-right-radius: 7px
+      text-align: center
+
+      a
+        display: block
+        font-size: 13px
+        color: #FF4517
+        text-decoration: none
+        margin-bottom: 5px
+
+        &:hover
+          text-decoration: underline
 
   #new_user
     display: none

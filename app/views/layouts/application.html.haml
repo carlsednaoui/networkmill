@@ -22,8 +22,9 @@
 
       .status
         - if user_signed_in?
-          %strong= "#{current_user.email}"
-          %small
+          %strong.account= "#{current_user.email}"
+          %small.dropdown
+            = link_to "preferences", edit_user_path
             = link_to "sign out", destroy_user_session_path, :method => :delete
         - else
           = link_to "sign in", new_user_session_path, class: 'sign-in'

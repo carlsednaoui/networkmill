@@ -13,6 +13,7 @@ $ ->
     , 500
 
   $('.sign-in').hover ->
+    clearTimeout signin_timer
     $(this).addClass 'active'
     $('#new_user').fadeIn 400
   , ->
@@ -68,3 +69,28 @@ $ ->
       $('#sign-up .password-field').val(saved_pass)
       $('#sign-up .new_user').submit()
       false 
+
+  # ---------------------------------------
+  # Account Dropdown (needs major revision)
+  # ---------------------------------------
+
+  account_timer = null
+
+  account_menu_out = ->
+    account_timer = setTimeout =>
+      $('.account').removeClass 'active'
+      $('.dropdown').fadeOut 400
+    , 500
+
+  $('.account').hover ->
+    clearTimeout account_timer
+    $(this).addClass 'active'
+    $('.dropdown').fadeIn 400
+  , ->
+    account_menu_out()
+
+  $('.dropdown').hover ->
+    clearTimeout account_timer
+  , ->
+    account_menu_out()
+
