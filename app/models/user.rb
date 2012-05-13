@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :contacts
+  has_many :emails
   attr_accessible :name, :email, :desktop_client, :contact_intensity, :password, :remember_me
   before_create :default_values
 

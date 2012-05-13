@@ -1,3 +1,4 @@
 class Email < ActiveRecord::Base
-  attr_accessible :body, :contacts, :sent_to, :user_id
+  belongs_to :user
+  attr_accessible :title, :body, :contacts, :sent_to, :user_id
 end
