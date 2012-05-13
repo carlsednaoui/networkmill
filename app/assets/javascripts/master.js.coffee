@@ -23,6 +23,9 @@ $ ->
   , ->
     signin_menu_out()
 
+  $('.sign-in').click ->
+    false
+
 
   # ---------------------------------------
   # Sign up modal logic
@@ -49,19 +52,19 @@ $ ->
     if $(this).is(':checked')
       console.log 'turning on'
       $('.pass-visible').val(saved_pass)
-      $('.password-field').hide()
+      $('#sign-up .password-field').hide()
       $('.pass-visible').css display: 'block'
     else
       console.log 'turning off'
       saved_pass = $('.pass-visible').val()
-      $('.password-field').val(saved_pass)
+      $('#sign-up .password-field').val(saved_pass)
       $('.pass-visible').hide()
-      $('.password-field').show()
+      $('#sign-up .password-field').show()
 
   $('#sign-up .form-submit').click ->
     if $('.show-pass').not(':checked')
       alert 'submitting with visible password!'
       saved_pass = $('.pass-visible').val()
-      $('.password-field').val(saved_pass)
+      $('#sign-up .password-field').val(saved_pass)
       $('#sign-up .new_user').submit()
       false 
