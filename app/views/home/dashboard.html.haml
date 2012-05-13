@@ -1,6 +1,24 @@
 %h1 Hi, this is your dashboard
 
 %p
-  = link_to "Manage Contacts", contacts_path
-  %br
-  = link_to "Manage Your Preferences", edit_user_path
+  = link_to "Manage Your Preferences", edit_user_path\
+
+%table
+  %tr
+    %th Name
+    %th Email
+    %th Notes
+
+  - @contacts.each do |contact|
+    %tr
+      %td= contact.name
+      %td= contact.email
+      %td= contact.note
+      %td
+        = link_to 'Edit', edit_contact_path(contact)
+        |
+      %td= link_to 'Delete Contact', contact, confirm: 'Are you sure?', method: :delete
+
+%br
+
+= link_to 'New Contact', new_contact_path

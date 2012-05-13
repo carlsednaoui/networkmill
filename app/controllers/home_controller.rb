@@ -5,5 +5,7 @@ class HomeController < ApplicationController
 
   def dashboard
     @user = current_user
+    @contacts = Contact.find_all_by_user_id(current_user)
   end
+  
 end
