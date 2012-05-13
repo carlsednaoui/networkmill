@@ -1,24 +1,20 @@
-%h1 Hi, this is your dashboard
+.top
+  %h3 Here are the people you want to stay in touch with:
+  = link_to new_contact_path, :class => 'new-contact-button' do
+    %span
+    add new contact
 
-%p
-  = link_to "Manage Your Preferences", edit_user_path\
-
-%table
-  %tr
-    %th Name
-    %th Email
-    %th Notes
-
+%ul.contacts
   - @contacts.each do |contact|
-    %tr
-      %td= contact.name
-      %td= contact.email
-      %td= contact.note
-      %td
+    %li
+      = image_tag "default.png"
+      %p
+        = contact.name
+        %span= "(#{contact.email})"
+      .right
         = link_to 'Edit', edit_contact_path(contact)
-        |
-      %td= link_to 'Delete Contact', contact, confirm: 'Are you sure?', method: :delete
+        = link_to 'Delete', contact, confirm: 'Are you sure?', method: :delete
 
 %br
-
-= link_to 'New Contact', new_contact_path
+%br
+%p= link_to "Manage Your Preferences", edit_user_path\

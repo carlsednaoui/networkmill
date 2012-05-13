@@ -1,0 +1,51 @@
+.top
+  +group
+  margin-bottom: 30px
+
+  h3
+    color: #D50080
+    font-weight: normal
+    font-size: 27px
+    float: left
+
+  .new-contact-button
+    +button(#FF9300)
+    +gradient(#FF9300, #FF5900)
+    +rounded
+    +transition
+    float: right
+    margin-top: 5px
+    padding: 9px 20px
+    padding-left: 18px
+
+    span
+      +inline-block
+      +d(16)
+      +bg("new-contact.png")
+      margin-top: -1px
+      padding-right: 5px
+
+.contacts
+  +reset-list
+
+  li
+    padding: 8px
+    +group
+    color: #333
+
+    &:nth-child(2n-1)
+      background: #F3F3F3
+
+    .right
+      float: right
+
+    img
+      display: block
+      float: left
+
+    p
+      margin: 4px 0 0 5px 
+      +inline-block
+
+    span
+      color: #9A9A9A
