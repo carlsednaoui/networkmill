@@ -2,14 +2,13 @@
 - Look over any potential security holes
 - Remove contacts link on Dashboard - everything should happen from the dashboard
 - Allow users to unsubscribe from our emails (link to account settings in email)
+- Fix Email when you run the mill (email.contacts looks like this "---\n- 4\n- 1\n- 8\n")
 - Limit user contact intensity
   - Do not allow user to ask for a 'contact intensity' that is higher than the number of contacts they have in their list, or we'll have many bugs on our hands. For example, if a user sets contact intensity to 10 then only has 3 people on their list, we will end up repeating the same people. I disallowed this in the random picking method, so currently it will throw an error, but we should handle this with a validation or on the front end.
   - One thing to note is that when a user creates an account, by default they will have 0 contacts. Lets discuss this piece of logic next time we meet.
   - Do not allow a user to have an intensity > the # of contacts they have - OR - have a message that says "hey, you're contact intensity is higher than the number of contacts you have, we will only sent you x contacts" $while user.contact_intensity > user.contacts.count user.contact_intensity = user.contacts.count (or something like that)
 
 # The Future
-- Create an email on the user as soon as it gets sent, make sure that's working
-
 - Introduction on first login
   - ask for your name
   - ask for desktop client or not
@@ -38,6 +37,7 @@
 - If new user - route to edit_profile_path
 - Allow users to reset password
 - A property on user so that we can say they were already reminded of low_contacts? (can do this by looking up in the email model and see if user has received said email)
+- Create an email on the user as soon as it gets sent, make sure that's working
 
 # Notes
 - From Devise "Ensure you have defined default url options in your environments files. Here is an example of default_url_options appropriate for a development environment in config/environments/development.rb: config.action_mailer.default_url_options = { :host => 'localhost:3000' } In production, :host should be set to the actual host of your application."
