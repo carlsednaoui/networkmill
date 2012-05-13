@@ -1,19 +1,14 @@
-# To Do
-- Look over any potential security holes
-- Remove contacts link on Dashboard - everything should happen from the dashboard
-- Allow users to unsubscribe from our emails (link to account settings in email)
+_I restructured this file a little bit to make it more organized for us. Bugs can apply to anything and are listed at the top - when you find something that's messed up just toss it in there. If it's not super obvious, include a screenshot. The rest of the categories are more or less to-do lists / road maps for us. As soon as you finish one, commit, delete from here, and push._
+
+# Bugs
+- You can't change user preferences without re-entering the password - this should not be the case and is not the case in devise's defaults. We probably screwed something up along the way
 - Fix Email when you run the mill (email.contacts looks like this "---\n- 4\n- 1\n- 8\n")
 - When you run the mill and user has > 5 contacts but < than contact intensity, nothing happens - fix this
+
+# Web App
+- Allow users to unsubscribe from our emails (link to account settings in email)
 - Limit user contact intensity
-  - Do not allow user to ask for a 'contact intensity' that is higher than the number of contacts they have in their list, or we'll have many bugs on our hands. For example, if a user sets contact intensity to 10 then only has 3 people on their list, we will end up repeating the same people. I disallowed this in the random picking method, so currently it will throw an error, but we should handle this with a validation or on the front end.
   - One thing to note is that when a user creates an account, by default they will have 0 contacts. Lets discuss this piece of logic next time we meet.
-  - Do not allow a user to have an intensity > the # of contacts they have - OR - have a message that says "hey, you're contact intensity is higher than the number of contacts you have, we will only sent you x contacts" $while user.contact_intensity > user.contacts.count user.contact_intensity = user.contacts.count (or something like that)
-- Introduction on first login (right now user if being directed to user_edit_path, we could add a "welcome screen")
-  - ask for your name
-  - ask for desktop client or not
-  - gmail connect piece (low priority)
-  - set how many people you want to get per email
-	- Motivate users to add more contacts if they have less than 5
 
 # Mobile App
 - Namespace, get m.networkmill.com to pull it up
@@ -24,6 +19,27 @@
 - Logic for queueing in event mode
   - if event mode, add to queue, send 5 hours later
   - if not send it right away
+
+# Design
+- Welcome piece that comes up on first login
+    - ask for your name
+    - ask for desktop client or not
+    - gmail connect piece (low priority)
+    - set how many people you want to get per email
+    - Motivate users to add more contacts if they have less than 5
+- Better account settings/sign out dropdown menu
+- mobile app: sign in screen and adjust default email screen
+- Figure out which navigation links we should have
+- More thorough deomonstration of how the app works on the homepage
+- User preferences screen
+- About and contact pages
+- Footer?
+
+# Front End
+- Dashboard - edit, delete, and add contact should all be ajax
+- User preferences screen
+- Do not allow user to ask for a 'contact intensity' that is higher than the number of contacts they have in their list (use data attribute and javascript)
+- Add unicode down triangle after account email to indicate dropdown
 
 # Done
 - Task that looks users with less than 5 contacts and reminds them (moved this to mill:all process inside User Model)
@@ -39,6 +55,7 @@
 - Create an email on the user as soon as it gets sent
 
 # Notes
+- We should probably get something like [pivotal tracker](http://www.pivotaltracker.com/) for this rather than using this file, this way we could have a better interface (tags for front end, back end, mobile, etc, assign tasks to people, have milestones and goals, bugs)
 - From Devise "Ensure you have defined default url options in your environments files. Here is an example of default_url_options appropriate for a development environment in config/environments/development.rb: config.action_mailer.default_url_options = { :host => 'localhost:3000' } In production, :host should be set to the actual host of your application."
-- run mailer: rake mill:all
-- single: rake mill:single[1] (commented this out to avoid getting rake errors)
+- run mailer: `rake mill:all`
+- single: `rake mill:single[1]` (commented this out to avoid getting rake errors)
