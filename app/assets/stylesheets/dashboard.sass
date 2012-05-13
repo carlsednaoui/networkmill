@@ -29,7 +29,8 @@
   +reset-list
 
   li
-    padding: 8px
+    padding: 9px 12px
+    background: #FDFDFD
     +group
     color: #333
 
@@ -49,3 +50,21 @@
 
     span
       color: #9A9A9A
+
+  .edit-contact, .delete-contact
+    display: block
+    float: right
+    margin-top: 4px
+    +transition
+
+    &:hover
+      opacity: 1
+
+  .edit-contact
+    +ir("edit.png", 16px 16px)
+    margin-right: 15px
+    opacity: .6
+
+  .delete-contact
+    +ir("baleete.png", 16px 16px)
+    opacity: .4
