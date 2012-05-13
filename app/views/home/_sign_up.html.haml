@@ -5,7 +5,8 @@
   = f.email_field :email, placeholder: 'email', class: 'email-field'
   = f.password_field :password, placeholder: 'password', class: 'password-field'\
   %input.pass-visible{ type: 'text', placeholder: 'password' }
-  %label{ for: 'show-pass' } show password
-  %input.show-pass{ type: 'checkbox', name: 'show-pass' }
+  .show-checkbox
+    %input.show-pass{ type: 'checkbox', name: 'show' }
+    %label{ for: 'show' } show password
 
   = f.submit "let's go &raquo;".html_safe, class: 'form-submit'
