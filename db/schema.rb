@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20120512223431) do
   create_table "emails", :force => true do |t|
     t.integer  "user_id"
     t.string   "sent_to"
+    t.string   "title"
     t.text     "body"
     t.string   "contacts"
     t.datetime "created_at", :null => false

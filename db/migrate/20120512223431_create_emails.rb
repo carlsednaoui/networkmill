@@ -3,6 +3,7 @@ class CreateEmails < ActiveRecord::Migration
     create_table :emails do |t|
       t.integer :user_id
       t.string :sent_to
+      t.string :title
       t.text :body
       t.string :contacts
 
