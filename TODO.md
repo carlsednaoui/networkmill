@@ -3,6 +3,7 @@
 - Remove contacts link on Dashboard - everything should happen from the dashboard
 - Allow users to unsubscribe from our emails (link to account settings in email)
 - Fix Email when you run the mill (email.contacts looks like this "---\n- 4\n- 1\n- 8\n")
+- When you run the mill and user has > 5 contacts but < than contact intensity, nothing happens - fix this
 - Limit user contact intensity
   - Do not allow user to ask for a 'contact intensity' that is higher than the number of contacts they have in their list, or we'll have many bugs on our hands. For example, if a user sets contact intensity to 10 then only has 3 people on their list, we will end up repeating the same people. I disallowed this in the random picking method, so currently it will throw an error, but we should handle this with a validation or on the front end.
   - One thing to note is that when a user creates an account, by default they will have 0 contacts. Lets discuss this piece of logic next time we meet.
