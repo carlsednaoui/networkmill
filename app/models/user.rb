@@ -34,8 +34,8 @@ class User < ActiveRecord::Base
       reset_list if contacts_in_rotation.count == 0
       contact = contacts_in_rotation.shuffle.first
       unless result.include?(contact)
-	     result << contact.id
-	     contact.update_attributes :state => "just_sent"
+	result << contact.id
+	contact.update_attributes :state => "just_sent"
       end
     end
     return result
@@ -43,17 +43,17 @@ class User < ActiveRecord::Base
 
   def pick_random_contacts(n = contact_intensity)
     result = []
-      move_just_sent_to_out
-      while result.count < n
-	     reset_list if contacts_in_rotation.count == 0
-	     contact = contacts_in_rotation.shuffle.first
-	     unless result.include?(contact)
-	       result << contact.id
-	       contact.update_attributes :state => "just_sent"
-	     end
+    move_just_sent_to_out
+    while result.count < n
+      reset_list if contacts_in_rotation.count == 0
+      contact = contacts_in_rotation.shuffle.first
+      unless result.include?(contact)
+	result << contact.id
+	contact.update_attributes :state => "just_sent"
       end
-      return result
     end
+    return result
+  end
 
   def contacts_in_rotation
     contacts.select{ |c| c.state == "in" }
