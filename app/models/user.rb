@@ -26,21 +26,34 @@ class User < ActiveRecord::Base
   # - won't return one contact more than once per list
   # - returns false if you ask for more contacts than the user has (to prevent doubling)
   # Need to relook at this, but everything seems to work
-  def pick_random_contacts(n = contact_intensity)
+  def deprecated_pick_random_contacts(n = contact_intensity)
     result = []
-    #return nil if n > contacts.count
-    has_low_contacts if n > contacts.count
+    return nil if n > contacts.count
     move_just_sent_to_out
     while result.count < n
       reset_list if contacts_in_rotation.count == 0
       contact = contacts_in_rotation.shuffle.first
       unless result.include?(contact)
-        result << contact.id
-        contact.update_attributes :state => "just_sent"
+	     result << contact.id
+	     contact.update_attributes :state => "just_sent"
       end
     end
     return result
   end
+
+  def pick_random_contacts(n = contact_intensity)
+    result = []
+      move_just_sent_to_out
+      while result.count < n
+	     reset_list if contacts_in_rotation.count == 0
+	     contact = contacts_in_rotation.shuffle.first
+	     unless result.include?(contact)
+	       result << contact.id
+	       contact.update_attributes :state => "just_sent"
+	     end
+      end
+      return result
+    end
 
   def contacts_in_rotation
     contacts.select{ |c| c.state == "in" }
@@ -62,16 +75,4 @@ class User < ActiveRecord::Base
       c.update_attributes :state => "in"
     end
   end
-
-  def low_contacts?
-    threshold = 5
-    return true if contacts.count < threshold
-  end
-
-  def has_low_contacts
-  if low_contacts?
-    puts "#{email} has low contacts. Sending an email now."
-    UserMailer.low_contacts(self).deliver
-  end
-end
 end

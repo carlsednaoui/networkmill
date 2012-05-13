@@ -8,7 +8,11 @@ class UserMailer < ActionMailer::Base
     Email.create(:user_id => user.id, :sent_to => user.email, :title => "welcome_mail")
   end
 
-  # To send email use: UserMailer.send_contacts(user, contacts).deliver
+  def low_contacts(user)
+    mail to: user.email, subject: "Hey, you need to add contacts"
+    Email.create(:user_id => user.id, :sent_to => user.email, :title => "low_contacts_mail")
+  end
+
   def send_contacts(user, contacts_id)
     @contacts = []
 
@@ -19,10 +23,5 @@ class UserMailer < ActionMailer::Base
     puts "sent email to #{user.email}!"
 
     Email.create(:user_id => user.id, :sent_to => user.email, :title => "mill_mail", :contacts => contacts_id)
-  end
-
-  def low_contacts(user)
-    mail to: user.email, subject: "Hey, you need to add contacts"
-    Email.create(:user_id => user.id, :sent_to => user.email, :title => "low_contacts_mail")
   end
 end
