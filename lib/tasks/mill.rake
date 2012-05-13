@@ -12,6 +12,8 @@ def has_low_contacts(user)
   if user.contacts.count < threshold
     puts "#{user.email} has low contacts. Sending an email now."
     UserMailer.low_contacts(user).deliver
+  else
+    puts "User contact_intensity > user.contacts.count. Need to add validation to ensure this doens't happen"
   end
 end
 
