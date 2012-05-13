@@ -29,7 +29,7 @@ $ ->
   # ---------------------------------------
 
   $('.sign-up').click ->
-    lpos = (960-370)/2
+    lpos = (960-277)/2
     tpos = ($(window).height()-169)/2
     $('#sign-up').css({ left: lpos, top: tpos }).fadeIn 400
     $('.underlay').fadeIn 400
@@ -39,3 +39,29 @@ $ ->
   $('.underlay').click ->
     $('#sign-up').fadeOut 400
     $(this).fadeOut 400
+
+  saved_pass = ""
+
+  $('.password-field').keyup (e) ->
+    saved_pass = $(this).val()
+
+  $('.show-pass').click ->
+    if $(this).is(':checked')
+      console.log 'turning on'
+      $('.pass-visible').val(saved_pass)
+      $('.password-field').hide()
+      $('.pass-visible').css display: 'block'
+    else
+      console.log 'turning off'
+      saved_pass = $('.pass-visible').val()
+      $('.password-field').val(saved_pass)
+      $('.pass-visible').hide()
+      $('.password-field').show()
+
+  $('#sign-up .form-submit').click ->
+    if $('.show-pass').not(':checked')
+      alert 'submitting with visible password!'
+      saved_pass = $('.pass-visible').val()
+      $('.password-field').val(saved_pass)
+      $('#sign-up .new_user').submit()
+      false 
