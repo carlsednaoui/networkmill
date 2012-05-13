@@ -2,7 +2,7 @@ Networkmill::Application.routes.draw do
   root :to => "home#index"
   
   resources :contacts
-  resources :users, :only => [:new, :create, :update]
+  resources :users, :only => [:new, :update]
 
   get "/dashboard" => "home#dashboard", :as => 'dashboard'
 
