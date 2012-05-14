@@ -1,7 +1,6 @@
 _I restructured this file a little bit to make it more organized for us. Bugs can apply to anything and are listed at the top - when you find something that's messed up just toss it in there. If it's not super obvious, include a screenshot. The rest of the categories are more or less to-do lists / road maps for us. As soon as you finish one, commit, delete from here, and push._
 
 # Bugs
-- Fix Email when you run the mill (email.contacts looks like this "---\n- 4\n- 1\n- 8\n")
 - When you run the mill and user has > 5 contacts but < than contact intensity, nothing happens - fix this
 
 # Web App
