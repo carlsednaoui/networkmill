@@ -1,12 +1,10 @@
 _I restructured this file a little bit to make it more organized for us. Bugs can apply to anything and are listed at the top - when you find something that's messed up just toss it in there. If it's not super obvious, include a screenshot. The rest of the categories are more or less to-do lists / road maps for us. As soon as you finish one, commit, delete from here, and push._
 
 # Bugs
-- No bugs for now... woot woot
+- edit user validation renders the "edit" path which shows the user ID in the URL
 
 # Web App
 - Allow users to unsubscribe from our emails (link to account settings in email)
-- Limit user contact intensity
-  - One thing to note is that when a user creates an account, by default they will have 0 contacts. Lets discuss this piece of logic next time we meet.
 
 # Mobile App
 - Namespace, get m.networkmill.com to pull it up
@@ -53,7 +51,5 @@ _I restructured this file a little bit to make it more organized for us. Bugs ca
 - Create an email on the user as soon as it gets sent
 
 # Notes
-- We should probably get something like [pivotal tracker](http://www.pivotaltracker.com/) for this rather than using this file, this way we could have a better interface (tags for front end, back end, mobile, etc, assign tasks to people, have milestones and goals, bugs)
 - From Devise "Ensure you have defined default url options in your environments files. Here is an example of default_url_options appropriate for a development environment in config/environments/development.rb: config.action_mailer.default_url_options = { :host => 'localhost:3000' } In production, :host should be set to the actual host of your application."
 - run mailer: `rake mill:all`
-- single: `rake mill:single[1]` (commented this out to avoid getting rake errors)
