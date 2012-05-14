@@ -8,13 +8,8 @@ def run_the_mill(user)
 end
 
 def has_low_contacts(user)
-  threshold = 5
-  if user.contacts.count < threshold
-    puts "#{user.email} has low contacts. Sending an email now."
-    UserMailer.low_contacts(user).deliver
-  else
-    puts "User contact_intensity > user.contacts.count. Need to add validation to ensure this doens't happen"
-  end
+  puts "#{user.email} has low contacts. Sending an email now."
+  UserMailer.low_contacts(user).deliver
 end
 
 namespace :mill do

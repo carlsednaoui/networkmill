@@ -1,6 +1,15 @@
 class User < ActiveRecord::Base
   has_many :contacts
   has_many :emails
+  validates :contact_intensity, :numericality => { :only_integer => true, :less_than_or_equal_to => :contact_validation}, :on => :update
+
+  def contact_validation
+    if contacts.count > 3
+      contacts.count
+    else
+      3
+    end
+  end
 
   attr_accessible :name, :email, :desktop_client, :contact_intensity, :password, :remember_me
   before_create :default_values
