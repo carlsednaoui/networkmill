@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(:version => 20120512223431) do
     t.string   "frequency"
     t.integer  "user_id"
     t.string   "state"
+    t.text     "note"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.text     "note"
   end
 
   create_table "emails", :force => true do |t|
@@ -38,10 +38,12 @@ ActiveRecord::Schema.define(:version => 20120512223431) do
     t.string   "name"
     t.boolean  "desktop_client"
     t.integer  "contact_intensity"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.text     "signature"
+    t.boolean  "subscribed",             :default => true
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.string   "email",                  :default => "",   :null => false
+    t.string   "encrypted_password",     :default => "",   :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -50,7 +52,6 @@ ActiveRecord::Schema.define(:version => 20120512223431) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.text     "signature"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

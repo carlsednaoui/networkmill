@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean :desktop_client
       t.integer :contact_intensity
       t.text :signature
-      t.boolean :subscribed, :default => true
+      t.boolean :unsubscribed, :default => false
 
       t.timestamps
     end
