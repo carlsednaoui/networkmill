@@ -23,7 +23,7 @@ namespace :mill do
   desc "picks random contacts and sends them to the user in an email"
   task :all => :environment do
     puts ""
-    User.all.each { |user| run_the_mill(user) }
+    User.where(:unsubscribed => false).each { |user| run_the_mill(user) }
     puts ""
   end
 end

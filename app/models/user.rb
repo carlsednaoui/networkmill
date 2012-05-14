@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  attr_accessible :name, :email, :desktop_client, :contact_intensity, :password, :remember_me
+  attr_accessible :name, :email, :unsubscribed, :desktop_client, :contact_intensity, :password, :remember_me
   before_create :default_values
 
   #This will send users a welcome email when they sign up
