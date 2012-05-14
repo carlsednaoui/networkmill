@@ -11,23 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :desktop_client, "I use an e-mail desktop client" %>
     <%= f.check_box :desktop_client %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :contact_intensity, "I'd like to get in touch with" %>
-    <%= f.text_field :contact_intensity, :size => 2 %> contacts per week.
+    <%= f.text_field :contact_intensity, :size => 1 %> contacts per week.
   </div>
+  <div>
+    <%= f.label :signature, "Email Signature (optional)" %><br />
+    <%= f.text_field :signature %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<br />
+
+<p>Want to change your password or delete your account? <%= link_to "Advanced Changes", advanced_changes_path %></p>
