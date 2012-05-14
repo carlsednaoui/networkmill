@@ -1,7 +1,6 @@
 _I restructured this file a little bit to make it more organized for us. Bugs can apply to anything and are listed at the top - when you find something that's messed up just toss it in there. If it's not super obvious, include a screenshot. The rest of the categories are more or less to-do lists / road maps for us. As soon as you finish one, commit, delete from here, and push._
 
 # Bugs
-- You can't change user preferences without re-entering the password - this should not be the case and is not the case in devise's defaults. We probably screwed something up along the way
 - Fix Email when you run the mill (email.contacts looks like this "---\n- 4\n- 1\n- 8\n")
 - When you run the mill and user has > 5 contacts but < than contact intensity, nothing happens - fix this
 
