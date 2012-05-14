@@ -22,6 +22,7 @@ class UserMailer < ActionMailer::Base
   	mail to: user.email, subject: "Awesome People to Contact This Week"
     puts "sent email to #{user.email}!"
 
-    Email.create(:user_id => user.id, :sent_to => user.email, :title => "mill_mail", :contacts => contacts_id.to_s)
+    Email.create(:user_id => user.id, :sent_to => user.email, :title => "mill_mail", :contacts => contacts_id.join(',')
+)
   end
 end
