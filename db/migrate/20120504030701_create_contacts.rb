@@ -6,6 +6,7 @@ class CreateContacts < ActiveRecord::Migration
       t.string :frequency
       t.integer :user_id
       t.string :state
+      t.text :note
 
       t.timestamps
     end

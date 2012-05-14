@@ -4,7 +4,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :name
       t.boolean :desktop_client
       t.integer :contact_intensity
-
+      t.text :signature
+      t.boolean :subscribed, :default => true
 
       t.timestamps
     end
