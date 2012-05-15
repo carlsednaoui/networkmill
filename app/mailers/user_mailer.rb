@@ -25,4 +25,10 @@ class UserMailer < ActionMailer::Base
     Email.create(:user_id => user.id, :sent_to => user.email, :title => "mill_mail", :contacts => contacts_id.join(',')
 )
   end
+
+  def new_contact(user, contact)
+    @user_email = user.email
+    mail to: contact.email, subject: "#{user.email} wants to stay in touch with you!"
+    Email.create(:user_id => user.id, :sent_to => contact.id, :title => "user_added_contact", :contacts => contact.id)
+  end
 end

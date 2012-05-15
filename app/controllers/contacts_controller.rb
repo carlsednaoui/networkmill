@@ -21,6 +21,9 @@ class ContactsController < ApplicationController
     @contact = Contact.new(params[:contact])
     @contact.user = current_user
     @contact.state = "in"
+    # if @contact.promote_networkmill == true
+    #   UserMailer.new_contact(current_user, @contact).deliver
+    # end
 
     if @contact.save
       redirect_to contacts_url, :notice => 'Contact was successfully created.'
