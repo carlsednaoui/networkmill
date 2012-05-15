@@ -4,7 +4,7 @@ _I restructured this file a little bit to make it more organized for us. Bugs ca
 - edit user validation renders the "edit" path which shows the user ID in the URL
 
 # Web App
-- Allow users to unsubscribe from our emails (link to account settings in email)
+- Add a link to user settings to our email (so that they can unsubscribe)
 
 # Mobile App
 - Namespace, get m.networkmill.com to pull it up
