@@ -1,19 +1,19 @@
 class UserMailer < ActionMailer::Base
   default from: "networkmill@gmail.com"
 
-  def welcome_email(user)
+  def send_welcome_email(user)
     @greeting = "Hi"
 
     mail to: user.email, subject: "Sign Up Confirmation - Welcome to NetworkMill"
     Email.create(:user_id => user.id, :sent_to => user.email, :title => "welcome_mail")
   end
 
-  def low_contacts(user)
+  def user_has_few_contacts(user)
     mail to: user.email, subject: "Hey, you need to add contacts"
     Email.create(:user_id => user.id, :sent_to => user.email, :title => "low_contacts_mail")
   end
 
-  def send_contacts(user, contacts_id)
+  def send_random_contacts(user, contacts_id)
     @contacts = []
 
   	contacts_id.each do |c|
@@ -26,7 +26,7 @@ class UserMailer < ActionMailer::Base
 )
   end
 
-  def new_contact(user, contact)
+  def user_referral_via_new_contact(user, contact)
     @user_email = user.email
     mail to: contact.email, subject: "#{user.email} wants to stay in touch with you!"
     Email.create(:user_id => user.id, :sent_to => contact.id, :title => "user_added_contact", :contacts => contact.id)

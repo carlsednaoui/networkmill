@@ -31,6 +31,10 @@
     <%= f.label :signature, "Email Signature (optional)" %><br />
     <%= f.text_field :signature %>
   </div>
+  <div>
+    <%= f.label :network_mode, "Are you currently at a networking event?" %>
+    <%= f.select :network_mode, {"Yes" => true, "No" => false} %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

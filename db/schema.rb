@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20120512223431) do
     t.integer  "contact_intensity"
     t.text     "signature"
     t.boolean  "unsubscribed",           :default => false
+    t.boolean  "network_mode",           :default => false
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.string   "email",                  :default => "",    :null => false

@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :contact_intensity
       t.text :signature
       t.boolean :unsubscribed, :default => false
+      t.boolean :network_mode, :default => false
 
       t.timestamps
     end
