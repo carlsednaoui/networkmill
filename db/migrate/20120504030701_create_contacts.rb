@@ -7,6 +7,7 @@ class CreateContacts < ActiveRecord::Migration
       t.text :note
       t.string :state
       t.boolean :promote_networkmill
+      t.integer :event_queue_id
 
       t.timestamps
     end

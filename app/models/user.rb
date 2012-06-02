@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :contacts
   has_many :emails
+  has_one :event_queue
   validates :contact_intensity, :numericality => { :only_integer => true, :less_than_or_equal_to => :contact_validation}, :on => :update
   attr_accessible :name, :email, :unsubscribed, :desktop_client, :network_mode, :contact_intensity, :password, :remember_me, :signature
     

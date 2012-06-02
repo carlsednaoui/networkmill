@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120512223431) do
+ActiveRecord::Schema.define(:version => 20120602233756) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20120512223431) do
     t.text     "note"
     t.string   "state"
     t.boolean  "promote_networkmill"
+    t.integer  "event_queue_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end
@@ -30,6 +31,13 @@ ActiveRecord::Schema.define(:version => 20120512223431) do
     t.string   "title"
     t.text     "body"
     t.string   "contacts"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "event_queues", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "email_sent"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

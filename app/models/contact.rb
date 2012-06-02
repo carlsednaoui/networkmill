@@ -1,5 +1,6 @@
 class Contact < ActiveRecord::Base
   belongs_to :user
+  belongs_to :event_queue
   attr_accessible :name, :email, :promote_networkmill, :frequency, :state, :user_id, :note
 
   validates_presence_of :email
