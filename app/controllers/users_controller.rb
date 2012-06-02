@@ -19,12 +19,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    if @user.update_attributes(params[:user])
-      @success = true
-      # sign_in @user, :bypass => true
-    else
-      # render "edit", :notice => 'Saved failed'
-    end
+    @success = true if @user.update_without_password(params[:user])
   end
 
   def destroy
