@@ -25,12 +25,6 @@ class ContactsController < ApplicationController
     #   UserMailer.user_referral_via_new_contact(current_user, @contact).deliver
     # end
 
-    if @contact.user.network_mode == true
-      puts "*!*!*!*!*!*!*!*!!*********************aaaaa*********************!*!*!*!*!*!*!*!*!*!*"
-        @contact.user.add_contact_to_networking_event_queu
-      puts "*!*!*!*!*!*!*!*!!*********************aaaaa*********************!*!*!*!*!*!*!*!*!*!*"
-    end
-
     if @contact.save
       redirect_to contacts_url, :notice => 'Contact was successfully created.'
     else

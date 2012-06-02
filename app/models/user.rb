@@ -3,17 +3,23 @@ class User < ActiveRecord::Base
   has_many :emails
   validates :contact_intensity, :numericality => { :only_integer => true, :less_than_or_equal_to => :contact_validation}, :on => :update
   attr_accessible :name, :email, :unsubscribed, :desktop_client, :network_mode, :contact_intensity, :password, :remember_me, :signature
-  
+    
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
+  def password_validation
+    validates_presence_of :password
+  end
+
+  $initial_contact_intensity = 3
+
   # Validation to ensure that contact intensity is not greater than the # of contacts. Default intensity = 3
   def contact_validation
-    if contacts.count > 3
+    if contacts.count > $initial_contact_intensity
       contacts.count
     else
-      3
+      $initial_contact_intensity
     end
   end
 
@@ -21,7 +27,7 @@ class User < ActiveRecord::Base
   before_create :default_values
 
   def default_values
-    self.contact_intensity = 3
+    self.contact_intensity = $initial_contact_intensity
     self.desktop_client = 'false'
   end
 
@@ -89,14 +95,5 @@ class User < ActiveRecord::Base
     contacts.each do |c| 
       c.update_attributes :state => "in"
     end
-  end
-
-  # Create a networking event contact queu. At the end of the event (current set to 5 hrs), 
-  # the User will get an email containing the contact info of everyone he/ she met
-  def add_contact_to_networking_event_queu
-    # create an array of contact id's
-    # at end of 5 hrs send User an eamil with all of the info
-    # set the "promote networkmill to true"
-    puts "add_contact_to_networking_event_queu"
   end
 end

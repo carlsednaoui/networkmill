@@ -9,11 +9,6 @@ Networkmill::Application.routes.draw do
 
   # Overriding devise after_sign_up_path
   devise_for :users, :controllers => { :registrations => "registrations" }
-  
-  # Deprecated - Overriding devise edit profile path
-   devise_scope :user do
-     get "/advanced" => "devise/registrations#edit", :as => 'advanced_changes'
-   end
 
  	# Overriding devise root_url
 	devise_for :users do

@@ -19,7 +19,18 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @success = true if @user.update_without_password(params[:user])
+    
+    password_fields = [params[:user][:current_password], params[:user][:password]]
+    
+    if password_fields.reject {|p| p.empty? }.empty?
+      @success = true if @user.update_without_password(params[:user])
+    else
+      if params[:user][:password].empty?
+        @user.password_validation
+      else
+        @success = true if @user.update_with_password(params[:user])
+      end
+    end
   end
 
   def destroy

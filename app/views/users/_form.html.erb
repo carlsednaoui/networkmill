@@ -36,6 +36,21 @@
     <%= f.select :network_mode, {"Yes" => true, "No" => false} %>
   </div>
 
+  <div>
+    <%= f.label :unsubscribed, "Would you like to Unsubscribe?" %> <br />
+    <%= f.select :unsubscribed, {"Yes" => true, "No" => false} %>
+  </div>
+  
+  <div>
+    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.password_field :current_password %>
+  </div>
+
+  <div>
+    <%= f.label :password %><br />
+    <%= f.password_field :password, :autocomplete => "off" %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
@@ -43,4 +58,6 @@
 
 <br />
 
-<p>Want to change your password or delete your account? <%= link_to "Advanced Changes", advanced_changes_path %></p>
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>

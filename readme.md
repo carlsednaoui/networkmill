@@ -1,4 +1,4 @@
 ## NetworkMill
 (Working title)
 
-An easier way to keep in touch. Suck it.
+An easier way to keep in touch.
