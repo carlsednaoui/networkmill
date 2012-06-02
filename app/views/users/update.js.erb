@@ -1,3 +1,4 @@
+$('.error').remove()
 
 // If the save works, redirect right to the dashboard
 if ("<%= @success %>" == "true") {
@@ -8,14 +9,13 @@ if ("<%= @success %>" == "true") {
 // If not, throw the errors on the page
 } else {
 
-  $('.error').remove()
   var errors = [];
   <% @user.errors.full_messages.each do |err| %>
     errors.push("<%= err %>")
   <% end %>
   $('header').after("<div class='flash error'></div>");
   for (var i = 0; i < errors.length; i++) {
-    $('.error').append("<p>" + errors[i] + "</p>");
+    $('.error').append("<div>" + errors[i] + "</div>");
   }
 
 }
