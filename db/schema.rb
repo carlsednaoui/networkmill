@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(:version => 20120512223431) do
 
   create_table "contacts", :force => true do |t|
+    t.integer  "user_id"
     t.string   "name"
     t.string   "email"
-    t.string   "frequency"
-    t.integer  "user_id"
-    t.string   "state"
     t.text     "note"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "state"
+    t.boolean  "promote_networkmill"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "emails", :force => true do |t|
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20120512223431) do
     t.integer  "contact_intensity"
     t.text     "signature"
     t.boolean  "unsubscribed",           :default => false
+    t.boolean  "network_mode",           :default => false
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.string   "email",                  :default => "",    :null => false
