@@ -4,6 +4,9 @@
     %span
     add new contact
 
+  .add-contact
+    = render 'contact_form'
+
 %ul.contacts
   - @contacts.each do |contact|
     %li
