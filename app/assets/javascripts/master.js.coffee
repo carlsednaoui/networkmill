@@ -92,7 +92,7 @@ $ ->
     account_menu_out()
 
   # ---------------------------------------
-  # Add Contact Button
+  # Add Contact Section
   # ---------------------------------------
   
   add_contact_down = false
@@ -101,16 +101,14 @@ $ ->
       $('.add-contact').slideUp()
       $(this).css opacity: 1
       add_contact_down = false
-      $('#contact_email').removeClass 'error'
     else
       $('.add-contact').slideDown()
-      $(this).css opacity: .7
+      $(this).css opacity: .6
       add_contact_down = true
     false
 
-  $('.add-contact input[type=submit]').on 'click', ->
-    unless $('#contact_email').val().match /[\w\.\+\-\%]+@[\w\-\_]+\.\w{2,}/i
-      $('#contact_email').addClass 'error'
+  $('.add-notes span').on 'click', ->
+    $('.add-notes .field').slideToggle()
   
 
 

@@ -30,8 +30,9 @@
     margin-top: 57px
     clear: both
     padding: 27px
-    +group
     display: none
+    +group
+    +round(5px)
 
     form
       width: 420px
@@ -39,10 +40,34 @@
 
     .avatar
       float: left
-      margin: 0 20px 20px 0
+      margin: 0 20px 10px 0
 
     .fields
       float: left
+
+    .add-notes
+      background: #C2C2C2
+      color: #fff
+      padding: 2px 7px
+      border-radius: 2px
+      margin-top: 8px
+      margin-bottom: 10px
+      +bold
+      cursor: pointer
+
+      span
+        width: 245px
+        +inline-block
+
+      .field
+        display: none
+        width: 246px
+        margin-top: 3px
+
+        textarea
+          +input($default)
+          max-width: 233px
+          height: 100px
 
     .actions
       clear: both
@@ -67,6 +92,8 @@
       +gradient(#FF9300, #FF5900)
       +rounded
       +transition
+      float: right
+      margin-right: 25px
 
 .contacts
   +reset-list

@@ -41,6 +41,6 @@ class ContactsController < ApplicationController
     @contact = Contact.find(params[:id])
     @contact.destroy
 
-    redirect_to contacts_url
+    redirect_to dashboard_path
   end
 end
