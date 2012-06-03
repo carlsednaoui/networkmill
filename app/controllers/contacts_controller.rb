@@ -23,13 +23,8 @@ class ContactsController < ApplicationController
     @contact.state = "in"
     # if @contact.promote_networkmill == true
     #   UserMailer.user_referral_via_new_contact(current_user, @contact).deliver
-    # end
-
-    if @contact.save
-      redirect_to contacts_url, :notice => 'Contact was successfully created.'
-    else
-      render action: "new" 
-    end
+    # end    
+    @success = true if @contact.save
   end
 
   def update

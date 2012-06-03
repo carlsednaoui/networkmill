@@ -15,6 +15,16 @@
 .field
   width: 330px
 
+input[type=text], input[type=email], input[type=number], input[type=date], input[type=time], input[type=datetime], input[type=password], textarea
+  &.disabled
+    +input-disabled
+  &.success
+    +input-success
+  &.warning
+    +input-warning
+  &.error
+    +input-error
+
 // ------------------------------
 // @import your stylsheets here
 // ------------------------------

@@ -91,3 +91,43 @@ $ ->
   , ->
     account_menu_out()
 
+  # ---------------------------------------
+  # Add Contact Button
+  # ---------------------------------------
+  
+  add_contact_down = false
+  $('.new-contact-button').on 'click', ->
+    if add_contact_down
+      $('.add-contact').slideUp()
+      $(this).css opacity: 1
+      add_contact_down = false
+    else
+      $('.add-contact').slideDown()
+      $(this).css opacity: .7
+      add_contact_down = true
+    false
+
+  $('.add-contact input[type=submit]').on 'click', ->
+    unless $('#contact_email').val().match /[\w\.\+\-\%]+@[\w\-\_]+\.\w{2,}/i
+      $('#contact_email').addClass 'error'
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
