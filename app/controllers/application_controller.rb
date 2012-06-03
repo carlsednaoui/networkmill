@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
   # Devise: Where to redirect users once they have logged in
   def after_sign_in_path_for(resource)
-    dashboard_path
+    if request.subdomain.present?
+    	mobile_preferences_path
+    else
+    	dashboard_path
+  	end
   end
 end
