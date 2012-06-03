@@ -49,26 +49,23 @@ $ ->
   $('.password-field').keyup (e) ->
     saved_pass = $(this).val()
 
-  $('.show-pass').click ->
+  $('#show-pass').click ->
     if $(this).is(':checked')
-      console.log 'turning on'
       $('.pass-visible').val(saved_pass)
       $('#sign-up .password-field').hide()
       $('.pass-visible').css display: 'block'
     else
-      console.log 'turning off'
       saved_pass = $('.pass-visible').val()
       $('#sign-up .password-field').val(saved_pass)
       $('.pass-visible').hide()
       $('#sign-up .password-field').show()
 
-  $('#sign-up .form-submit').click ->
-    if $('.show-pass').not(':checked')
-      alert 'submitting with visible password!'
+  $('#sign-up .form-submit').click (e) ->
+    if $('#show-pass').is(':checked')
       saved_pass = $('.pass-visible').val()
       $('#sign-up .password-field').val(saved_pass)
       $('#sign-up .new_user').submit()
-      false 
+      false
 
   # ---------------------------------------
   # Account Dropdown (needs major revision)
