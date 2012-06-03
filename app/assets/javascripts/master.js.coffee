@@ -95,20 +95,33 @@ $ ->
   # Add Contact Section
   # ---------------------------------------
   
+  # slide down the box
   add_contact_down = false
   $('.new-contact-button').on 'click', ->
     if add_contact_down
       $('.add-contact').slideUp()
       $(this).css opacity: 1
       add_contact_down = false
+      $('.preview').fadeOut(400)
     else
       $('.add-contact').slideDown()
       $(this).css opacity: .6
       add_contact_down = true
+      $('.preview').fadeIn(400) if $('.preview').attr('src')
     false
 
+  # slide down the add notes box
   $('.add-notes span').on 'click', ->
     $('.add-notes .field').slideToggle()
+
+  # preview uploaded images
+  $('#contact_avatar').on 'change', ->
+    input = document.getElementById('contact_avatar')
+    if input.files && input.files[0]
+      reader = new FileReader()
+      reader.onload = (e) ->
+        $('.preview').show().attr('src', e.target.result)
+      reader.readAsDataURL(input.files[0])
   
 
 
