@@ -93,6 +93,7 @@ GEM
     rdiscount (1.6.8)
     rdoc (3.12)
       json (~> 1.4)
+    rmagick (2.13.1)
     roots-rails (0.0.1.alpha)
       coffee-script
       haml
@@ -136,6 +137,7 @@ DEPENDENCIES
   json
   pg
   rails (= 3.2.3)
+  rmagick
   roots-rails
   sass-rails (~> 3.2.3)
   sqlite3

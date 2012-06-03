@@ -5,6 +5,7 @@ gem 'json'
 gem 'jquery-rails'
 gem 'devise'
 gem 'haml', '3.1.4'
+gem 'rmagick'
 gem 'carrierwave'
 
 # To use ActiveModel has_secure_password
