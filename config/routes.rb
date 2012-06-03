@@ -4,10 +4,13 @@ Networkmill::Application.routes.draw do
   # Mobile Routes
   ##################
  
-  # Enable Mobile subdomain
+  # Enable mobile subdomain
   match '', to: 'mobile#index', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
   
-  get "/mobile" => "mobile#preferences", :as => 'mobile_preferences'
+  # Note: In mobile mode we are using /settings as the preference URL,
+  # to avoid conflicting with /preferences from desktop mode.
+  get "/settings" => "mobile#preferences", :as => 'mobile_preferences'
+  get "/networking" => "mobile#add_contact", :as => 'add_mobile_contact'
 
 
   ##################
