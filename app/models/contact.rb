@@ -2,6 +2,7 @@ class Contact < ActiveRecord::Base
   belongs_to :user
   belongs_to :event_queue
   attr_accessible :name, :email, :promote_networkmill, :frequency, :state, :user_id, :note
+  mount_uploader :avatar, AvatarUploader
 
   validates_presence_of :email
   validates_format_of :email, :with => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
