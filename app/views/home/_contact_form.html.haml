@@ -14,7 +14,9 @@
       = f.text_field :email, placeholder: 'email'
     .field
       = f.text_field :name, placeholder: 'name'
-    .field
-      = f.text_field :note, placeholder: 'notes'
+    .add-notes
+      %span add notes...
+      .field
+        = f.text_area :note
   .actions
-    = f.submit
+    = f.submit "add contact &raquo;".html_safe
