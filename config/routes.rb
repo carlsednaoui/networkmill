@@ -1,4 +1,12 @@
 Networkmill::Application.routes.draw do
+  
+  # Enable Mobile subdomain
+  match '', to: 'mobile#index', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  
+  get "/mobile" => "mobile#preferences", :as => 'mobile'
+
+
+
   root :to => "home#index"
   
   resources :contacts
@@ -13,5 +21,5 @@ Networkmill::Application.routes.draw do
  	# Overriding devise root_url
 	devise_for :users do
 	 get 'users', :to => 'home#dashboard', :as => :user_root
-	end
+  end
 end
