@@ -101,6 +101,7 @@ $ ->
       $('.add-contact').slideUp()
       $(this).css opacity: 1
       add_contact_down = false
+      $('#contact_email').removeClass 'error'
     else
       $('.add-contact').slideDown()
       $(this).css opacity: .7
