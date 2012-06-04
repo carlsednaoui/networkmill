@@ -34,6 +34,11 @@
     +group
     +round(5px)
 
+    .preview
+      +d(106)
+      position: absolute
+      display: none
+
     form
       width: 420px
       margin: 0 auto
@@ -41,9 +46,14 @@
     .avatar
       float: left
       margin: 0 20px 10px 0
+      background: #F3F3F3 image-url("add-contact.png") center center no-repeat
+      +round(2px)
+      border: 1px solid #AFAFAF
+      +box-shadow(inset 0 0 10px rgba(0,0,0,.25))
 
     .fields
       float: left
+      padding-top: 7px
 
     .add-notes
       background: #C2C2C2
@@ -81,11 +91,9 @@
     input[type=file]
       +d(106)
       text-indent: -9999px
-      background: #F3F3F3 image-url("add-contact.png") center center no-repeat
       color: transparent
-      +round(2px)
-      border: 1px solid #AFAFAF
-      +box-shadow(inset 0 0 10px rgba(0,0,0,.25))
+      position: relative
+      z-index: 10
 
     input[type=submit]
       +button(#FF9300)
