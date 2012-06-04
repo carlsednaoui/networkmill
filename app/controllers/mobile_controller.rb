@@ -7,6 +7,7 @@ class MobileController < ApplicationController
 	end
 
 	def add_contact
+		@contact = Contact.new
 	end
 
 end
