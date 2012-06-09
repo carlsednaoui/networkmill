@@ -16,7 +16,7 @@
 %ul.contacts
   - @contacts.each do |contact|
     %li
-      = image_tag "default.png"
+      = image_tag contact.avatar_url(:thumb)
       %p
         = contact.name
         %span= "(#{contact.email})"
