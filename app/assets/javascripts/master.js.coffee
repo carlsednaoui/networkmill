@@ -145,10 +145,12 @@ $ ->
       pos = $('#contact_email').position()
       $('#container').prepend(popup)
       popup.css({ top: pos.top - 65, left: pos.left }).text("please enter a valid email address").fadeIn().delay(1500).fadeOut 400, -> $(this).remove()
+
+  # Handling login error
+  $('#new_user').bind "ajax:error", (e, data, status, xhr) ->
+    console.log e, data, status, xhr
+    alert(data.responseText)
   
-
-
-
 
 
 
