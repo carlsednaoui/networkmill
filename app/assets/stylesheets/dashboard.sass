@@ -50,6 +50,10 @@
       +round(2px)
       border: 1px solid #AFAFAF
       +box-shadow(inset 0 0 10px rgba(0,0,0,.25))
+      +transition
+
+      &:hover
+        background-color: #E4E4E4
 
     .fields
       float: left
@@ -94,6 +98,7 @@
       color: transparent
       position: relative
       z-index: 10
+      cursor: pointer
 
     input[type=submit]
       +button(#FF9300)
@@ -148,3 +153,8 @@
   .delete-contact
     +ir("baleete.png", 16px 16px)
     opacity: .4
+
+.popup
+  +bubble
+  position: absolute
+  z-index: 10
