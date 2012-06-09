@@ -1,7 +1,7 @@
-= form_for @contact do |f|
+= form_for contact do |f|
 
   .avatar
-    %img.preview
+    %img.preview{ src: "#{contact.avatar_url(:full) if contact.avatar? }" }
     = f.file_field :avatar
   .fields
     .field

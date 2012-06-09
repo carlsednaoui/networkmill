@@ -1,10 +1,13 @@
 $ ->
 
   # ---------------------------------------
-  # Flash Notices
+  # Flash Notices / Helpers
   # ---------------------------------------
 
   $('.notice').delay(1000).fadeOut()
+
+  valid_email = (val) ->
+    val.match /[\w\.%\+\-]+@[\w\-]+\.\w{2,3}/
 
   # ---------------------------------------
   # Sign in menu logic
@@ -66,12 +69,25 @@ $ ->
       $('.pass-visible').hide()
       $('#sign-up .password-field').show()
 
+  # when the user hits sign up, we validate the email and password,
+  # then make sure that the password is copied correctly between the
+  # visible / hidden pass field before submitting
   $('#sign-up .form-submit').click (e) ->
-    if $('#show-pass').is(':checked')
-      saved_pass = $('.pass-visible').val()
-      $('#sign-up .password-field').val(saved_pass)
-      $('#sign-up .new_user').submit()
-      false
+
+    $('.form-error').remove()
+
+    if !valid_email $('#sign-up .email-field').val()
+      $('#sign-up .email-field').before "<div class='form-error'>please enter a valid email</div>"
+      return false
+    else if saved_pass.length < 6
+      $('#sign-up .email-field').before "<div class='form-error'>password must be more than 6 characters</div>"
+      return false
+    else
+      if $('#show-pass').is(':checked')
+        saved_pass = $('.pass-visible').val()
+        $('#sign-up .password-field').val(saved_pass)
+        $('#sign-up .new_user').submit()
+        return false
 
   # ---------------------------------------
   # Account Dropdown (needs major revision)
@@ -104,6 +120,7 @@ $ ->
   # slide down the box
   add_contact_down = false
   $('.new-contact-button').on 'click', ->
+    $('.editing-contact').slideUp()
     if add_contact_down
       $('.add-contact').slideUp()
       $(this).css opacity: 1
@@ -126,7 +143,7 @@ $ ->
     if input.files && input.files[0]
       reader = new FileReader()
       reader.onload = (e) ->
-        $('.preview').show().attr('src', e.target.result)
+        $('.add-contact').find($('.preview')).show().attr('src', e.target.result)
       reader.readAsDataURL(input.files[0])
 
   # validate fields before submit, since this is evaluted with html
@@ -136,25 +153,39 @@ $ ->
     unless $('#contact_name').val().match /\S+/
       e.preventDefault()
       pos = $('#contact_name').position()
-      console.log $('#contact_name').position()
       $('#container').prepend(popup)
       popup.css({ top: pos.top - 65, left: pos.left }).text("make sure your contact has a name!").fadeIn().delay(1500).fadeOut 400, -> $(this).remove()
 
-    unless $('#contact_email').val().match /[\w\.%\+\-]+@[\w\-]+\.\w{2,3}/
+    unless valid_email $('#contact_email').val()
       e.preventDefault()
       pos = $('#contact_email').position()
       $('#container').prepend(popup)
       popup.css({ top: pos.top - 65, left: pos.left }).text("please enter a valid email address").fadeIn().delay(1500).fadeOut 400, -> $(this).remove()
   
+  # ---------------------------------------
+  # Delete Contact
+  # ---------------------------------------
 
+  # $('.delete-contact').on 'click', ->
+  #   $('.popup2').fadeOut 400, -> $(this).remove()
+  #   pos = $(this).position()
+  #   popup = $("<div class='popup2'></div>")
+  #   popup.appendTo($('#container')).css({ top: pos.top - 65, left: pos.left - 57 }).text("for real?").fadeIn()
+  #   false
 
+  # ---------------------------------------
+  # Edit Contact
+  # ---------------------------------------
 
-
-
-
-
-
-
+  $('.edit-contact').on 'click', ->
+    li_element = $(this).parent().parent()
+    $('.editing-contact').slideUp()
+    $('.preview').fadeOut()
+    $('.add-contact').slideUp()
+    unless li_element.next().is(':visible')
+      li_element.next().slideDown()
+      li_element.next().find('.preview').fadeIn()
+    false
 
 
 
