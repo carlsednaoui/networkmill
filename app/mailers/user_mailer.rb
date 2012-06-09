@@ -32,15 +32,14 @@ class UserMailer < ActionMailer::Base
   end
 
   def send_network_mode_contacts(user, contacts_id)
-    @greeting = "Hi"
-
+    @greeting = "What's cooking good looking?"
     @contacts = []
 
     contacts_id.each do |c|
       @contacts << Contact.find_by_id(c)
     end
 
-    mail to: user.email, subject: "Your Networking Event Summary"
+    mail to: user.email, subject: "Here is Your Networking Event Summary"
     Email.create(:user_id => user.id, :sent_to => user.email, :title => "networking_event_summary")
   end
 end

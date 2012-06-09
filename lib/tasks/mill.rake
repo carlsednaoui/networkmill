@@ -26,4 +26,14 @@ namespace :mill do
     User.where(:unsubscribed => false).each { |user| run_the_mill(user) }
     puts ""
   end
+
+  desc "Find all users with open queues, if the queue is more than 5 hrs old 
+        send them a summary email and delete the queue."
+  task :event_mode_check => :environment do
+    puts ""
+    User.where(:network_mode => true).each do |user| 
+      user.destroy_queue_and_send_email if user.event_queue.created_at < Time.now - 5.hours
+    end
+    puts ""
+  end
 end

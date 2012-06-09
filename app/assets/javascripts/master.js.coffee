@@ -187,12 +187,15 @@ $ ->
       li_element.next().find('.preview').fadeIn()
     false
 
+  # ---------------------------------------
+  # Login Validation
+  # ---------------------------------------
 
-
-
-
-
-
+  $('#new_user').bind "ajax:error", (e, data, status, xhr) ->
+    $('#user_email').before("<div id='sign_in_error'>#{data.responseText}</div>")
+  
+  $('#new_user .form-submit').click ->
+    $('#sign_in_error').remove()
 
 
 
