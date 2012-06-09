@@ -61,6 +61,7 @@ class User < ActiveRecord::Base
 
   def pick_random_contacts(n = contact_intensity)
     result = []
+    return nil if n > contacts.count
     move_just_sent_to_out
     while result.count < n
       reset_list if contacts_in_rotation.count == 0
@@ -105,9 +106,9 @@ class User < ActiveRecord::Base
     @contacts = []
     all_contacts.each do |c|
       @contacts << c.id
-    end
-    
+    end    
     UserMailer.send_network_mode_contacts(self, @contacts).deliver
+    update_attributes(:network_mode => false)
     EventQueue.find_by_user_id(self).destroy
   end
 end

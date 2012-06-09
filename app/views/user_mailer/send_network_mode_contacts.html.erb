@@ -1,12 +1,16 @@
 <%= @greeting %>,
 
-Here are your network event contacts:
-
-<ul>
-  <% @contacts.each do |c| %>
-    <li>
-    <%= c.name %> - 
-    <%= c.email %>
-    </li>
-  <% end %>
-</ul>
+<% if @contacts.count == 0 %>
+	<p>Oh no, it seems that you didn't meet anyone at the event =(</p>
+	<img src="http://i.imgur.com/8m2QX.gif" />
+<% else %>
+	<p>Here are your network event contacts:</p>
+	<ul>
+	  <% @contacts.each do |c| %>
+	    <li>
+	    <%= c.name %> - 
+	    <%= c.email %>
+	    </li>
+	  <% end %>
+	</ul>
+<% end %>
