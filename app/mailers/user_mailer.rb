@@ -22,13 +22,25 @@ class UserMailer < ActionMailer::Base
   	mail to: user.email, subject: "Awesome People to Contact This Week"
     puts "sent email to #{user.email}!"
 
-    Email.create(:user_id => user.id, :sent_to => user.email, :title => "mill_mail", :contacts => contacts_id.join(',')
-)
+    Email.create(:user_id => user.id, :sent_to => user.email, :title => "mill_mail", :contacts => contacts_id.join(','))
   end
 
   def user_referral_via_new_contact(user, contact)
     @user_email = user.email
     mail to: contact.email, subject: "#{user.email} wants to stay in touch with you!"
     Email.create(:user_id => user.id, :sent_to => contact.id, :title => "user_added_contact", :contacts => contact.id)
+  end
+
+  def send_network_mode_contacts(user, contacts_id)
+    @greeting = "Hi"
+
+    @contacts = []
+
+    contacts_id.each do |c|
+      @contacts << Contact.find_by_id(c)
+    end
+
+    mail to: user.email, subject: "Your Networking Event Summary"
+    Email.create(:user_id => user.id, :sent_to => user.email, :title => "networking_event_summary")
   end
 end

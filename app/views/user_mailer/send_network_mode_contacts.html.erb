@@ -1,0 +1,12 @@
+<%= @greeting %>,
+
+Here are your network event contacts:
+
+<ul>
+  <% @contacts.each do |c| %>
+    <li>
+    <%= c.name %> - 
+    <%= c.email %>
+    </li>
+  <% end %>
+</ul>

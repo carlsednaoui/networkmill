@@ -40,15 +40,9 @@ class UsersController < ApplicationController
     # Create EventQueue if network_mode is on, else destroy EventQueue and send
     # a "summary" email to the @user if needed
     if @user.network_mode
-      puts "*******************************************"
-      puts "in controller, asking to CREATE queue" unless @user.event_queue.present?
-      puts "*******************************************"
       # Only create a Queue if the user has no queue
       EventQueue.create(:user_id => @user.id) unless @user.event_queue.present?
     else
-      puts "*******************************************"
-      puts "in controller, asking to DESTROY queue" if @user.event_queue.present?
-      puts "*******************************************"
       # Ensure that a user really has an open event_queue
       @user.destroy_queue_and_send_email if @user.event_queue.present?
     end
