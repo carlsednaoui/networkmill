@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(:version => 20120602233756) do
 
   create_table "event_queues", :force => true do |t|
     t.integer  "user_id"
-    t.boolean  "email_sent"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

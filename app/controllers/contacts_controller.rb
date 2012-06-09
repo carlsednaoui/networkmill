@@ -20,12 +20,33 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(params[:contact])
     @contact.user = current_user
+
+    # If the user is in network mode, add contact to queue and send a "welcome"
+    # email to the new contact
+    if @contact.user.network_mode.eql? true
+      puts "*******************************************"
+      puts "in contacts controller, asking to create a contact in a queue"
+      puts "*******************************************"
+      @contact.event_queue_id = @contact.user.event_queue.id
+      # UserMailer.user_referral_via_new_contact(current_user, @contact).deliver
+    else
+      # Save contact without adding it to EventQueue
+      puts "*******************************************"
+      puts "in contacts controller, asking to create a contact WITHOUT a queue"
+      puts "*******************************************"
+      # This will send an email to the contact if the user has "promote networkmill" on
+      # if @contact.promote_networkmill == true
+      #   UserMailer.user_referral_via_new_contact(current_user, @contact).deliver
+      # end 
+    end
+
     @contact.state = "in"
     if @contact.save
       redirect_to dashboard_path, :notice => "contact saved!"
     else
       render 'edit'
     end
+
   end
 
   def update
