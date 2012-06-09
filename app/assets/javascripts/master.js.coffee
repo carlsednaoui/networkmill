@@ -1,6 +1,12 @@
 $ ->
 
   # ---------------------------------------
+  # Flash Notices
+  # ---------------------------------------
+
+  $('.notice').delay(1000).fadeOut()
+
+  # ---------------------------------------
   # Sign in menu logic
   # ---------------------------------------
 
@@ -122,6 +128,23 @@ $ ->
       reader.onload = (e) ->
         $('.preview').show().attr('src', e.target.result)
       reader.readAsDataURL(input.files[0])
+
+  # validate fields before submit, since this is evaluted with html
+  $('#new_contact input[type=submit]').on 'click', (e) ->
+    popup = $("<div class='popup'></div>")
+
+    unless $('#contact_name').val().match /\S+/
+      e.preventDefault()
+      pos = $('#contact_name').position()
+      console.log $('#contact_name').position()
+      $('#container').prepend(popup)
+      popup.css({ top: pos.top - 65, left: pos.left }).text("make sure your contact has a name!").fadeIn().delay(1500).fadeOut 400, -> $(this).remove()
+
+    unless $('#contact_email').val().match /[\w\.%\+\-]+@[\w\-]+\.\w{2,3}/
+      e.preventDefault()
+      pos = $('#contact_email').position()
+      $('#container').prepend(popup)
+      popup.css({ top: pos.top - 65, left: pos.left }).text("please enter a valid email address").fadeIn().delay(1500).fadeOut 400, -> $(this).remove()
   
 
 

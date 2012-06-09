@@ -1,3 +1,9 @@
+- if @contact.errors.any?
+  .flash.errors
+  - @contact.errors.full_messages.each do |err|
+    = err
+
+
 .top
   %h3 Here are the people you want to stay in touch with:
   = link_to new_contact_path, :class => 'new-contact-button' do
@@ -5,7 +11,7 @@
     add new contact
 
   .add-contact
-    = render 'contact_form'
+    = render 'home/contact_form'
 
 %ul.contacts
   - @contacts.each do |contact|
