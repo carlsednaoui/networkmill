@@ -97,4 +97,21 @@ class User < ActiveRecord::Base
       c.update_attributes :state => "in"
     end
   end
+
+  # This is triggered from the User Controller or the Rake task. This will destroy the
+  # event queue and send a summary email of contacts the user just met
+  def destroy_queue_and_send_email
+    contacts.find_all_by_event_queue_id(event_queue.id).count
+    puts "*******************************************"
+    print "About to sent the summary email to "
+    print contacts.find_all_by_event_queue_id(event_queue.id).count
+    puts " contacts"
+    puts "*******************************************"
+    
+    # Find all and any potentially remaining queues for user and delete them all
+    user_queues = EventQueue.find_all_by_user_id(self)
+    user_queues.each do |q|
+      q.destroy
+    end
+  end
 end

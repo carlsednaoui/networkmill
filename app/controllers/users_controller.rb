@@ -20,6 +20,11 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     
+    # If a user is changing his/ her password use "update with password", if they are
+    # updating anything else use "update without password". password_fields checks
+    # whether the :current_password field or the :password field is blank to serve
+    # the right function
+
     password_fields = [params[:user][:current_password], params[:user][:password]]
     
     if password_fields.reject {|p| p.empty? }.empty?
@@ -30,6 +35,22 @@ class UsersController < ApplicationController
       else
         @success = true if @user.update_with_password(params[:user])
       end
+    end
+
+    # Create EventQueue if network_mode is on, else destroy EventQueue and send
+    # a "summary" email to the @user if needed
+    if @user.network_mode
+      puts "*******************************************"
+      puts "in controller, asking to CREATE queue" unless @user.event_queue.present?
+      puts "*******************************************"
+      # Only create a Queue if the user has no queue
+      EventQueue.create(:user_id => @user.id) unless @user.event_queue.present?
+    else
+      puts "*******************************************"
+      puts "in controller, asking to DESTROY queue" if @user.event_queue.present?
+      puts "*******************************************"
+      # Ensure that a user really has an open event_queue
+      @user.destroy_queue_and_send_email if @user.event_queue.present?
     end
   end
 
