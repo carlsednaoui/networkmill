@@ -197,11 +197,34 @@ $ ->
   $('#new_user .form-submit').click ->
     $('#sign_in_error').remove()
 
-  $('.forgot-pass').click ->
+  # ---------------------------------------
+  # Homepage reset password
+  # ---------------------------------------
 
-    $('#new_user.new_user').show()
-    $('#new_user').hide()
+  $('.forgot-pass').click ->
+    $('#new_user').toggle()
+    $('#forgot-password-form').toggle()
     return false
 
+  forgotpass_timer = null
 
+  forgotpass_menu_out = ->
+    forgotpass = setTimeout =>
+      $('#forgot-password-form').fadeOut 400
+    , 500
+
+  $('.sign-in').hover ->
+    $('#forgot-password-form').fadeOut 400
+    clearTimeout forgotpass
+    $('.sign-in').addClass 'active'
+    $('#forgot-password-form').fadeIn 400
+  , ->
+    forgotpass_menu_out()
+
+  $('#forgot-password-form').hover ->
+    clearTimeout forgotpass_timer
+    clearTimeout signin_timer
+  , ->
+    forgotpass_menu_out()
+    signin_menu_out()
 
