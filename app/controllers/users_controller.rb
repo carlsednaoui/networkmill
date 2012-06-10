@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => 'check_email'
 
   def index
     @users = User.find_all_by_id(current_user)
@@ -52,4 +52,13 @@ class UsersController < ApplicationController
     current_user.destroy
     redirect_to root_url
   end
+
+  def check_email
+    if User.find_by_email(params[:email])
+      render :text => "true"
+    else
+      render :text => "false"
+    end
+  end
+
 end

@@ -78,16 +78,22 @@ $ ->
 
     if !valid_email $('#sign-up .email-field').val()
       $('#sign-up .email-field').before "<div class='form-error'>please enter a valid email</div>"
-      return false
     else if saved_pass.length < 6
       $('#sign-up .email-field').before "<div class='form-error'>password must be more than 6 characters</div>"
-      return false
     else
       if $('#show-pass').is(':checked')
         saved_pass = $('.pass-visible').val()
         $('#sign-up .password-field').val(saved_pass)
-        $('#sign-up .new_user').submit()
-        return false
+
+    $.ajax
+      url: "/check_email/#{$('#sign-up .email-field').val()}"
+      success: (data) ->
+        if data == "true"
+          $('#sign-up .email-field').before "<div class='form-error'>email has already been taken</div>"
+        else
+          $('#sign-up .new_user').submit()
+
+    return false
 
   # ---------------------------------------
   # Account Dropdown (needs major revision)
