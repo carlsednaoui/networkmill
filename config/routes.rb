@@ -6,7 +6,7 @@ Networkmill::Application.routes.draw do
  
   # Enable mobile subdomain
   # To access it use http://lvh.me:3000
-  match '', to: 'mobile#index', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  match '', :to => 'mobile#index', :constraints => lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
   
   # Note: In mobile mode we are using /settings as the preference URL,
   # to avoid conflicting with /preferences from desktop mode.
@@ -25,6 +25,7 @@ Networkmill::Application.routes.draw do
 
   get "/dashboard" => "home#dashboard", :as => 'dashboard'
   get "/preferences" => "users#edit", :as => 'preferences'
+  get "/check_email/:email" => "users#check_email", :as => 'check_email', :constraints => { :email => /[^\/]+/ }
 
   # Overriding devise after_sign_up_path to take you to the registration controller
   devise_for :users, :controllers => { :registrations => "registrations" }
@@ -33,4 +34,5 @@ Networkmill::Application.routes.draw do
 	devise_for :users do
 	 get 'users', :to => 'home#dashboard', :as => :user_root
   end
+
 end
