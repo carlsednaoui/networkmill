@@ -197,6 +197,11 @@ $ ->
   $('#new_user .form-submit').click ->
     $('#sign_in_error').remove()
 
+  $('.forgot-pass').click ->
+
+    $('#new_user.new_user').show()
+    $('#new_user').hide()
+    return false
 
 
 
