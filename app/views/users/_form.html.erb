@@ -28,8 +28,8 @@
     <%= f.text_field :contact_intensity, :size => 1 %> contacts per week.
   </div>
   <div>
-    <%= f.label :signature, "Email Signature (optional)" %><br />
-    <%= f.text_field :signature %>
+    <%= f.label "Profile to send when you add new contacts with our App" %><br />
+    <%= f.text_area :signature, :rows => "8" %>
   </div>
   <div>
     <%= f.label :network_mode, "Are you currently at a networking event?" %>

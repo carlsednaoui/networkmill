@@ -25,12 +25,12 @@ class ContactsController < ApplicationController
     # email to the new contact
     if @contact.user.network_mode
       @contact.event_queue_id = @contact.user.event_queue.id
-      # UserMailer.user_referral_via_new_contact(current_user, @contact).deliver
+     #  UserMailer.user_referral_via_new_contact(current_user, @contact).deliver
     else
       # This will send an email to the contact if the user has "promote networkmill" on
-      # if @contact.promote_networkmill == true
-      #   UserMailer.user_referral_via_new_contact(current_user, @contact).deliver
-      # end 
+      #if @contact.promote_networkmill == true
+      #  UserMailer.user_referral_via_new_contact(current_user, @contact).deliver
+      #end 
     end
 
     @contact.state = "in"

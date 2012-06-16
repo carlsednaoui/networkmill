@@ -23,7 +23,6 @@ class UserMailer < ActionMailer::Base
     Email.create(:user_id => user.id, :sent_to => user.email, :title => "mill_mail", :contacts => contacts_id.join(','))
   end
 
-  # ==> **Need to find a better name for this function && Finish the View for it - Carl
   def user_referral_via_new_contact(user, contact)
     if user.name.present?
       @name = user.name.titlecase
