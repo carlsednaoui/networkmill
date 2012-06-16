@@ -70,10 +70,11 @@ header
       &.active
         background: #E2E2E2
 
-    #sign_in_error
+    #sign-in-error
       color: $red
       font-size: 13px
-      margin-bottom: 10px
+      margin-bottom: 6px
+      text-align: center
 
     .dropdown
       display: none
@@ -97,7 +98,7 @@ header
         &:hover
           text-decoration: underline
 
-  #new_user, #forgot-password-form
+  #sign-in-form
     display: none
     background: #E2E2E2
     position: absolute
@@ -116,6 +117,15 @@ header
       margin-left: 5px
       margin-top: 9px
       display: inline-block
+
+  #forgot-password-form
+    display: none
+
+    .success
+      color: #35B849
+      font-size: 13px
+      text-align: center
+      margin-bottom: 6px
 
 // Shared form field styles across log in and sign up
 

@@ -18,17 +18,17 @@ $ ->
   signin_menu_out = ->
     signin_timer = setTimeout =>
       $('.sign-in').removeClass 'active'
-      $('#new_user').fadeOut 400
+      $('#sign-in-form').fadeOut 400
     , 500
 
   $('.sign-in').hover ->
     clearTimeout signin_timer
     $(this).addClass 'active'
-    $('#new_user').fadeIn 400
+    $('#sign-in-form').fadeIn 400
   , ->
     signin_menu_out()
 
-  $('#new_user').hover ->
+  $('#sign-in-form').hover ->
     clearTimeout signin_timer
   , ->
     signin_menu_out()
@@ -78,6 +78,7 @@ $ ->
 
     if !valid_email $('#sign-up .email-field').val()
       $('#sign-up .email-field').before "<div class='form-error'>please enter a valid email</div>"
+      return false
     else if saved_pass.length < 6
       $('#sign-up .email-field').before "<div class='form-error'>password must be more than 6 characters</div>"
     else
@@ -92,6 +93,7 @@ $ ->
           $('#sign-up .email-field').before "<div class='form-error'>email has already been taken</div>"
         else
           $('#sign-up .new_user').submit()
+          
 
     return false
 
@@ -198,10 +200,10 @@ $ ->
   # ---------------------------------------
 
   $('#new_user').bind "ajax:error", (e, data, status, xhr) ->
-    $('#user_email').before("<div id='sign_in_error'>#{data.responseText}</div>")
+    $('#user_email').before("<div id='sign-in-error'>#{data.responseText}</div>")
   
   $('#new_user .form-submit').click ->
-    $('#sign_in_error').remove()
+    $('#sign-in-error').remove()
 
   # ---------------------------------------
   # Homepage reset password
@@ -210,27 +212,4 @@ $ ->
   $('.forgot-pass').click ->
     $('#new_user').toggle()
     $('#forgot-password-form').toggle()
-    return false
-
-  forgotpass_timer = null
-
-  forgotpass_menu_out = ->
-    forgotpass = setTimeout =>
-      $('#forgot-password-form').fadeOut 400
-    , 500
-
-  $('.sign-in').hover ->
-    $('#forgot-password-form').fadeOut 400
-    clearTimeout forgotpass
-    $('.sign-in').addClass 'active'
-    $('#forgot-password-form').fadeIn 400
-  , ->
-    forgotpass_menu_out()
-
-  $('#forgot-password-form').hover ->
-    clearTimeout forgotpass_timer
-    clearTimeout signin_timer
-  , ->
-    forgotpass_menu_out()
-    signin_menu_out()
-
+    false
