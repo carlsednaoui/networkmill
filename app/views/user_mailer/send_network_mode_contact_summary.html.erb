@@ -1,0 +1,38 @@
+<h1><%= @name %>,</h1>
+
+<% if @contacts.count == 0 %>
+
+	<p>Oh no, what happened? It seems that you didn't meet anyone at the event =(</p>
+
+	<p>
+		Was this because we did something wrong? If so, could you please take 15 seconds and let us know what happened? You can simply hit 'reply' to this email. As a token of gratitude, if you live in NYC, we'd be delighted to invite you for coffee :)
+	
+		<br />
+		<br />
+		
+		Thank you again for using NetworkMill. Have a fantastic day!
+	</p>
+
+<% else %>
+
+	<p>Look at that, what a boss! Here are the contacts your met at the event:</p>
+	<ul>
+	  <% @contacts.each do |c| %>
+	    <li>
+	    <%= c.name %> - 
+	    <%= c.email %>
+	    <%= c.note %>
+	    </li>
+	  <% end %>
+	</ul>
+
+	<p>
+		We'd love to hear about your experience at the event! Did you like using NetworkMill? How about the crowd, did you meet some interesting people? Would you add or remove anything from the app?
+
+		<br />
+		<br />
+
+		Thank you again for using NetworkMill. We wish you an amazing day!
+	</p>
+
+<% end %>

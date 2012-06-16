@@ -1,12 +1,23 @@
-<h1>Hey you!</h1>
+<h1>Hey hey, it's that time of the week!</h1>
 
-<p>You should email these awesome people:</p>
+<p>Aren't you excited? We are! Here are some amazing people you should email this week:</p>
 
 <ul>
   <% @contacts.each do |c| %>
     <li>
     <%= c.name %> - 
     <%= c.email %>
+    <%= c.note %>
     </li>
   <% end %>
 </ul>
+
+<p>
+
+	Don't hesitate to reach out if you have any questions or suggestions. As always, you can simply hit the 'reply' button :)
+
+	<br />
+	<br />
+
+	Have a fantastic week!
+</p>

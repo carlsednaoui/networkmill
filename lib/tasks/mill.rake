@@ -1,16 +1,14 @@
 def run_the_mill(user)
   if user.contact_intensity > user.contacts.count
-    low_contacts(user)
+    puts "#{user.email} has low contacts. Sending an email now."
+    UserMailer.user_has_few_contacts(user).deliver unless user.emails.find_by_title("user_has_few_contacts").present?
+    puts "we're already contacted #{user.email}" if user.emails.find_by_title("user_has_few_contacts").present?
   else
     contacts = user.pick_random_contacts
     UserMailer.send_random_contacts(user, contacts).deliver
   end
 end
 
-def low_contacts(user)
-  puts "#{user.email} has low contacts. Sending an email now."
-  UserMailer.user_has_few_contacts(user).deliver
-end
 
 namespace :mill do
 

@@ -107,7 +107,7 @@ class User < ActiveRecord::Base
     all_contacts.each do |c|
       @contacts << c.id
     end    
-    UserMailer.send_network_mode_contacts(self, @contacts).deliver
+    UserMailer.send_network_mode_contact_summary(self, @contacts).deliver
     update_attributes(:network_mode => false)
     EventQueue.find_by_user_id(self).destroy
   end

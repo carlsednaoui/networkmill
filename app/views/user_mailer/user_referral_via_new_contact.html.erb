@@ -1,1 +1,11 @@
-<%= @user_email %> wants to stay in touch with you!
+<h1>Hi there, <%= @name %> wants to stay in touch with you!</h1>
+
+<p>
+	Email address: <%= @email %>
+
+	<% if @signature.length > 0 %>
+		<br />
+		<br />
+		About: <%= @signature %>
+	<% end %>
+</p>
