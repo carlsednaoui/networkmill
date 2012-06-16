@@ -1,5 +1,7 @@
+$('#sign-in-error, .success').remove();
+
 if ("<%= resource.errors.full_messages %>" == "[]" )
-	alert("Please check your email for reset password instructions")
+  $('#forgot-password-form #user_email').val('').before("<div class='success'>Please check your email for reset password instructions</div>");
 else
-	alert("Email not found, please double check for any typos")
+  $('#forgot-password-form #user_email').before("<div id='sign-in-error'>Email not found, please double check for any typos</div>");
 end
