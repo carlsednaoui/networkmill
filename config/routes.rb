@@ -5,7 +5,7 @@ Networkmill::Application.routes.draw do
   ##################
  
   # Enable mobile subdomain
-  # To access it use http://lvh.me:3000
+  # To access it use http://m.lvh.me:3000
   match '', :to => 'mobile#index', :constraints => lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
   
   # Note: In mobile mode we are using /settings as the preference URL,
