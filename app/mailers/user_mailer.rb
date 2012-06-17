@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def send_welcome_email(user)
     mail to: user.email, subject: "Sign Up Confirmation - Welcome to NetworkMill"
-    Email.create(:user_id => user.id, :sent_to => user.email, :title => "welcome_mail")
+    Email.create(:user_id => user.id, :sent_to => user.email, :title => "welcome_email")
   end
 
   def user_has_few_contacts(user)
@@ -20,10 +20,10 @@ class UserMailer < ActionMailer::Base
   	mail to: user.email, subject: "NetworkMill - Awesome People to Contact This Week"
     puts "sent email to #{user.email}!"
 
-    Email.create(:user_id => user.id, :sent_to => user.email, :title => "mill_mail", :contacts => contacts_id.join(','))
+    Email.create(:user_id => user.id, :sent_to => user.email, :title => "send_random_contacts", :contacts => contacts_id.join(','))
   end
 
-  def user_referral_via_new_contact(user, contact)
+  def new_contact_intro_email(user, contact)
     if user.name.present?
       @name = user.name.titlecase
     else
@@ -34,7 +34,7 @@ class UserMailer < ActionMailer::Base
     @email = user.email
 
     mail to: contact.email, subject: "#{@name} wants to stay in touch with you!"
-    Email.create(:user_id => user.id, :sent_to => contact.id, :title => "user_referral", :contacts => contact.id)
+    Email.create(:user_id => user.id, :sent_to => contact.id, :title => "new_contact_intro_email", :contacts => contact.id)
   end
 
   def send_network_mode_contact_summary(user, contacts_id)

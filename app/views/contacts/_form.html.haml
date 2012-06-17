@@ -16,9 +16,5 @@
   .field
     = f.label :note, "Notes"
     = f.text_field :note
-  - if params[:action] == "new"
-    .field
-      = f.label "Send your profile"
-      = f.check_box :promote_networkmill
   .actions
     = f.submit

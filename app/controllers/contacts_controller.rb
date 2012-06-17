@@ -25,21 +25,16 @@ class ContactsController < ApplicationController
     # email to the new contact
     if @contact.user.network_mode
       @contact.event_queue_id = @contact.user.event_queue.id
-     #  UserMailer.user_referral_via_new_contact(current_user, @contact).deliver
-    else
-      # This will send an email to the contact if the user has "promote networkmill" on
-      #if @contact.promote_networkmill == true
-      #  UserMailer.user_referral_via_new_contact(current_user, @contact).deliver
-      #end 
+     #  UserMailer.new_contact_intro_email(current_user, @contact).deliver
     end
 
     @contact.state = "in"
+    
     if @contact.save
       redirect_to dashboard_path, :notice => "contact saved!"
     else
       render 'edit'
     end
-
   end
 
   def update

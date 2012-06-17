@@ -5,13 +5,14 @@ Networkmill::Application.routes.draw do
   ##################
  
   # Enable mobile subdomain
-  # To access it use http://m.lvh.me:3000
+  # To access it use http://m.lvh.me:3000 or http://m.networkmill.dev
   match '', :to => 'mobile#index', :constraints => lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
   
   # Note: In mobile mode we are using /settings as the preference URL,
   # to avoid conflicting with /preferences from desktop mode.
   get "/settings" => "mobile#preferences", :as => 'mobile_preferences'
   get "/networking" => "mobile#add_contact", :as => 'add_mobile_contact'
+  post "/mobile_create_contact" => "mobile#create_contact", :as => 'mobile_create_contact'
 
 
   ##################

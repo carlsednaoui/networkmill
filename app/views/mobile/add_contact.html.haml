@@ -1,23 +1,15 @@
 %h1
   This is where you add a new contact biatch!
 
-= form_for @contact do |f|
-  - if @contact.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@contact.errors.count, "error")} prohibited this contact from being saved:"
-
-      %ul
-        - @contact.errors.full_messages.each do |msg|
-          %li= msg
-
+= form_tag(mobile_create_contact_path, :method => "post", :remote => true) do
   .fields
     .field
-      = f.text_field :email, placeholder: 'email'
+      = text_field_tag :email, nil, :placeholder => 'email', :value => @contact.email
     .field
-      = f.text_field :name, placeholder: 'name'
+      = text_field_tag :name, nil, :placeholder => 'name', :value => @contact.name
     .add-notes
       %span add notes...
       .field
-        = f.text_area :note
+        = text_area_tag :note, nil, :value => @contact.note
   .actions
-    = f.submit "add contact &raquo;".html_safe
+    = submit_tag "add contact &raquo;".html_safe
