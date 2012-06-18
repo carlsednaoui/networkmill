@@ -14,4 +14,4 @@
 
   = f.submit "hit it &raquo;".html_safe, class: 'form-submit'
 
-  = link_to "Sign Up", root_url(:host => request.domain)
+  = link_to "Sign Up", root_url(:subdomain => false)
