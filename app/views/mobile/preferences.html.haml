@@ -1,7 +1,38 @@
-%h1
-	Mobile preference menu goes here
+%h1 Mobile preference menu goes here
 
-%p
-	when user is done updating networking event preferences, have a button such as "Start Networking"
+%p 
+  when user is done updating networking event preferences, have a button such as "Start Networking"
+
+= form_for @user do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@user.errors.count, "error") 
+        prohibited this user from being saved:
+
+    %ul
+      - @user.errors.full_messages.each do |msg|
+        %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  
+  .field
+    = f.label :email
+    = f.text_field :email
+  
+  .field
+    = f.label "Profile to send when you add new contacts with our App"
+    = f.text_area :signature, :rows => "8"
+  
+  .field
+    = f.label :network_mode, "Are you currently at a networking event?"
+    = f.select :network_mode, {"Yes" => true, "No" => false}
+
+  =f.hidden_field(:password)
+  =f.hidden_field(:current_password)
+
+  = f.submit "Save & Start Networking"
 
 = link_to "network now", add_mobile_contact_path
