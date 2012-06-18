@@ -1,0 +1,29 @@
+!!! 5
+%head
+  = render 'layouts/config'
+  = stylesheet_link_tag 'application'
+  = csrf_meta_tags
+
+-# ------------------------------------------------------------------------------------------
+
+%body
+  .sliver
+  #container
+    %header
+      .logo= link_to 'networkmill', root_path
+
+    - flash.each do |k,v|
+      .flash{ :class => "#{k}"}= v
+
+    = yield
+
+  .underlay
+
+-# ------------------------------------------------------------------------------------------
+
+
+-# help IE out with advanced selectors (http://selectivizr.com/)
+/[if (gte IE6)&(lte IE8)]
+  =javascript_include_tag 'selectivizr.js'
+
+=javascript_include_tag 'application'

@@ -1,9 +1,12 @@
 class MobileController < ApplicationController
+layout "mobile"
+
 	def index
 	  redirect_to mobile_preferences_path if current_user
 	end
 
 	def preferences
+		@user = current_user
 	end
 
 	def add_contact
