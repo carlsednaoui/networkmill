@@ -1,0 +1,49 @@
+#settings
+  = form_for @user, :remote => true do |f|
+    - if @user.errors.any?
+      #error_explanation
+        %h2
+          =pluralize(@user.errors.count, "error")
+          prohibited this user from being saved:
+
+        %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :email
+      = f.text_field :email
+    .field.desktop-client
+      = f.label :desktop_client, "I use a desktop email client"
+      = f.check_box :desktop_client
+
+    .field.contact-intensity
+      = f.label :contact_intensity, "I'd like to get in touch with"
+      = f.text_field :contact_intensity, :size => 1
+      contacts per week.
+    .field
+      = f.label "Introductory Email"
+      = f.text_area :signature, :rows => "8"  
+
+    .field
+      = f.label :current_password
+      %em (we need your current password to confirm your changes)
+      = f.password_field :current_password
+    .field
+      = f.label :password
+      = f.password_field :password, :autocomplete => "off"
+    .field
+      = f.label :unsubscribed, "Don't want to get any email from us? (not recommended)"
+      = f.select :unsubscribed, {"Yes" => true, "No" => false}
+
+    .actions= f.submit
+
+
+  %h3 Cancel my account
+
+  %p
+    Unhappy?
+    = link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete
