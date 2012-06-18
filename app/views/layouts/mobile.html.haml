@@ -11,6 +11,7 @@
   #container
     %header
       .logo= link_to 'networkmill', root_path
+    = link_to "sign out", destroy_user_session_path, :method => :delete
 
     - flash.each do |k,v|
       .flash{ :class => "#{k}"}= v
