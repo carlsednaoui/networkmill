@@ -1,6 +1,5 @@
 .top
   +group
-  margin-bottom: 30px
 
   h3
     color: #D50080
@@ -35,9 +34,11 @@
   +round(5px)
 
   .preview
-    +d(106)
+    width: 106px
+    height: 107px
     position: absolute
     display: none
+    +round(1px)
 
   form
     width: 420px
@@ -114,6 +115,8 @@
 .contacts
   +reset-list
   padding-bottom: 50px
+  padding-top: 30px
+  background: #fff
 
   li
     padding: 9px 12px

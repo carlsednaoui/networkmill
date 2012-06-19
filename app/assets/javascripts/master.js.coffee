@@ -183,7 +183,7 @@ $ ->
     $('.add-contact').slideUp()
     unless li_element.next().is(':visible')
       li_element.next().slideDown()
-      # li_element.next().find('.preview').fadeIn()
+      li_element.next().find('.preview').fadeIn()
     false
 
   # ---------------------------------------
