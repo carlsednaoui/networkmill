@@ -133,7 +133,7 @@ $ ->
       $('.add-contact').slideUp()
       $(this).css opacity: 1
       add_contact_down = false
-      $('.preview').fadeOut(400)
+      # $('.preview').fadeOut(400)
     else
       $('.add-contact').slideDown()
       $(this).css opacity: .6
@@ -179,11 +179,11 @@ $ ->
   $('.edit-contact').on 'click', ->
     li_element = $(this).parent().parent()
     $('.editing-contact').slideUp()
-    $('.preview').fadeOut()
+    # $('.preview').fadeOut()
     $('.add-contact').slideUp()
     unless li_element.next().is(':visible')
       li_element.next().slideDown()
-      li_element.next().find('.preview').fadeIn()
+      # li_element.next().find('.preview').fadeIn()
     false
 
   # ---------------------------------------
