@@ -146,15 +146,17 @@ $ ->
     $('.add-notes .field').slideToggle()
 
   # preview uploaded images
-  $('#contact_avatar').on 'change', ->
-    input = document.getElementById('contact_avatar')
+  $('.contact_avatar').on 'change', ->
+    console.log 'hello!'
+    input = $(this)[0]
     if input.files && input.files[0]
       reader = new FileReader()
-      reader.onload = (e) ->
-        $('.add-contact').find($('.preview')).show().attr('src', e.target.result)
+      reader.onload = (e) =>
+        $(this).prev().show().attr('src', e.target.result)
       reader.readAsDataURL(input.files[0])
 
   # validate fields before submit, since this is evaluted with html
+  # this needs to happen for update action as well!
   $('#new_contact input[type=submit]').on 'click', (e) ->
     popup = $("<div class='popup'></div>")
 
@@ -169,17 +171,6 @@ $ ->
       pos = $('#contact_email').position()
       $('#container').prepend(popup)
       popup.css({ top: pos.top - 65, left: pos.left }).text("please enter a valid email address").fadeIn().delay(1500).fadeOut 400, -> $(this).remove()
-  
-  # ---------------------------------------
-  # Delete Contact
-  # ---------------------------------------
-
-  # $('.delete-contact').on 'click', ->
-  #   $('.popup2').fadeOut 400, -> $(this).remove()
-  #   pos = $(this).position()
-  #   popup = $("<div class='popup2'></div>")
-  #   popup.appendTo($('#container')).css({ top: pos.top - 65, left: pos.left - 57 }).text("for real?").fadeIn()
-  #   false
 
   # ---------------------------------------
   # Edit Contact

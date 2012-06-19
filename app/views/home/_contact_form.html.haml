@@ -2,7 +2,7 @@
 
   .avatar
     %img.preview{ src: "#{contact.avatar_url(:full) if contact.avatar? }" }
-    = f.file_field :avatar
+    = f.file_field :avatar, class: 'contact_avatar'
   .fields
     .field
       = f.text_field :email, placeholder: 'email'
