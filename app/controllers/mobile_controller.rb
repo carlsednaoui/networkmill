@@ -1,8 +1,13 @@
 class MobileController < ApplicationController
 layout "mobile"
 
+	# If mobile user is in networkmode, the index page will be add_mobile_contact
 	def index
-	  redirect_to mobile_preferences_path if current_user
+		if current_user && current_user.network_mode == true
+			redirect_to add_mobile_contact_path
+	  elsif current_user
+			redirect_to mobile_preferences_path
+		end
 	end
 
 	def preferences

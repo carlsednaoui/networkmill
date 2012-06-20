@@ -4,7 +4,12 @@ class ApplicationController < ActionController::Base
   # Devise: Where to redirect users once they have logged in
   def after_sign_in_path_for(resource)
     if request.subdomain.present?
-    	mobile_preferences_path
+      # if user logs in from mobile and networkmode is on, redirect to add contact
+    	if current_user.network_mode == true
+        add_mobile_contact_path
+      else
+        mobile_preferences_path
+      end
     else
     	dashboard_path
   	end
