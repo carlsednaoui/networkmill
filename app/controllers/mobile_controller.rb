@@ -33,4 +33,25 @@ layout "mobile"
 	  end
 	end
 
+	def update_mobile_user
+		# ============== ADD JS VALIDATION
+		# ============== ADD JS VALIDATION
+		# ============== ADD JS VALIDATION
+		# ============== ADD JS VALIDATION
+		# ============== ADD JS VALIDATION
+
+		@user = current_user
+		redirect_to add_mobile_contact_path if @user.update_without_password(params)
+
+		# Create EventQueue if network_mode is on, else destroy EventQueue and send
+    # a "summary" email to the @user if needed
+    if @user.network_mode
+      # Only create a Queue if the user has no queue
+      EventQueue.create(:user_id => @user.id) unless @user.event_queue.present?
+    else
+      # Ensure that a user really has an open event_queue
+      @user.destroy_queue_and_send_email if @user.event_queue.present?
+    end
+	end
+
 end

@@ -3,36 +3,30 @@
 %p 
   when user is done updating networking event preferences, have a button such as "Start Networking"
 
-= form_for @user do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@user.errors.count, "error") 
-        prohibited this user from being saved:
-
-    %ul
-      - @user.errors.full_messages.each do |msg|
-        %li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
+= form_tag(update_mobile_user_path, :method => "post") do
   
   .field
-    = f.label :email
-    = f.text_field :email
+    name: 
+    = text_field_tag :name, nil, :value => @user.name
   
   .field
-    = f.label "Profile to send when you add new contacts with our App"
-    = f.text_area :signature, :rows => "8"
+    email: 
+    = text_field_tag :email, nil, :value => @user.email
   
   .field
-    = f.label :network_mode, "Are you currently at a networking event?"
-    = f.select :network_mode, {"Yes" => true, "No" => false}
+    signature: 
+    = text_area_tag :signature, nil, :value => @user.signature
+  
+  .field
+    network mode: 
+    = #select_tag :network_mode, options_for_select("Yes" => true, "No" => false),  :selected => @user.network_mode
 
-  =f.hidden_field(:password)
-  =f.hidden_field(:current_password)
+    / The above wasnt working
+    = select_tag :network_mode, options_for_select([true, false], @user.network_mode)
 
-  = f.submit "Save & Start Networking"
+  = hidden_field_tag(:password)
+  = hidden_field_tag(:current_password)
+
+  = submit_tag "Save & Start Networking"
 
 = link_to "network now", add_mobile_contact_path

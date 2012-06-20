@@ -12,6 +12,7 @@
     %header
       .logo= link_to 'networkmill', root_path
     = link_to "sign out", destroy_user_session_path, :method => :delete
+    = link_to "settings", mobile_preferences_path
 
     - flash.each do |k,v|
       .flash{ :class => "#{k}"}= v
