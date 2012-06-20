@@ -22,7 +22,7 @@
     = #select_tag :network_mode, options_for_select("Yes" => true, "No" => false),  :selected => @user.network_mode
 
     / The above wasnt working
-    = select_tag :network_mode, options_for_select([true, false], @user.network_mode)
+    = select_tag :network_mode, options_for_select([["On", true], ["Off", false]], @user.network_mode)
 
   = hidden_field_tag(:password)
   = hidden_field_tag(:current_password)
