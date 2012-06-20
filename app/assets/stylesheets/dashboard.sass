@@ -1,6 +1,5 @@
 .top
   +group
-  margin-bottom: 30px
 
   h3
     color: #D50080
@@ -35,9 +34,11 @@
   +round(5px)
 
   .preview
-    +d(106)
+    width: 106px
+    height: 107px
     position: absolute
     display: none
+    +round(1px)
 
   form
     width: 420px
@@ -114,12 +115,16 @@
 .contacts
   +reset-list
   padding-bottom: 50px
+  padding-top: 30px
+  background: #fff
 
   li
     padding: 9px 12px
     background: #FDFDFD
     +group
     color: #333
+    position: relative
+    z-index: 3
 
     &:nth-of-type(2n + 1)
       background: #F3F3F3
@@ -176,3 +181,22 @@
   font-size: 13px
   margin-bottom: 7px
   text-align: center
+
+#settings
+  .field
+    margin-bottom: 10px
+
+    input[type=text], input[type=password], textarea
+      +input($default)
+
+  .contact-intensity
+    width: 367px
+  #user_contact_intensity
+    width: 28px
+
+
+
+    
+
+
+
