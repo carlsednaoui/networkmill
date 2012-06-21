@@ -204,3 +204,29 @@ $ ->
     $('#new_user').toggle()
     $('#forgot-password-form').toggle()
     false
+
+  # ---------------------------------------
+  # Load Spinner
+  # ---------------------------------------
+
+  opts =
+    lines: 13 
+    length: 7
+    width: 4
+    radius: 10
+    rotate: 0
+    color: '#000'
+    speed: 1
+    trail: 60
+    shadow: false
+    hwaccel: false
+    className: 'spinner'
+    zIndex: 2e9
+    top: 'auto'
+    left: 'auto'
+
+  $('#submit').click ->
+    $(this).spin(opts)
+    
+
+
