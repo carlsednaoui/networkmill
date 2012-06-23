@@ -13,7 +13,7 @@ Networkmill::Application.routes.draw do
   get "/settings" => "mobile#preferences", :as => 'mobile_preferences'
   get "/networking" => "mobile#add_contact", :as => 'add_mobile_contact'
   post "/mobile_create_contact" => "mobile#create_contact", :as => 'mobile_create_contact'
-  post "update_mobile_user" => "mobile#update_mobile_user", :as => 'update_mobile_user'
+  post "/update_mobile_user" => "mobile#update_mobile_user", :as => 'update_mobile_user'
 
   ##################
   # Desktop Routes
