@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20120617224155) do
     t.boolean  "desktop_client"
     t.integer  "contact_intensity"
     t.text     "signature"
+    t.string   "avatar"
     t.boolean  "unsubscribed",           :default => false
     t.boolean  "network_mode",           :default => false
     t.datetime "created_at",                                :null => false

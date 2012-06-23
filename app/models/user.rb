@@ -3,8 +3,9 @@ class User < ActiveRecord::Base
   has_many :emails
   has_many :social_networks
   has_one :event_queue
+  mount_uploader :avatar, AvatarUploader
   validates :contact_intensity, :numericality => { :only_integer => true, :less_than_or_equal_to => :contact_validation}, :on => :update
-  attr_accessible :name, :email, :unsubscribed, :desktop_client, :network_mode, :contact_intensity, :password, :remember_me, :signature
+  attr_accessible :name, :email, :unsubscribed, :desktop_client, :network_mode, :contact_intensity, :avatar, :password, :remember_me, :signature
     
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
