@@ -18,11 +18,12 @@
 #email-window
   background: #fff
   +round(4px)
-  border: 1px solid #C7C7C7
+  border: 1px solid #B0B0B0
   float: left
   width: 630px
 
   .top-bar
+    +round(3px 3px 0 0)
     +reset-list
     +group
     +gradient(#C7C7C7, #9F9F9F)
@@ -49,6 +50,32 @@
       float: left
       margin-right: 12px
 
+    input[type=text]
+      background: none
+      border: none
+      outline: 0
+      width: 120px
+      padding-top: 3px
+      font-family: "PT Sans", sans-serif
+
+    #user_name
+      +bold
+      color: #454545
+      -webkit-font-smoothing: antialiased
+      float: left
+
+    .email
+      color: #868686
+      -webkit-font-smoothing: antialiased
+      font-size: 13px
+      float: left
+
+    #user_email
+      width: 150px
+      color: #868686
+      -webkit-font-smoothing: antialiased
+      font-size: 13px
+
     .from
       +group
 
@@ -61,3 +88,11 @@
         padding-top: 3px
         color: #868686
         font-size: 14px
+
+  .email-body
+    textarea
+      width: 585px
+      border: none
+      outline: 0
+      padding: 20px
+      font-family: "PT Sans", sans-serif

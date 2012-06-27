@@ -27,14 +27,17 @@
           %label From:
           .avatar
           = f.text_field :name
-          = f.text_field :email
+          .email
+            (
+            = f.text_field :email
+            )
         .to
           %label To:
           .avatar
           %p all the awesome people you'll meet
 
       .email-body
-        = f.text_area :signature, :rows => "8"
+        = f.text_area :signature, :rows => "8", placeholder: "Write your intro email here!"
 
         .contact-card
           .avatar
