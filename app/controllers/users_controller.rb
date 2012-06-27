@@ -1,6 +1,18 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => 'check_email'
 
+  require 'csv'
+
+  def export_contacts
+      file = CSV.generate do |csv|
+        csv << ["Name", "Email", "Note"]
+        current_user.contacts.each do |c|
+          csv << [c.name, c.email, c.note]
+        end
+      end
+      send_data file, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment;filename=my_networkmill_contacts.csv" 
+  end
+
   def index
     @users = User.find_all_by_id(current_user)
   end
