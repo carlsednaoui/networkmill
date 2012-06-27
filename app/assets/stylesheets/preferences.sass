@@ -1,0 +1,98 @@
+
+// global styles on settings page
+#settings
+  h2
+    color: #D50080
+    font-weight: normal
+    font-size: 27px
+    border-bottom: 1px solid #CCCCCC
+    padding-bottom: 4px
+    margin-bottom: 30px
+
+  h3
+    color: #555555
+    font-weight: normal
+    font-size: 17px
+
+// styles for the mock email window
+#email-window
+  background: #fff
+  +round(4px)
+  border: 1px solid #B0B0B0
+  float: left
+  width: 630px
+
+  .top-bar
+    +round(3px 3px 0 0)
+    +reset-list
+    +group
+    +gradient(#C7C7C7, #9F9F9F)
+    border-bottom: 1px solid #838383
+    height: 27px
+
+  .address-fields
+    background: #F7F7F7
+    border-bottom: 1px solid #D7D7D7
+    padding: 20px 40px
+
+    label
+      float: left
+      +bold
+      +upcase
+      color: #454545
+      font-size: 14px
+      text-align: right
+      padding: 3px 20px 0 0
+
+    .avatar
+      +d(25)
+      background: #C6C6C6
+      float: left
+      margin-right: 12px
+
+    input[type=text]
+      background: none
+      border: none
+      outline: 0
+      width: 120px
+      padding-top: 3px
+      font-family: "PT Sans", sans-serif
+
+    #user_name
+      +bold
+      color: #454545
+      -webkit-font-smoothing: antialiased
+      float: left
+
+    .email
+      color: #868686
+      -webkit-font-smoothing: antialiased
+      font-size: 13px
+      float: left
+
+    #user_email
+      width: 150px
+      color: #868686
+      -webkit-font-smoothing: antialiased
+      font-size: 13px
+
+    .from
+      +group
+
+    .to
+
+      label
+        margin-left: 18px
+
+      p
+        padding-top: 3px
+        color: #868686
+        font-size: 14px
+
+  .email-body
+    textarea
+      width: 585px
+      border: none
+      outline: 0
+      padding: 20px
+      font-family: "PT Sans", sans-serif
