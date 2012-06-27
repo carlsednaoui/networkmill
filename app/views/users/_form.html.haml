@@ -1,4 +1,7 @@
 #settings
+  
+  %h2 Settings
+
   = form_for @user, :remote => true do |f|
     - if @user.errors.any?
       #error_explanation
@@ -10,36 +13,105 @@
         - @user.errors.full_messages.each do |msg|
           %li= msg
 
-    .field
-      = f.label :name
-      = f.text_field :name
-    .field
-      = f.label :email
-      = f.text_field :email
-    .field.desktop-client
-      = f.label :desktop_client, "I use a desktop email client"
-      = f.check_box :desktop_client
+    %h3 Edit Introductory Email
 
-    .field.contact-intensity
-      = f.label :contact_intensity, "I'd like to get in touch with"
-      = f.text_field :contact_intensity, :size => 1
-      contacts per week.
-    .field
-      = f.label "Introductory Email"
-      = f.text_area :signature, :rows => "8"  
+    #email-window
+      .top-bar
+        %ul
+          %li.close
+          %li.min
+          %li.max
 
-    .field
-      = f.label :current_password
-      %em (we need your current password to confirm your changes)
-      = f.password_field :current_password
-    .field
-      = f.label :password
-      = f.password_field :password, :autocomplete => "off"
-    .field
-      = f.label :unsubscribed, "Don't want to get any email from us? (not recommended)"
-      = f.select :unsubscribed, {"Yes" => true, "No" => false}
+      .address-fields
+        .from
+          %label From:
+          .avatar
+          = f.text_field :name
+          = f.text_field :email
+        .to
+          %label To:
+          .avatar
+          %p all the awesome people you'll meet
 
-    .actions= f.submit
+      .email-body
+        = f.text_area :signature, :rows => "8"
+
+        .contact-card
+          .avatar
+          .name Jeff Escalante
+          .email hello@jenius.me
+
+          %ul.social
+            %li.twitter
+            %li.linkedin
+            %li.facebook
+            %li.gplus
+
+      .actions
+        .test-button send me a test copy
+        = f.submit "update"
+
+    #other-prefs
+      %h3 Other Preferences
+
+      .field.desktop-client
+        = f.label :desktop_client, "I use a desktop email client"
+        = f.check_box :desktop_client
+
+      .field.contact-intensity
+        = f.label :contact_intensity, "I'd like to get in touch with"
+        = f.text_field :contact_intensity, :size => 1
+        contacts per week.
+
+      %h4 Change my password:
+      .field
+        = f.label :current_password
+        %em (we need your current password to confirm your changes)
+        = f.password_field :current_password
+      .field
+        = f.label :password
+        = f.password_field :password, :autocomplete => "off"     
+      
+      = link_to "Export my contacts (.csv)", '#', class: 'export-contacts'
+
+    #bad-things
+      .field
+        = f.label :unsubscribed, "Do not receive any email from us"
+        = f.select :unsubscribed, {"Yes" => true, "No" => false}
+      .field
+        = link_to "Cancel my account", '#'
+
+
+    / .field
+    /   = f.label :name
+    /   = f.text_field :name
+    / .field
+    /   = f.label :email
+    /   = f.text_field :email
+    / .field.desktop-client
+    /   = f.label :desktop_client, "I use a desktop email client"
+    /   = f.check_box :desktop_client
+
+    / .field.contact-intensity
+    /   = f.label :contact_intensity, "I'd like to get in touch with"
+    /   = f.text_field :contact_intensity, :size => 1
+    /   contacts per week.
+    / .field
+    /   = f.label "Introductory Email"
+    /   = f.text_area :signature, :rows => "8"  
+
+    / .field
+    /   = f.label :current_password
+    /   %em (we need your current password to confirm your changes)
+    /   = f.password_field :current_password
+    / .field
+    /   = f.label :password
+    /   = f.password_field :password, :autocomplete => "off"
+    / .field
+    /   = f.label :unsubscribed, "Don't want to get any email from us? (not recommended)"
+    /   = f.select :unsubscribed, {"Yes" => true, "No" => false}
+
+    / .actions= f.submit
 
 
   %h3 Cancel my account
