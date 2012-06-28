@@ -58,21 +58,22 @@
       %h3 Other Preferences
 
       .desktop-client
-        = f.label :desktop_client, "I use a desktop email client"
+        = f.label :desktop_client, "I use a desktop email client: "
         = f.check_box :desktop_client
 
       .contact-intensity
-        = f.label :contact_intensity, "Remind me to stay in touch with this many contacts each week"
+        = f.label :contact_intensity, "Remind me to stay in touch with this many contacts each week:"
         = f.text_field :contact_intensity, :size => 1
 
       %h4 Change my password:
-      .field
-        = f.label :current_password
-        %em (we need your current password to confirm your changes)
+      .current
+        = f.label :current_password, "current password"
         = f.password_field :current_password
-      .field
-        = f.label :password
+      .new
+        = f.label :password, "new password"
         = f.password_field :password, :autocomplete => "off"     
+
+      = f.submit "save"
       
       = link_to "Export my contacts (.csv)", export_contacts_path, class: 'export-contacts'
 

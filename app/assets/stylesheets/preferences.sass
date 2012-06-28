@@ -177,7 +177,56 @@
 
     input[type=submit]
       +orange-button
+      -webkit-font-smoothing: antialiased
 
 #other-prefs
   width: 300px
   float: right
+  color: #838281
+  font-size: 14px
+
+  h3
+    margin-bottom: 20px
+
+  input[type=text], input[type=password], textarea
+    +input($default)
+
+  .desktop-client
+    margin-bottom: 15px
+
+    label
+      margin-right: 5px
+
+  #user_contact_intensity
+    font-size: 26px
+    width: 45px
+    text-align: center
+    padding: 4px 17px
+    display: block
+    margin: 16px auto
+    +bold
+    -webkit-font-smoothing: antialiased
+
+  h4
+    font-size: 16px
+
+  .current, .new
+
+    label
+      font-size: 12px
+
+  #user_current_password, #user_password
+    margin-bottom: 5px
+
+  input[type=submit]
+    +orange-button
+    -webkit-font-smoothing: antialiased
+
+  .export-contacts
+    display: block
+    margin-top: 20px
+    +bold
+    color: #E85000
+
+
+
