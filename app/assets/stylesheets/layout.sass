@@ -4,6 +4,13 @@ html
 body
   height: 100%
 
+=orange-button
+  +button(#ED6300)
+  +gradient(#ED6300, #DD2800)
+  +transition
+  text-shadow: 1px 1px 2px rgba(#000,.4)
+  padding: 7px 18px
+
 .sliver
   background: image-url("gradient.png") repeat
   width: 10px
@@ -144,13 +151,8 @@ header
   background: #fff image-url("pass.png") 2% 50% no-repeat
 
 .form-submit, .reset-submit
-  +button(#ED6300)
-  +gradient(#ED6300, #DD2800)
-  +transition
-  text-shadow: 1px 1px 2px rgba(#000,.4)
-  padding: 7px 18px
+  +orange-button
   float: right
-  padding: 7px 18px
 
 // end
 

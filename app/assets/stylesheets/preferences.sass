@@ -21,7 +21,7 @@
   border: 1px solid #BFBFBF
   float: left
   width: 630px
-  margin-top: 20px
+  margin-top: 10px
   +box-shadow(0 0 20px rgba(0,0,0,.25))
 
   .top-bar
@@ -124,6 +124,7 @@
 
     .contact-card
       padding: 20px
+      +group
 
       .avatar
         float: left
@@ -132,9 +133,51 @@
       .name
         +bold
         font-size: 24px
-        margin-top: 15px
-        padding-bottom: 4px
+        margin-top: 7px
+        padding-bottom: 1px
 
       .email
         color: #868686
         font-size: 14px
+
+      .social
+        +reset-list
+        +group
+        float: left
+        margin-top: 10px
+
+        li
+          +d(23)
+          float: left
+          margin-right: 8px
+
+          &.twitter
+            +bg("twitta.png")
+
+          &.facebook
+            +bg("facebook.png")
+
+          &.linkedin
+            +bg("linkedin.png")
+
+          &.gplus
+            +bg("gplus.png")
+
+  .actions
+    float: right
+    padding: 0 20px 20px 0
+
+    .test-button
+      +button(#969594)
+      +gradient(#D1D0CF, #A9A8A7)
+      border-color: #A9A8A7
+      +transition
+      text-shadow: 1px 1px 2px rgba(#000,.4)
+      padding: 7px 18px
+
+    input[type=submit]
+      +orange-button
+
+#other-prefs
+  width: 300px
+  float: right
