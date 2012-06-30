@@ -58,6 +58,9 @@ class UsersController < ApplicationController
       # Ensure that a user really has an open event_queue
       @user.destroy_queue_and_send_email if @user.event_queue.present?
     end
+
+    # Allow current_user to send himself a test-email
+    UserMailer.new_contact_intro_email(current_user, current_user).deliver if params[:commit] == "send me a test copy"
   end
 
   def destroy
