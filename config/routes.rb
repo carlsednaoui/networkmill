@@ -14,6 +14,7 @@ Networkmill::Application.routes.draw do
   get "/networking" => "mobile#add_contact", :as => 'add_mobile_contact'
   post "/mobile-create-contact" => "mobile#create_contact", :as => 'mobile_create_contact'
   post "/update-mobile-user" => "mobile#update_mobile_user", :as => 'update_mobile_user'
+  get "/forgot-password" => "mobile#forgot_password", :as =>'forgot_password'
 
   ##################
   # Desktop Routes

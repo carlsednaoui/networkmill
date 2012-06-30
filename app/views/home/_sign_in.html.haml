@@ -12,5 +12,4 @@
 
     = f.submit "hit it &raquo;".html_safe, class: 'form-submit'
 
-  / If user is on mobile subdomain, do not show this partial
-  = render partial: "forgot_password" unless request.subdomain.present?
+  = render partial: "forgot_password"
