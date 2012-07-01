@@ -181,6 +181,7 @@ $ ->
     $('.editing-contact').slideUp()
     # $('.preview').fadeOut()
     $('.add-contact').slideUp()
+    $('.new-contact-button').css opacity: 1
     unless li_element.next().is(':visible')
       li_element.next().slideDown()
       li_element.next().find('.preview').fadeIn()
