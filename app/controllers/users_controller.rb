@@ -37,21 +37,29 @@ class UsersController < ApplicationController
     # whether the :current_password field or the :password field is blank to serve
     # the right function
 
-    password_fields = [params[:user][:current_password], params[:user][:password]]
+    # password_fields = [params[:user][:current_password], params[:user][:password]]
     
-    puts "==========================================="
-    puts "Here we are logging in the controller wooop"
-    puts "==========================================="
-
-    if password_fields.reject {|p| p.empty? }.empty?
-      @success = true if @user.update_without_password(params[:user])
-    else
-      if params[:user][:password].empty?
-        @user.password_validation
-      else
-        @success = true if @user.update_with_password(params[:user])
-      end
+    if request.put?
+      logger.debug "==========================================="
+      logger.debug "great success!"
+      logger.debug "==========================================="
     end
+
+    flash[:notice] = "hello from the update action!"
+
+    @user.update_without_password(params[:user])    
+
+    render 'edit'
+
+    # if password_fields.reject {|p| p.empty? }.empty?
+    #   @success = true if @user.update_without_password(params[:user])
+    # else
+    #   if params[:user][:password].empty?
+    #     @user.password_validation
+    #   else
+    #     @success = true if @user.update_with_password(params[:user])
+    #   end
+    # end
 
     # Create EventQueue if network_mode is on, else destroy EventQueue and send
     # a "summary" email to the @user if needed

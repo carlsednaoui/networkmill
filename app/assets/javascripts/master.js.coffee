@@ -228,6 +228,44 @@ $ ->
 
   $('#submit').click ->
     $(this).spin(opts)
+
+  # ---------------------------------------
+  # Add Social Networks
+  # ---------------------------------------
+
+  if $('#settings').length
+    count = $('.social-network-count').data('count')
+
+    $('.add-field').on 'click', ->
+      $(this).before $("<input name='user[social_networks_attributes][#{count}][name]' type='hidden'></>")
+      $(this).before $("<input name='user[social_networks_attributes][#{count}][link]'></>")
+      count += 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
 

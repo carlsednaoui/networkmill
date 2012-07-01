@@ -10,6 +10,7 @@ Networkmill::Application.routes.draw do
   
   # Note: In mobile mode we are using /settings as the preference URL,
   # to avoid conflicting with /preferences from desktop mode.
+
   get "/settings" => "mobile#preferences", :as => 'mobile_preferences'
   get "/networking" => "mobile#add_contact", :as => 'add_mobile_contact'
   post "/mobile-create-contact" => "mobile#create_contact", :as => 'mobile_create_contact'
@@ -26,7 +27,10 @@ Networkmill::Application.routes.draw do
   resources :users, :only => [:new, :update]
 
   get "/dashboard" => "home#dashboard", :as => 'dashboard'
+  # the trick
   get "/preferences" => "users#edit", :as => 'preferences'
+  put "/preferences" => "users#update", :as => 'update_preferences'
+  # end
   get "/check_email/:email" => "users#check_email", :as => 'check_email', :constraints => { :email => /[^\/]+/ }
   get "/export-contacts" => "users#export_contacts", :as => 'export_contacts'
   post "/send_test_email" => "users#send_test_email", :as => 'send_test_email'
