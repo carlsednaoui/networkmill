@@ -24,4 +24,4 @@
         = link_to 'Delete', contact, confirm: 'For real?', method: :delete, class: 'delete-contact'
         = link_to 'Edit', edit_contact_path(contact), class: 'edit-contact'
     .editing-contact
-      = render partial: 'contact_form', :locals => { :contact => contact }
+      = render partial: 'contact_form', :locals => { :contact => contact , :verb => 'edit' }
