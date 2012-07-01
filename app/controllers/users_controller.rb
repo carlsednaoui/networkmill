@@ -39,6 +39,10 @@ class UsersController < ApplicationController
 
     password_fields = [params[:user][:current_password], params[:user][:password]]
     
+    puts "==========================================="
+    puts "Here we are logging in the controller wooop"
+    puts "==========================================="
+
     if password_fields.reject {|p| p.empty? }.empty?
       @success = true if @user.update_without_password(params[:user])
     else

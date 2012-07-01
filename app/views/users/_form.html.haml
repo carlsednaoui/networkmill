@@ -40,7 +40,8 @@
         = f.text_area :signature, :rows => "8", placeholder: "Write your intro email here!"
 
         .contact-card
-          = image_tag 'sample.png', class: 'avatar'
+          = f.file_field :avatar
+          = image_tag @user.avatar_url(:full), class: 'avatar'
           .name Jeff Escalante
           .email hello@jenius.me
 
