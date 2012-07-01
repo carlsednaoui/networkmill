@@ -2,7 +2,7 @@
   
   %h2 Settings
 
-  = form_for @user do |f|
+  = form_for @user, remote: true do |f|
     - if @user.errors.any?
       #error_explanation
         %h2
