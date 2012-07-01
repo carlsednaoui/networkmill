@@ -43,15 +43,15 @@ class UsersController < ApplicationController
     puts "Here we are logging in the controller wooop"
     puts "==========================================="
 
-    if password_fields.reject {|p| p.empty? }.empty?
-      @success = true if @user.update_without_password(params[:user])
-    else
-      if params[:user][:password].empty?
-        @user.password_validation
-      else
-        @success = true if @user.update_with_password(params[:user])
-      end
-    end
+    # if password_fields.reject {|p| p.empty? }.empty?
+    #   @success = true if @user.update_without_password(params[:user])
+    # else
+    #   if params[:user][:password].empty?
+    #     @user.password_validation
+    #   else
+    #     @success = true if @user.update_with_password(params[:user])
+    #   end
+    # end
 
     # Create EventQueue if network_mode is on, else destroy EventQueue and send
     # a "summary" email to the @user if needed
@@ -63,8 +63,11 @@ class UsersController < ApplicationController
       @user.destroy_queue_and_send_email if @user.event_queue.present?
     end
 
-    # Allow current_user to send himself a test-email
-    UserMailer.new_contact_intro_email(current_user, current_user).deliver if params[:commit] == "send me a test copy"
+  end
+
+  def send_test_email
+    UserMailer.new_contact_intro_email(current_user, current_user).deliver
+    redirect_to preferences_path, :notice => "check your email for a special surprise ;)"
   end
 
   def destroy

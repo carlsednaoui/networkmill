@@ -29,6 +29,7 @@ Networkmill::Application.routes.draw do
   get "/preferences" => "users#edit", :as => 'preferences'
   get "/check_email/:email" => "users#check_email", :as => 'check_email', :constraints => { :email => /[^\/]+/ }
   get "/export-contacts" => "users#export_contacts", :as => 'export_contacts'
+  post "/send_test_email" => "users#send_test_email", :as => 'send_test_email'
 
   # Overriding devise after_sign_up_path to take you to the registration controller
   devise_for :users, :controllers => { :registrations => "registrations" }

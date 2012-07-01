@@ -2,7 +2,7 @@
   
   %h2 Settings
 
-  = form_for @user, :remote => true do |f|
+  = form_for @user do |f|
     - if @user.errors.any?
       #error_explanation
         %h2
@@ -52,7 +52,7 @@
             %li.gplus
 
       .actions
-        = f.submit "send me a test copy", :class => "test-button"
+        = link_to "send me a test copy", send_test_email_path, class: 'test-button', method: 'post'
         = f.submit "update", :class => "update"
 
     #other-prefs
