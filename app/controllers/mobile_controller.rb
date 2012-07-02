@@ -1,5 +1,6 @@
 class MobileController < ApplicationController
 layout "mobile"
+before_filter :authenticate_user!, :except => 'index'
 
 	# If mobile user is in networkmode, the index page will be add_mobile_contact
 	def index
