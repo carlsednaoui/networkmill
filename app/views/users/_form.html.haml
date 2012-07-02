@@ -45,20 +45,24 @@
           .name Jeff Escalante
           .email hello@jenius.me
 
-          .social-network-count{ :'data-count' => "#{@user.social_networks.count}" }
-          
-          = f.fields_for :social_networks do |q|
-            = q.hidden_field :name
-            = q.text_field :link
-            = q.hidden_field :_destroy
+          #social-networks{ :'data-count' => "#{@user.social_networks.count}" }
+            = f.fields_for :social_networks do |q|
+              .social-field
+                = q.hidden_field :name
+                = q.text_field :link
+                = q.hidden_field :_destroy
 
-          %a.add-field add field
+            / %a.add-field add field
 
           %ul.social
             %li.twitter
+              %a
             %li.linkedin
+              %a
             %li.facebook
+              %a
             %li.gplus
+              %a
 
       .actions
         = link_to "send me a test copy", send_test_email_path, class: 'test-button', method: 'post'

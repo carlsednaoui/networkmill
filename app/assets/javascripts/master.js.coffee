@@ -233,14 +233,47 @@ $ ->
   # Add Social Networks
   # ---------------------------------------
 
+  $.fn.textWidth = ->
+    html_org = $(this).val()
+    html_calc = "<span>#{html_org}</span>"
+    $(this).after(html_calc)
+    width = $(this).next().width()
+    $(this).next().remove()
+    width
+
   if $('#settings').length
-    count = $('.social-network-count').data('count')
+    count = $('#social-networks').data('count')
 
     $('.add-field').on 'click', ->
       $(this).before $("<input name='user[social_networks_attributes][#{count}][name]' type='hidden'></>")
       $(this).before $("<input name='user[social_networks_attributes][#{count}][link]'></>")
       count += 1
 
+    $('.social').on 'click', 'a', ->
+      if $(this).hasClass 'active'
+        $(this).removeClass 'active'
+        $(this).parent().find('.social-field').hide()
+      else
+        $('.social li .social-field').hide()
+        $('.social li a').removeClass 'active'
+        $(this).addClass 'active'
+        $(this).parent().find('.social-field').show()
+
+    $('#social-networks input').each (index, el) ->
+      if $(el).attr('name').match /user\[social_networks_attributes\]\[\d+\]\[name\]/
+        container = $(".#{$(el).val()}")
+        container.append $(el).parent()
+
+    # auto adjust the width of the
+    $('#user_name').css maxWidth: $('#user_name').textWidth() + 15
+    $('#user_name').on 'keyup', ->
+      $(this).css maxWidth: $(this).textWidth() + 15
+      $('.contact-card .name').text($(this).val())
+
+    $('#user_email').css maxWidth: $('#user_email').textWidth() + 3
+    $('#user_email').on 'keyup', ->
+      $(this).css maxWidth: $(this).textWidth() + 3
+      $('.contact-card .email').text($(this).val())
 
 
 

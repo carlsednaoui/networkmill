@@ -74,7 +74,6 @@
       background: none
       border: none
       outline: 0
-      width: 120px
       padding-top: 3px
       font-family: "PT Sans", sans-serif
 
@@ -91,7 +90,6 @@
       float: left
 
     #user_email
-      width: 150px
       color: #868686
       -webkit-font-smoothing: antialiased
       font-size: 13px
@@ -150,18 +148,58 @@
           +d(23)
           float: left
           margin-right: 8px
+          position: relative
+
+          a
+            +d(23)
+            display: block
+
+          .social-field
+            display: none
+            position: absolute
+            top: -48px
+            left: -122px
+            background: rgba(0, 0, 0, .8)
+            padding: 7px
+            +round(4px)
+            width: 450px
+
+            &:before
+              color: #fff
+              font-size: 14px
+              +bold
+
+            &:after
+              display: block
+              content: ""
+              bottom: -8px
+              position: absolute
+              left: 125px
+              +triangle(down, 8px, rgba(0,0,0,.8))
 
           &.twitter
-            +bg("twitta.png")
+            a
+              +bg("twitta.png")
+            .social-field:before
+              content: "http://twitter.com/"
 
           &.facebook
-            +bg("facebook.png")
+            a
+              +bg("facebook.png")
+            .social-field:before
+              content: "http://facebook.com/"
 
           &.linkedin
-            +bg("linkedin.png")
+            a
+              +bg("linkedin.png")
+            .social-field:before
+              content: "http://linkedin.com/in/"
 
           &.gplus
-            +bg("gplus.png")
+            a
+              +bg("gplus.png")
+            .social-field:before
+              content: "http://plus.google.com/"
 
   .actions
     float: right
