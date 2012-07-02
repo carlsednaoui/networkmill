@@ -9,8 +9,12 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+
 module Networkmill
   class Application < Rails::Application
+
+    # Load config/lib to allow the custom_failure for devise to kick in
+    config.autoload_paths += %W(#{config.root}/lib)
 
     #Devise recommended to add this when deploying to heroku
     config.assets.initialize_on_precompile = false
