@@ -20,14 +20,6 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(params[:contact])
     @contact.user = current_user
-
-    # If the user is in network mode, add contact to queue and send a "welcome"
-    # email to the new contact
-    if @contact.user.network_mode
-      @contact.event_queue_id = @contact.user.event_queue.id
-     #  UserMailer.delay.new_contact_intro_email(current_user, @contact)
-    end
-
     @contact.state = "in"
     
     if @contact.save
@@ -51,7 +43,7 @@ class ContactsController < ApplicationController
   def destroy
     @contact = Contact.find(params[:id])
     @contact.destroy
-
     redirect_to dashboard_path
   end
+
 end

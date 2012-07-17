@@ -107,9 +107,11 @@ class User < ActiveRecord::Base
   def destroy_queue_and_send_email
     all_contacts = contacts.find_all_by_event_queue_id(event_queue.id)
     @contacts = []
+    
     all_contacts.each do |c|
       @contacts << c.id
-    end    
+    end
+
     UserMailer.delay.send_network_mode_contact_summary(self, @contacts)
     update_attributes(:network_mode => false)
     EventQueue.find_by_user_id(self).destroy
