@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   # after_create :send_welcome_mail
 
   def send_welcome_mail
-    UserMailer.send_welcome_email(self).deliver
+    UserMailer.delay.send_welcome_email(self)
   end
 
   # Picks n random contacts from the ones that are in rotation
@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
     all_contacts.each do |c|
       @contacts << c.id
     end    
-    UserMailer.send_network_mode_contact_summary(self, @contacts).deliver
+    UserMailer.delay.send_network_mode_contact_summary(self, @contacts)
     update_attributes(:network_mode => false)
     EventQueue.find_by_user_id(self).destroy
   end

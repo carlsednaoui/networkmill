@@ -25,7 +25,7 @@ class ContactsController < ApplicationController
     # email to the new contact
     if @contact.user.network_mode
       @contact.event_queue_id = @contact.user.event_queue.id
-     #  UserMailer.new_contact_intro_email(current_user, @contact).deliver
+     #  UserMailer.delay.new_contact_intro_email(current_user, @contact)
     end
 
     @contact.state = "in"

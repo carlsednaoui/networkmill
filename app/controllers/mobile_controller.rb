@@ -31,7 +31,7 @@ before_filter :authenticate_user!, :except => ['index', 'forgot_password']
 	    @contact.event_queue_id = @contact.user.event_queue.id if @contact.user.network_mode
 	   	
 	   	# Uncomment before going live
-	    # UserMailer.new_contact_intro_email(current_user, @contact).deliver
+	    # UserMailer.delay.new_contact_intro_email(current_user, @contact)
 	  end
 	end
 

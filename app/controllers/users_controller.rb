@@ -74,7 +74,10 @@ class UsersController < ApplicationController
   end
 
   def send_test_email
-    UserMailer.new_contact_intro_email(current_user, current_user).deliver
+    # Send mail without delayed job:
+    # UserMailer.new_contact_intro_email(current_user, current_user).deliver
+    # Send mail with delayed job (to get it working run $rake jobs:work)
+    UserMailer.delay.new_contact_intro_email(current_user, current_user)
     redirect_to preferences_path, :notice => "check your email for a special surprise ;)"
   end
 
