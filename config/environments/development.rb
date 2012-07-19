@@ -13,20 +13,26 @@ Networkmill::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = true
-
-  # Change mail delvery to either :smtp, :sendmail, :file, :test
+  #==> ActionMailer settings for Mandrill
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: "networkmill.com",
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: "networkmill@gmail.com",
-    password: "ilovetonetwork"
-  }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default :charset => "utf-8"
+
+  # Overriding the rails default to be notified in case of email delivery error
+  config.action_mailer.raise_delivery_errors = true
+  
+  #===> Settings for Gmail
+  # Change mail delvery to either :smtp, :sendmail, :file, :test
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.gmail.com",
+  #   port: 587,
+  #   domain: "networkmill.com",
+  #   authentication: "plain",
+  #   enable_starttls_auto: true,
+  #   user_name: "networkmill@gmail.com",
+  #   password: "ilovetonetwork"
+  # }
 
   # Specify what domain to use for mailer URLs
   config.action_mailer.default_url_options = {host: "localhost:3000"}

@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
 
   $initial_contact_intensity = 3
 
-  # Validation to ensure that contact intensity is not greater than the # of contacts. Default intensity = 3
+  # Validation: Ensure that contact intensity is less than the No. of user contacts. Default intensity = 3
   def contact_validation
     if contacts.count > $initial_contact_intensity
       contacts.count
@@ -27,41 +27,23 @@ class User < ActiveRecord::Base
     end
   end
 
-  # Add default values to a User when it is created with Devise
+  # Add default values to user upon creation with Devise
   before_create :default_values
-
   def default_values
     self.contact_intensity = $initial_contact_intensity
     self.desktop_client = 'false'
   end
 
-  # Send users a welcome email when they sign up
+  # Send user welcome email upon sign up
   # after_create :send_welcome_mail
-
   def send_welcome_mail
-    UserMailer.send_welcome_email(self).deliver
+    UserMailer.delay.send_welcome_email(self)
   end
 
-  # Picks n random contacts from the ones that are in rotation
+  # Picks n random contacts from those in rotation
   # - resets the list as soon as it's finished a rotation
-  # - won't return one contact more than once per list
+  # - won't return the same contact more than once per list
   # - returns false if you ask for more contacts than the user has (to prevent doubling)
-  # Need to relook at this, but everything seems to work
-  def deprecated_pick_random_contacts(n = contact_intensity)
-    result = []
-    return nil if n > contacts.count
-    move_just_sent_to_out
-    while result.count < n
-      reset_list if contacts_in_rotation.count == 0
-      contact = contacts_in_rotation.shuffle.first
-      unless result.include?(contact)
-      	result << contact.id
-      	contact.update_attributes :state => "just_sent"
-      end
-    end
-    return result
-  end
-
   def pick_random_contacts(n = contact_intensity)
     result = []
     return nil if n > contacts.count
@@ -87,17 +69,21 @@ class User < ActiveRecord::Base
     contacts.select{ |c| c.state == "just_sent" }
   end
 
+  # Get the contacts that currently out of rotation
+  def contacts_out
+    contacts.select{ |c| c.state == "out" }
+  end
+
   # Move the "just sent" contacts to "out"
   def move_just_sent_to_out
-    just_sent = contacts_just_sent
-    just_sent.each do |c|
+    contacts_just_sent.each do |c|
       c.update_attributes :state => "out"
     end
   end
 
-  # Set all User.contacts in rotation
+  # Set contacts that were "out" to "in"
   def reset_list
-    contacts.each do |c| 
+    contacts_out.each do |c| 
       c.update_attributes :state => "in"
     end
   end
@@ -107,10 +93,12 @@ class User < ActiveRecord::Base
   def destroy_queue_and_send_email
     all_contacts = contacts.find_all_by_event_queue_id(event_queue.id)
     @contacts = []
+    
     all_contacts.each do |c|
       @contacts << c.id
-    end    
-    UserMailer.send_network_mode_contact_summary(self, @contacts).deliver
+    end
+
+    UserMailer.delay.send_network_mode_contact_summary(self, @contacts)
     update_attributes(:network_mode => false)
     EventQueue.find_by_user_id(self).destroy
   end

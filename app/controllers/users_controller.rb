@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => 'check_email'
 
+  # Allow user to export contacts in csv
   require 'csv'
-
   def export_contacts
       file = CSV.generate do |csv|
         csv << ["Name", "Email", "Note"]
@@ -61,20 +61,14 @@ class UsersController < ApplicationController
     #   end
     # end
 
-    # Create EventQueue if network_mode is on, else destroy EventQueue and send
-    # a "summary" email to the @user if needed
-    if @user.network_mode
-      # Only create a Queue if the user has no queue
-      EventQueue.create(:user_id => @user.id) unless @user.event_queue.present?
-    else
-      # Ensure that a user really has an open event_queue
-      @user.destroy_queue_and_send_email if @user.event_queue.present?
-    end
-
   end
 
+  # Allow user to send itself a test email from the preference panel
   def send_test_email
-    UserMailer.new_contact_intro_email(current_user, current_user).deliver
+    # Send mail without delayed job:
+    # UserMailer.new_contact_intro_email(current_user, current_user).deliver
+    # Send mail with delayed job (to get delayed_job working in development run $rake jobs:work)
+    UserMailer.delay.new_contact_intro_email(current_user, current_user)
     redirect_to preferences_path, :notice => "check your email for a special surprise ;)"
   end
 
