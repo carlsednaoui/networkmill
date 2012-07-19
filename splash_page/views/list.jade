@@ -1,0 +1,10 @@
+doctype 5
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body.list
+    h2 Email List
+    ul
+      - each item in records
+        li= item.email
