@@ -36,6 +36,7 @@ Networkmill::Application.routes.draw do
   post "/send_test_email" => "users#send_test_email", :as => 'send_test_email'
   get "/privacy-policy" => "home#privacy-policy", :as => 'privacy_policy'
   get "/tos" => "home#tos", :as => 'tos'
+  get "/faq" => "home#faq", :as => 'faq'
 
   # Overriding devise after_sign_up_path to take you to the registration controller
   devise_for :users, :controllers => { :registrations => "registrations" }

@@ -16,7 +16,25 @@ before_filter :authenticate_user!, :except => ['index', 'forgot_password']
   end
 
   def add_contact
+    # add_new_contact part of the view
     @contact = Contact.new
+
+    # edit_user_preference part of the view
+    # TODO: We will need to implement this code somehow:
+      # redirect_to add_mobile_contact_path if @user.update_without_password(params)
+    # =========++++========= TODO: ADD JS VALIDATION =========++++=========
+    
+    @user = current_user
+
+    # Create EventQueue if network_mode is on, else destroy EventQueue and send
+    # a "summary" email to the @user if needed
+    if @user.network_mode
+      # Create an EventQueue only if the user has none
+      EventQueue.create(:user_id => @user.id) unless @user.event_queue.present?
+    else
+      # Ensure that user has an open EventQueue and destroy it
+      @user.destroy_queue_and_send_email if @user.event_queue.present?
+    end
   end
 
   def create_contact
@@ -37,17 +55,17 @@ before_filter :authenticate_user!, :except => ['index', 'forgot_password']
     # =========++++========= TODO: ADD JS VALIDATION =========++++=========
     
     @user = current_user
-    redirect_to add_mobile_contact_path if @user.update_without_password(params)
+    redirect_to add_mobile_contact_path, :flash =>{:success => "Changes Saved"} if @user.update_without_password(params)
 
     # Create EventQueue if network_mode is on, else destroy EventQueue and send
-      # a "summary" email to the @user if needed
-      if @user.network_mode
-        # Create an EventQueue only if the user has none
-        EventQueue.create(:user_id => @user.id) unless @user.event_queue.present?
-      else
-        # Ensure that user has an open EventQueue and destroy it
-        @user.destroy_queue_and_send_email if @user.event_queue.present?
-      end
+    # a "summary" email to the @user if needed
+    if @user.network_mode
+      # Create an EventQueue only if the user has none
+      EventQueue.create(:user_id => @user.id) unless @user.event_queue.present?
+    else
+      # Ensure that user has an open EventQueue and destroy it
+      @user.destroy_queue_and_send_email if @user.event_queue.present?
+    end
   end
 
   def forgot_password
