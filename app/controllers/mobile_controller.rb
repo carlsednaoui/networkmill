@@ -2,39 +2,7 @@ class MobileController < ApplicationController
 layout "mobile"
 before_filter :authenticate_user!, :except => ['index', 'forgot_password']
 
-  # If mobile user is in network mode, set index page to add_mobile_contact
-  # TODO Modify this since we're combining add_mobile_contact and mobile_preferences
   def index
-    if current_user && current_user.network_mode == true
-      redirect_to add_mobile_contact_path
-    elsif current_user
-      redirect_to mobile_preferences_path
-    end
-  end
-
-  def preferences
-    @user = current_user
-  end
-
-  def add_contact
-    @contact = Contact.new
-
-    # Get current user to display the user preferences form
-    @user = current_user
-  end
-
-  def create_contact
-    @contact = Contact.new(params)
-    @contact.user = current_user
-    @contact.state = "in"
-
-    # If user is in network mode, add contact to user_event_queue and send "welcome" email to new contact
-    if @contact.user.network_mode
-      @contact.event_queue_id = @contact.user.event_queue.id
-      UserMailer.delay.new_contact_intro_email(current_user, @contact)
-    end
-
-    @success = true if @contact.save
   end
 
   def update_mobile_user    
@@ -51,7 +19,23 @@ before_filter :authenticate_user!, :except => ['index', 'forgot_password']
     end
   end
 
-  def forgot_password
+  def add_contact
+    @contact = Contact.new
+    @user = current_user
+  end
+
+  def create_contact
+    @contact = Contact.new(params)
+    @contact.user = current_user
+    @contact.state = "in"
+
+    # If user is in network mode, add contact to user_event_queue and send "welcome" email to new contact
+    if @contact.user.network_mode
+      @contact.event_queue_id = @contact.user.event_queue.id
+      UserMailer.delay.new_contact_intro_email(current_user, @contact)
+    end
+    
+    @success = true if @contact.save
   end
 
 end

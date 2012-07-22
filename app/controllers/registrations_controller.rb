@@ -1,4 +1,4 @@
-# This controller is used to redirect a user to the edit_profile when they sign up for the 1st time.
+# Redirect a user to the edit_profile when they sign up.
 # This overrides the Devise defaults (which would reditect to root URL)
 
 class RegistrationsController < Devise::RegistrationsController
