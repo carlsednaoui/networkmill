@@ -1,5 +1,5 @@
-%h1
-  This is where you add a new contact biatch!
+/ Add new contact
+%h1 Add new contact
 
 = form_tag(mobile_create_contact_path, :method => "post", :remote => true) do
   .fields
@@ -15,19 +15,10 @@
     = submit_tag "add contact &raquo;".html_safe
 
 
-/ Mobile preference menu is below
-
-%h1 Mobile preference menu goes here
+/ Mobile preference menu
+%h1 Preference menu
 
 = form_tag(update_mobile_user_path, :method => "post") do
-  
-  /.field
-  /  name: 
-  /  = text_field_tag :name, nil, :value => @user.name
-  
-  /.field
-  /  email: 
-  /  = text_field_tag :email, nil, :value => @user.email
   
   .field
     signature: 
@@ -37,9 +28,7 @@
     network mode: 
     = select_tag :network_mode, options_for_select([["On", true], ["Off", false]], @user.network_mode)
 
-  = hidden_field_tag(:password)
-  = hidden_field_tag(:current_password)
-
-  = submit_tag "Save mah changes", :id => "submit"
+  = submit_tag "Save changes", :id => "submit"
 
 = link_to "cancel", add_mobile_contact_path
+= link_to "Go to full site", root_url(:subdomain => false)

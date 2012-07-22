@@ -3,6 +3,7 @@ layout "mobile"
 before_filter :authenticate_user!, :except => ['index', 'forgot_password']
 
   # If mobile user is in network mode, set index page to add_mobile_contact
+  # TODO Modify this since we're combining add_mobile_contact and mobile_preferences
   def index
     if current_user && current_user.network_mode == true
       redirect_to add_mobile_contact_path
@@ -16,25 +17,10 @@ before_filter :authenticate_user!, :except => ['index', 'forgot_password']
   end
 
   def add_contact
-    # add_new_contact part of the view
     @contact = Contact.new
 
-    # edit_user_preference part of the view
-    # TODO: We will need to implement this code somehow:
-      # redirect_to add_mobile_contact_path if @user.update_without_password(params)
-    # =========++++========= TODO: ADD JS VALIDATION =========++++=========
-    
+    # Get current user to display the user preferences form
     @user = current_user
-
-    # Create EventQueue if network_mode is on, else destroy EventQueue and send
-    # a "summary" email to the @user if needed
-    if @user.network_mode
-      # Create an EventQueue only if the user has none
-      EventQueue.create(:user_id => @user.id) unless @user.event_queue.present?
-    else
-      # Ensure that user has an open EventQueue and destroy it
-      @user.destroy_queue_and_send_email if @user.event_queue.present?
-    end
   end
 
   def create_contact
@@ -51,14 +37,11 @@ before_filter :authenticate_user!, :except => ['index', 'forgot_password']
     @success = true if @contact.save
   end
 
-  def update_mobile_user
-    # =========++++========= TODO: ADD JS VALIDATION =========++++=========
-    
+  def update_mobile_user    
     @user = current_user
     redirect_to add_mobile_contact_path, :flash =>{:success => "Changes Saved"} if @user.update_without_password(params)
 
-    # Create EventQueue if network_mode is on, else destroy EventQueue and send
-    # a "summary" email to the @user if needed
+    # If network_mode == on create EventQueue, else destroy EventQueue and send summary email to user
     if @user.network_mode
       # Create an EventQueue only if the user has none
       EventQueue.create(:user_id => @user.id) unless @user.event_queue.present?
