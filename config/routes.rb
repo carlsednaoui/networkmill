@@ -34,7 +34,7 @@ Networkmill::Application.routes.draw do
   get "/check_email/:email" => "users#check_email", :as => 'check_email', :constraints => { :email => /[^\/]+/ }
   get "/export-contacts" => "users#export_contacts", :as => 'export_contacts'
   post "/send_test_email" => "users#send_test_email", :as => 'send_test_email'
-  get "/privacy-policy" => "home#privacy-policy", :as => 'privacy_policy'
+  get "/privacy-policy" => "home#privacy_policy", :as => 'privacy_policy'
   get "/tos" => "home#tos", :as => 'tos'
   get "/faq" => "home#faq", :as => 'faq'
 
