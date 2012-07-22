@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "networkmill@gmail.com"
+  default from: "hi@networkmill.com"
 
   # Send welcome email to new user
   def send_welcome_email(user)
