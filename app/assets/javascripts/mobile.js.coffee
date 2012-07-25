@@ -1,5 +1,5 @@
 $ ->
 
-  counter == false
   $('#switch').on 'click', ->
-    $('#preference').toggle()
+    $('.tog').toggle()
+    false
