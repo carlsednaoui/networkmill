@@ -1,19 +1,25 @@
 #mobile
   +prefix('background-size', cover)
   background: image-url('bg-mobile.png') no-repeat center center fixed
-
-  .mininav
-    position: absolute
-    bottom: 10px
-    right: 10px
-
-    a
-      color: #fff
+  overflow: hidden
 
   #preference
     display: none
 
   #add-contact
+
+    .actions input
+      +gradient(#68EDF8, #00A3DD)
+      color: #fff
+      +bold
+      padding: 10px 94px
+      border: 1px solid #00AAD1
+      +round(4px)
+      text-shadow: 1px 1px 1px rgba(#000, .3)
+      font-family: 'PT Sans', sans-serif
+      font-size: 22px
+      -webkit-font-smoothing: antialiased
+      +box-shadow("inset 0 1px 0 rgba(255, 255, 255, 0.6), 1px 1px 3px rgba(0,0,0,.3)")
 
     h1
       font: 0/0 a
@@ -24,32 +30,32 @@
       height: 28px
       margin: 20px auto
 
-  .cog
-    +d(34)
-    margin: 0 auto
-
-    span
-      content: ""
-      display: block
-      +bg("cog.png")
+    .cog
       +d(34)
-      position: absolute
-      bottom: 25px
+      margin: 0 auto
+      cursor: pointer
 
-  textarea, input[type=text], input[type=email]
-    margin: 0 auto
-    background-color: #e2dddb
-    padding: 8px 25px
-    text-align: center
-    border: 2px solid rgba(255, 255, 255, .2) 
-    background-clip: padding-box
-    +box-shadow(inset 0px 1px 1px 1px #ada59f)
-    //+round(5px)
-    font-family: "PT Sans"
+      span
+        content: ""
+        display: block
+        +bg("cog.png")
+        +d(34)
+        position: absolute
+        bottom: 25px
 
+    textarea, input[type=text], input[type=email]
+      margin: 0 auto
+      background-color: #e2dddb
+      padding: 8px 25px
+      text-align: center
+      border: 2px solid rgba(255, 255, 255, .2) 
+      background-clip: padding-box
+      +box-shadow(inset 0px 1px 1px 1px #ada59f)
+      //+round(5px)
+      font-family: "PT Sans"
 
-    &:focus
-      outline: 0
+      &:focus
+        outline: 0
 
 
 
