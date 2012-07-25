@@ -1,5 +1,5 @@
 $ ->
 
   $('#switch').on 'click', ->
-    $('.tog').toggle()
+    $('.toggle').toggle()
     false
