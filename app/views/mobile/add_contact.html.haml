@@ -8,7 +8,7 @@
       .field
         = text_field_tag :name, nil, :placeholder => 'name', :value => @contact.name
       .field
-        = text_field_tag :email, nil, :placeholder => 'your@email.com', :value => @contact.email
+        = text_field_tag :email, nil, :placeholder => 'your@email.com', :value => @contact.email, :type => 'email'
       .add-notes
         %span add notes...
         .field
