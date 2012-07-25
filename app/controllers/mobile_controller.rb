@@ -7,7 +7,7 @@ before_filter :authenticate_user!, :except => ['index', 'forgot_password']
 
   def update_mobile_user    
     @user = current_user
-    redirect_to add_mobile_contact_path, :flash =>{:success => "Changes Saved"} if @user.update_without_password(params)
+    redirect_to add_mobile_contact_path if @user.update_without_password(params)
 
     # If network_mode == on create EventQueue, else destroy EventQueue and send summary email to user
     if @user.network_mode
