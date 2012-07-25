@@ -1,14 +1,7 @@
 #mobile
   +prefix('background-size', cover)
   background: image-url('bg-mobile.png') no-repeat center center fixed
-
-  .mininav
-    position: absolute
-    bottom: 10px
-    right: 10px
-
-    a
-      color: #fff
+  overflow: hidden
 
   #preference
     display: none
@@ -27,6 +20,7 @@
   .cog
     +d(34)
     margin: 0 auto
+    cursor: pointer
 
     span
       content: ""
