@@ -3,6 +3,6 @@
 
 $ ->
 
-  $('#switch').on 'click', ->
+  $('.cog').on 'click', ->
     $('.toggle').toggle()
     false
