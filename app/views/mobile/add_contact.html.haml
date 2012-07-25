@@ -1,6 +1,6 @@
 / Add new contact
 
-#add-contact.tog
+#add-contact.toggle
   %h1 Add new contact
 
   = form_tag(mobile_create_contact_path, :method => "post", :remote => true) do
@@ -18,7 +18,7 @@
 
 
 / Mobile preference menu
-#preference.tog
+#preference.toggle
   %h1 Preference menu
 
   = form_tag(update_mobile_user_path, :method => "post") do
