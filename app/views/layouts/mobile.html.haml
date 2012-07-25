@@ -12,7 +12,6 @@
     %header
       .logo= link_to 'networkmill', root_path
     = link_to "sign out", destroy_user_session_path, :method => :delete if current_user
-    = link_to "settings", mobile_preferences_path if current_user
     = link_to "Full Site", root_url(:subdomain => false)
 
     - flash.each do |k,v|
