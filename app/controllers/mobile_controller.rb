@@ -5,7 +5,7 @@ before_filter :authenticate_user!, :except => ['index', 'forgot_password']
   def index
   end
 
-  def update_mobile_user    
+  def update_mobile_user
     @user = current_user
     redirect_to add_mobile_contact_path if @user.update_without_password(params)
 
