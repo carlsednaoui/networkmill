@@ -8,7 +8,7 @@
     = text_field_tag :email, nil, :placeholder => 'your@email.com', :value => @contact.email, :type => 'email'
     #add-note 
       how did you meet? (optional)
-    = text_area_tag :note, nil, :value => @contact.note, :id => 'write-note'
+    = text_area_tag :note, nil, :value => @contact.note, :id => 'write-note', :placeholder => "Where you met, what you talked about, etc."
     .actions
       = submit_tag "send &raquo;".html_safe
 
