@@ -6,9 +6,9 @@
   = form_tag(mobile_create_contact_path, :method => "post", :remote => true) do
     = text_field_tag :name, nil, :placeholder => 'name', :value => @contact.name
     = text_field_tag :email, nil, :placeholder => 'your@email.com', :value => @contact.email, :type => 'email'
-    #add-notes
-      add notes...
-      = text_area_tag :note, nil, :value => @contact.note
+    #add-note 
+      how did you meet? (optional)
+    = text_area_tag :note, nil, :value => @contact.note, :id => 'write-note'
     .actions
       = submit_tag "send &raquo;".html_safe
 
