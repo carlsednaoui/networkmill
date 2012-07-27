@@ -2,6 +2,9 @@
 
 #add-contact.toggle
   %h1 NetworkMill
+  #counter
+    - if current_user.network_mode
+      = current_user.event_queue.contacts.count
 
   = form_tag(mobile_create_contact_path, :method => "post", :remote => true) do
     = text_field_tag :name, nil, :placeholder => 'name', :value => @contact.name
