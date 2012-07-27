@@ -8,7 +8,7 @@
     = text_field_tag :email, nil, :placeholder => 'your@email.com', :value => @contact.email, :type => 'email'
     #add-note 
       how did you meet? (optional)
-    = text_area_tag :note, nil, :value => @contact.note, :id => 'write-note', :placeholder => "Where you met, what you talked about, etc."
+    = text_area_tag :note, nil, :value => @contact.note, :id => 'write-note', :placeholder => "Where you met, what you talked about, etc. (optional)"
     .actions
       = submit_tag "send &raquo;".html_safe
 
@@ -19,19 +19,23 @@
 / Mobile preference menu
 
 #preference.toggle
-  %h1 Preference menu
+  #bio
+    #picture
+    #name
+      = @user.name.titleize
+    #email
+      = @user.email
+    #account-settings
+      = link_to "account settings &raquo;".html_safe, root_url(:subdomain => false)
 
   = form_tag(update_mobile_user_path, :method => "post") do
-    
-    #signature 
-      signature: 
+    #signature
       = text_area_tag :signature, @user.signature
     
     #network-mode
-      network mode: 
+      event mode
       = select_tag :network_mode, options_for_select([["On", true], ["Off", false]], @user.network_mode)
 
-    = submit_tag "Save changes", :id => "submit"
+    = submit_tag "start networking &raquo;".html_safe, :id => "submit"
 
   = link_to "cancel", add_mobile_contact_path
-  = link_to "Go to full site", root_url(:subdomain => false)
