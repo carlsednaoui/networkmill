@@ -13,9 +13,8 @@
     = f.submit "hit it &raquo;".html_safe, class: 'signin-submit'
 
 
-%p
-  #more-actions
-    - if devise_mapping.recoverable? && controller_name != 'passwords'
-      = link_to "forgot password?", forgot_password_path
+#more-actions
+  - if devise_mapping.recoverable? && controller_name != 'passwords'
+    = link_to "forgot password?", forgot_password_path
 
-    = link_to "Sign Up", root_url(:subdomain => false)
+  = link_to "Sign Up", root_url(:subdomain => false)
