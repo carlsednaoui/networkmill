@@ -3,6 +3,44 @@
   background: image-url('bg-mobile.png') no-repeat center center fixed
   overflow: hidden
 
+  #signin, .signin-submit, #more-actions
+    margin: 0 auto
+    display: block
+    font-size: 22px
+
+    input[type=email], input[type=password]
+      margin: 0 auto
+      display: block
+      margin-top: 20px
+      margin-bottom: 10px
+      text-align: center
+      padding: 15px 75px
+      cursor: pointer
+
+    .signin-submit
+      margin-top: 45px
+      +gradient(#ED6300, #DD2800)
+      color: #fff
+      +bold
+      padding: 10px 94px
+      border: 1px solid #f4ceb5
+      +round(4px)
+      text-shadow: 1px 1px 1px rgba(#000, .3)
+      font-family: 'PT Sans', sans-serif
+      font-size: 22px
+      -webkit-font-smoothing: antialiased
+      +box-shadow("inset 0 1px 0 rgba(255, 255, 255, 0.6), 1px 1px 3px rgba(0,0,0,.3)")
+
+  h1#logo
+    font: 0/0 a
+    text-shadow: none
+    color: transparent
+    background: image-url('logo-mobile.png') no-repeat
+    width: 172px
+    height: 28px
+    margin: 20px auto
+    margin-bottom: 40px
+
   #preference
     display: none
 
@@ -46,6 +84,7 @@
 
     input[type=text], input[type=email], #write-note, #add-note
       margin: 0 auto
+      display: block
       background-color: #e2dddb
       padding: 15px 75px
       text-align: center
@@ -54,7 +93,6 @@
       +box-shadow("inset 0px 1px 3px rgba(0,0,0,.4)")
       +round(3px)
       font-family: "PT Sans"
-      display: block
       margin-bottom: 15px
       -webkit-font-smoothing: antialiased
       font-size: 22px
