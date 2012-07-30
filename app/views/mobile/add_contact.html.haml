@@ -37,8 +37,9 @@
       = text_area_tag :signature, @user.signature
       
       #network-mode
-        event mode
-        = select_tag :network_mode, options_for_select([["On", true], ["Off", false]], @user.network_mode)
+        %p
+          Event Mode
+          = select_tag :network_mode, options_for_select([["On", true], ["Off", false]], @user.network_mode)
 
       = submit_tag "start networking &raquo;".html_safe, :id => "start-networking"
 
