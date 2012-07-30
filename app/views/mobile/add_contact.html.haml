@@ -1,7 +1,8 @@
 / Add new contact
 
 #add-contact.toggle
-  %h1 NetworkMill
+  %h1#logo NetworkMill
+  
   #counter
     - if current_user.network_mode
       = current_user.event_queue.contacts.count
