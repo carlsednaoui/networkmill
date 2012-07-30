@@ -32,14 +32,14 @@
     #account-settings
       = link_to "account settings &raquo;".html_safe, root_url(:subdomain => false)
 
-  = form_tag(update_mobile_user_path, :method => "post") do
-    #signature
+  #update-profile
+    = form_tag(update_mobile_user_path, :method => "post") do
       = text_area_tag :signature, @user.signature
-    
-    #network-mode
-      event mode
-      = select_tag :network_mode, options_for_select([["On", true], ["Off", false]], @user.network_mode)
+      
+      #network-mode
+        event mode
+        = select_tag :network_mode, options_for_select([["On", true], ["Off", false]], @user.network_mode)
 
-    = submit_tag "start networking &raquo;".html_safe, :id => "submit"
+      = submit_tag "start networking &raquo;".html_safe, :id => "start-networking"
 
-  = link_to "cancel", add_mobile_contact_path
+    = link_to "cancel", add_mobile_contact_path, :id => "more-actions"

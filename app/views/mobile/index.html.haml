@@ -1,7 +1,7 @@
 %h1#logo
   NetworkMill
 
-#signin
+#sign-in
   = form_for(resource, :as => resource_name, :url => session_path(resource_name), :remote => true) do |f|
     = f.email_field :email, placeholder: 'your@email.com', class: 'email-field'
     = f.password_field :password, placeholder: 'secret password', class: 'password-field'
@@ -10,7 +10,7 @@
     /   = f.check_box :remember_me
     /   = f.label :remember_me
 
-    = f.submit "hit it &raquo;".html_safe, class: 'signin-submit'
+    = f.submit "hit it &raquo;".html_safe, class: 'sign-in-submit'
 
 
 #more-actions
