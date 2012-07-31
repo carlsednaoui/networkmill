@@ -32,7 +32,7 @@
     #account-settings
       = link_to "account settings &raquo;".html_safe, root_url(:subdomain => false)
 
-  #update-profile
+  #signature
     = form_tag(update_mobile_user_path, :method => "post") do
       = text_area_tag :signature, @user.signature
       
