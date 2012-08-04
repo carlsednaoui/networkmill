@@ -10,7 +10,7 @@ before_filter :authenticate_user!, :except => ['index', 'forgot_password']
     redirect_to add_mobile_contact_path if @user.update_without_password(params)
 
     # If network_mode == on create EventQueue, else destroy EventQueue and send summary email to user
-    if @user.network_mode
+    if @user.network_mode?
       # Create an EventQueue only if the user has none
       EventQueue.create(:user_id => @user.id) unless @user.event_queue.present?
     else
@@ -29,13 +29,13 @@ before_filter :authenticate_user!, :except => ['index', 'forgot_password']
     @contact.user = current_user
     @contact.state = "in"
 
+    @success = true if @contact.save
+    
     # If user is in network mode, add contact to user_event_queue and send "welcome" email to new contact
-    if @contact.user.network_mode
+    if @contact.user.network_mode?
       @contact.event_queue_id = @contact.user.event_queue.id
       UserMailer.delay.new_contact_intro_email(current_user, @contact)
     end
-    
-    @success = true if @contact.save
   end
 
 end

@@ -1,19 +1,28 @@
 class UserMailer < ActionMailer::Base
   default from: "\"NetworkMill\" <hi@networkmill.com>"
 
+  #=========================================
   # Send welcome email to new user
+  #=========================================
   def send_welcome_email(user)
     mail to: user.email, subject: "Sign Up Confirmation - Welcome to NetworkMill"
     Email.create(:user_id => user.id, :sent_to => user.email, :title => "welcome_email")
   end
 
-  # Run_the_mill will notify user if he/she has too few contacts (this email is only sent once per user)
+  #=========================================
+  # Run_the_mill method
+  # Notify user if he/she has too few contacts 
+  # This email is only sent once per user
+  #=========================================
   def user_has_few_contacts(user)
     mail to: user.email, subject: "NetworkMill - Why Not Add Some Contacts?"
     Email.create(:user_id => user.id, :sent_to => user.email, :title => "user_has_few_contacts")
   end
 
-  # Run_the_mill will send random contacts based on user_contact_intensity
+  #=========================================
+  # Run_the_mill method
+  # Send random contacts based on user_contact_intensity
+  #=========================================
   def send_random_contacts(user, contacts_id)
     @contacts = []
 
@@ -27,7 +36,11 @@ class UserMailer < ActionMailer::Base
     Email.create(:user_id => user.id, :sent_to => user.email, :title => "send_random_contacts", :contacts => contacts_id.join(','))
   end
 
+  #=========================================
+  # Mobile app method
   # Send introduction email when user adds new contact from mobile if network_mode == true
+  # Also used to send test email to current_user
+  #=========================================
   def new_contact_intro_email(user, contact)
     if user.name.present?
       @name = user.name.titlecase
@@ -38,11 +51,14 @@ class UserMailer < ActionMailer::Base
     @signature = user.signature
     @email = user.email
 
-    mail to: contact.email, subject: "#{@name} wants to stay in touch with you!"
+    mail to: contact.email, reply_to: @email, from: "\"#{@name}\" <#{@email}>", subject: "#{@name} wants to stay in touch with you!"
     Email.create(:user_id => user.id, :sent_to => contact.id, :title => "new_contact_intro_email", :contacts => contact.id)
   end
 
+  #=========================================
+  # Mobile app method
   # Send user a summary of the contacts added during a network_mode session
+  #=========================================
   def send_network_mode_contact_summary(user, contacts_id)
     if user.name.present? 
       @name = "Hi there " + user.name.titlecase

@@ -3,9 +3,6 @@
 <p>
 	Email address: <%= @email %>
 
-	<% if @signature.length > 0 %>
-		<br />
-		<br />
-		About: <%= @signature %>
-	<% end %>
+  <!-- Ensure that a User signature has been created -->
+	About: <%= @signature if @signature.present? && @signature.length > 0 %>
 </p>
