@@ -17,18 +17,18 @@
   .cog
     %span
 
-
 / Mobile preference menu
 
 #preference
+  %header
+    %h1 networkmill
   #bio
     #picture
     #name
       = @user.name.titleize
     #email
       = @user.email
-    #account-settings
-      = link_to "account settings &raquo;".html_safe, root_url(:subdomain => false)
+    = link_to "account settings &raquo;".html_safe, root_url(:subdomain => false), :id =>"account-settings"
 
   #signature
     = form_tag(update_mobile_user_path, :method => "post") do

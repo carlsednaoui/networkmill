@@ -6,17 +6,21 @@
   -webkit-font-smoothing: antialiased
   font-family: "PT Sans"
 
+=ir
+  font: 0/0 a
+  text-shadow: none
+  color: transparent
+
 #add-contact
   +prefix('background-size', cover)
   background: image-url('bg-mobile.png') no-repeat center center fixed
   overflow: hidden
   width: 100%
   height: 100%
+  display: none
 
   h1
-    font: 0/0 a
-    text-shadow: none
-    color: transparent
+    +ir
     background: image-url('logo-mobile.png') no-repeat
     width: 172px
     height: 28px
@@ -123,8 +127,26 @@
 
 
 #preference
-  display: none
-  background: image-url('mobile-pattern.png')
+  background: image-url('mobile-pattern.png') repeat
+  width: 100%
+  height: 100%
+
+  #bio
+    width: 380px
+    margin: 0 auto
+    margin-bottom: 15px
+    +group
+
+  header
+    +gradient(rgba(67,67,67,.5), rgba(2,2,2,.5))
+    margin-bottom: 25px
+
+    h1
+      +ir
+      background: image-url('logo-mobile.png') no-repeat
+      width: 172px
+      height: 28px
+      margin: 15px auto
   
   textarea
     margin: 0 auto
@@ -145,27 +167,39 @@
     cursor: pointer  
     height: 150px    
 
-  #picture //placeholder profile image
+  #picture
     width: 100px
     height: 100px
-    border: 3px solid rgba(0, 0, 0, .2) 
-    background-color: red
+    background: rgba(0,0,0,.5)
+    +box-shadow(inset 0 0 17px rgba(0,0,0,.8))
+    +round(6px)
     display: block
-    margin: 0 auto
+    float: left
+    margin-right: 25px
 
-  #name, #email, #account-settings, #network-mode
-    width: 210px
-    margin: 0 auto
-    display: block
+  #name
+    padding-top: 6px
+    color: #f7f4f4
+    font-size: 28px
+
+  #email
+    color: #a4a4a4
+    font-size: 15px
+    margin-top: -5px
 
   #account-settings //TODO change link color
     background-color: #1f1f20
     font-size: 10px
-    padding: 1px 4px 3px 4px
+    padding: 3px 5px
     +round(4px)
+    +group
     width: 78px
     text-align: center
     margin-top: 10px
+    float: left
+    color: #a4a4a4
+    text-decoration: none
+    display: block
 
   #network-mode
     +bold
@@ -189,13 +223,6 @@
     +box-shadow("inset 0 1px 0 rgba(255, 255, 255, 0.6), 1px 1px 3px rgba(0,0,0,.3)")
     +round(4px)
     padding: 10px 85px
-
-  #name
-    color: #f7f4f4
-    font-size: 22px
-
-  #email
-    color: #b9baba
 
 // ================================================================
 // Sign In Page
