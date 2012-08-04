@@ -20,10 +20,9 @@ ActiveRecord::Schema.define(:version => 20120717015143) do
     t.text     "note"
     t.string   "state"
     t.string   "avatar"
-    t.boolean  "promote_networkmill"
     t.integer  "event_queue_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "delayed_jobs", :force => true do |t|
