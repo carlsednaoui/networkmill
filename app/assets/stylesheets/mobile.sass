@@ -2,6 +2,9 @@
 // 3d Shit
 // ================================================================
 
+body
+  background: #000
+
 #mobile
   width: 100%
   height: 100%
@@ -13,10 +16,13 @@
   height: 100%
   position: absolute
   -webkit-transform-style: preserve-3d
-  -webkit-transition: -webkit-transform 1s ease
+  -webkit-transition: -webkit-transform 1.3s ease
 
   &.flipped
     -webkit-transform: rotateY(180deg)
+
+    .cog
+      opacity: 0
 
   & > div
     -webkit-backface-visibility: hidden
@@ -24,6 +30,7 @@
 
   #preference
     -webkit-transform: rotateY(180deg)
+    -webkit-transition: -webkit-transform 1s ease
 
 // ================================================================
 // Add Contact Page
@@ -125,6 +132,7 @@
     +d(34)
     margin: 0 auto
     cursor: pointer
+    +transition(all 1.3s ease)
 
     span
       content: ""

@@ -10,6 +10,7 @@ $ ->
 
   $('#start-networking').on 'click', ->
     $('#card').removeClass 'flipped'
+    false
 
   # slide down the note section
   $('#write-note').on 'click', ->
