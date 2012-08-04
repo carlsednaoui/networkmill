@@ -33,7 +33,7 @@ before_filter :authenticate_user!, :except => ['index', 'forgot_password']
     
     # If user is in network mode, add contact to user_event_queue and send "welcome" email to new contact
     if @contact.user.network_mode?
-      @contact.event_queue_id = @contact.user.event_queue.id
+      @contact.update_attributes(event_queue_id: "#{@contact.user.event_queue.id}")
       UserMailer.delay.new_contact_intro_email(current_user, @contact)
     end
   end
