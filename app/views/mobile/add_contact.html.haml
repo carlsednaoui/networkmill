@@ -1,44 +1,44 @@
 / Add new contact
 
-#add-contact
-  %h1 NetworkMill
-  
-  #counter
-    - if current_user.network_mode
-      = current_user.event_queue.contacts.count
+#card
 
-  = form_tag(mobile_create_contact_path, :method => "post", :remote => true) do
-    = text_field_tag :name, nil, :placeholder => 'name', :value => @contact.name
-    = text_field_tag :email, nil, :placeholder => 'your@email.com', :value => @contact.email, :type => 'email'
-    = text_area_tag :note, nil, :id => 'write-note', :placeholder => "how did you meet? (optional)"
-    .actions
-      = submit_tag "send &raquo;".html_safe
+  #add-contact
+    %h1 NetworkMill
+    
+    #counter
+      - if current_user.network_mode
+        = current_user.event_queue.contacts.count
 
-  .cog
-    %span
+    = form_tag(mobile_create_contact_path, :method => "post", :remote => true) do
+      = text_field_tag :name, nil, :placeholder => 'name', :value => @contact.name
+      = text_field_tag :email, nil, :placeholder => 'your@email.com', :value => @contact.email, :type => 'email'
+      = text_area_tag :note, nil, :id => 'write-note', :placeholder => "how did you meet? (optional)"
+      .actions
+        = submit_tag "send &raquo;".html_safe
 
-/ Mobile preference menu
+    .cog
+      %span
 
-#preference
-  %header
-    %h1 networkmill
-  #bio
-    #picture
-    #name
-      = @user.name.titleize
-    #email
-      = @user.email
-    = link_to "account settings &raquo;".html_safe, root_url(:subdomain => false), :id =>"account-settings"
+  / Mobile preference menu
 
-  #signature
-    = form_tag(update_mobile_user_path, :method => "post") do
-      = text_area_tag :signature, @user.signature
-      
-      #network-mode
-        %p
-          Event Mode
-          = select_tag :network_mode, options_for_select([["On", true], ["Off", false]], @user.network_mode)
+  #preference
+    %header
+      %h1 networkmill
+    #bio
+      #picture
+      #name
+        = @user.name.titleize
+      #email
+        = @user.email
+      = link_to "account settings &raquo;".html_safe, root_url(:subdomain => false), :id =>"account-settings"
 
-      = submit_tag "start networking &raquo;".html_safe, :id => "start-networking"
+    #signature
+      = form_tag(update_mobile_user_path, :method => "post") do
+        = text_area_tag :signature, @user.signature
+        
+        #network-mode
+          %p
+            Event Mode
+            = select_tag :network_mode, options_for_select([["On", true], ["Off", false]], @user.network_mode)
 
-    = link_to "cancel", add_mobile_contact_path, :id => "more-actions"
+        = submit_tag "start networking &raquo;".html_safe, :id => "start-networking"

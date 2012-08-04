@@ -5,8 +5,11 @@ $ ->
 
   # flip the page when the cog is clicked
   $('.cog').on 'click', ->
-    $('.toggle').toggle()
+    $('#card').addClass 'flipped'
     false
+
+  $('#start-networking').on 'click', ->
+    $('#card').removeClass 'flipped'
 
   # slide down the note section
   $('#write-note').on 'click', ->
