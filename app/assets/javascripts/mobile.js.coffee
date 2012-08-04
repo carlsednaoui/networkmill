@@ -3,11 +3,13 @@
 
 $ ->
 
+  # flip the page when the cog is clicked
   $('.cog').on 'click', ->
     $('.toggle').toggle()
     false
 
-  $('#add-note').on 'click', ->
-    $('#write-note').show().css('display', 'block')
-    $('#add-note').hide()
-    false
+  # slide down the note section
+  $('#write-note').on 'click', ->
+    $(@).css height: 100
+  .on 'keydown', ->
+    $(@).css textAlign: 'left'

@@ -2,6 +2,10 @@
 // Add Contact Page
 // ================================================================
 
+=default-font
+  -webkit-font-smoothing: antialiased
+  font-family: "PT Sans"
+
 #add-contact
   +prefix('background-size', cover)
   background: image-url('bg-mobile.png') no-repeat center center fixed
@@ -16,8 +20,7 @@
     background: image-url('logo-mobile.png') no-repeat
     width: 172px
     height: 28px
-    margin: 20px auto
-    margin-bottom: 20px
+    margin: 45px auto
 
   input[type=text], input[type=email]
     margin: 0 auto
@@ -29,9 +32,8 @@
     background-clip: padding-box
     +box-shadow("inset 0px 1px 3px rgba(0,0,0,.4)")
     +round(3px)
-    font-family: "PT Sans"
+    +default-font
     margin-bottom: 15px
-    -webkit-font-smoothing: antialiased
     font-size: 22px
     color: #444
     cursor: pointer
@@ -40,9 +42,11 @@
       outline: 0
 
   #write-note
+    +default-font
+    +transition
     margin: 0 auto
     display: block
-    width: 350px
+    width: 340px
     background-color: rgba(0, 0, 0, .6)
     font-size: 14px
     border: 4px solid rgba(255, 255, 255, .08)
@@ -53,13 +57,12 @@
     padding: 8px
     height: 18px
     color: #fff
-    -webkit-font-smoothing: antialiased
-    font-family: "PT Sans"
     overflow: hidden
+    margin-top: 30px
 
     &::-webkit-input-placeholder
       color: #fff
-      opacity: .2
+      opacity: .3
 
     &:focus
       outline: 0
@@ -78,6 +81,15 @@
     +box-shadow("inset 0 1px 0 rgba(255, 255, 255, 0.6), 1px 1px 3px rgba(0,0,0,.3)")
     margin: 15px auto
     display: block
+    +transition
+
+    &:hover
+      background-position: 0 -20px
+
+    &:active
+      +box-shadow("inset 0 1px 20px rgba(0,37,50,.9)")
+      border-color: #035D7C
+      text-shadow: -1px -1px 1px rgba(#000, .3)
 
   .cog
     +d(34)
@@ -99,7 +111,7 @@
     color: #756f6b
     background-color: rgba(0, 0, 0, .35)
     margin: 0 auto
-    display: block
+    display: none
     width: 18px
     padding: 3px
     text-align: center
