@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :except => 'check_email'
+
+  before_filter :authenticate_user!, :except => [:check_email, :update]
 
   # Allow user to export contacts in csv
   require 'csv'
@@ -30,36 +31,27 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
-    
-    # If a user is changing his/ her password use "update with password", if they are
-    # updating anything else use "update without password". password_fields checks
-    # whether the :current_password field or the :password field is blank to serve
-    # the right function
+  
+    # TODO: before deploying, we should test this to make sure authentication is working
 
-    # password_fields = [params[:user][:current_password], params[:user][:password]]
-    
-    if request.put?
-      logger.debug "==========================================="
-      logger.debug "great success!"
-      logger.debug "==========================================="
+    # if user is resetting password, reset the password and redirect to root
+    if params[:user][:reset_password_token]
+      User.reset_password_by_token(params[:user])
+      redirect_to root_url, notice: 'password reset successfully!'
+    # if user is updating their preferences, make sure to authenticate
+    else
+      authenticate_user!
+      @user = current_user
+      password_fields = [params[:user][:current_password], params[:user][:password]]
+      # if they are updating anything except the password, no need to pass authenticate
+      if password_fields.reject {|p| p.empty? }.empty?
+        @user.update_without_password(params[:user])
+      # if they are trying to update their password, make sure it's right
+      else
+        @user.update_with_password(params[:user])
+      end
+      render 'edit'
     end
-
-    flash[:notice] = "hello from the update action!"
-
-    @user.update_without_password(params[:user])    
-
-    render 'edit'
-
-    # if password_fields.reject {|p| p.empty? }.empty?
-    #   @success = true if @user.update_without_password(params[:user])
-    # else
-    #   if params[:user][:password].empty?
-    #     @user.password_validation
-    #   else
-    #     @success = true if @user.update_with_password(params[:user])
-    #   end
-    # end
 
   end
 

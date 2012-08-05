@@ -7,9 +7,9 @@ Devise.setup do |config|
   config.mailer_sender = "\"NetworkMill\" <hi@networkmill.com>"
 
   # Override devise to enable custom failure
-  config.warden do |manager|
-    manager.failure_app = CustomFailure
-  end
+  # config.warden do |manager|
+  #   manager.failure_app = CustomFailure
+  # end
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
