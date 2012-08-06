@@ -22,6 +22,8 @@
     .cog
       opacity: 0
 
+  // Comment for Carl: Only apply this style to direct children
+  // of #card that are also div
   & > div
     -webkit-backface-visibility: hidden
     position: absolute
@@ -264,51 +266,88 @@
 // Sign In Page
 // ================================================================
 
-// #sign-in-error
-//   color: #fff
-//   margin: 0 auto
-//   display: block
+=mobile-homepage-gradient
+  background: #d20e68
+  background: -moz-linear-gradient(left,  #d20e68 0%, #ff170a 51%, #ff9400 100%)
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#d20e68), color-stop(51%,#ff170a), color-stop(100%,#ff9400))
+  background: -webkit-linear-gradient(left,  #d20e68 0%,#ff170a 51%,#ff9400 100%)
+  background: -o-linear-gradient(left,  #d20e68 0%,#ff170a 51%,#ff9400 100%)
+  background: -ms-linear-gradient(left,  #d20e68 0%,#ff170a 51%,#ff9400 100%)
+  background: linear-gradient(to right,  #d20e68 0%,#ff170a 51%,#ff9400 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d20e68', endColorstr='#ff9400',GradientType=1 )
 
-// #sign-in, .sign-in-submit, #reset-password
-//   margin: 0 auto
-//   display: block
-//   font-size: 22px
+#sign-in
+  margin: 0 auto
+  display: block
+  background-color: white
+  width: 400px
+  height: 100%
 
-//   input[type=email], input[type=password]
-//     margin: 0 auto
-//     display: block
-//     background-color: #e2dddb
-//     padding: 15px 75px
-//     text-align: center
-//     border: 4px solid rgba(255, 255, 255, .2) 
-//     background-clip: padding-box
-//     +box-shadow("inset 0px 1px 3px rgba(0,0,0,.4)")
-//     +round(3px)
-//     font-family: "PT Sans"
-//     margin-bottom: 15px
-//     margin-top: 20px
-//     -webkit-font-smoothing: antialiased
-//     font-size: 22px
-//     color: #444
-//     cursor: pointer
+  #gradient
+    +mobile-homepage-gradient
+    width: 100%
+    height: 18px
+    +box-shadow("0px 3px 7px rgba(0,0,0,.1)")
 
-//   .sign-in-submit
-//     margin-top: 45px
-//     +gradient(#ED6300, #DD2800)
-//     color: #fff
-//     +bold
-//     padding: 10px 94px
-//     border: 1px solid #d17e4c
-//     +round(4px)
-//     text-shadow: 1px 1px 1px rgba(#000, .3)
-//     font-family: 'PT Sans', sans-serif
-//     font-size: 22px
-//     -webkit-font-smoothing: antialiased
-//     +box-shadow("inset 0 1px 0 rgba(255, 255, 255, 0.6), 1px 1px 3px rgba(0,0,0,.3)")
+  h1
+    +ir
+    background: image-url('signin-logo.png') no-repeat
+    width: 172px
+    height: 28px
+    margin: 40px auto
+    padding-top: 20px
+    text-align: center
 
-// #more-actions
-//   width: 140px
-//   margin: 0 auto
-//   display: block
-//   font-size: 12px
-//   margin-top: 20px
+  input[type=email], input[type=password]
+    display: block
+    background: #f9f9f9
+    font-size: 18px
+    font-family: 'PT Sans', sans-serif
+    -webkit-font-smoothing: antialiased
+    margin: 17px auto
+    width: 77%
+    padding: 13px
+    border: 1px solid #c9c9c9
+    +box-shadow("inset 0px 3px 7px rgba(0,0,0,.12)")
+    +round(3px)
+
+    &:focus
+      outline: 0
+
+  input[type=submit]
+    display: block
+    margin: 0 auto
+    margin-top: 65px
+    margin-bottom: 50px
+    width: 83%
+    font-family: 'PT Sans', sans-serif
+    -webkit-font-smoothing: antialiased
+    font-size: 22px
+    color: #fff
+    +gradient(#ff9501, #ff5a03)
+    +bold
+    +rounded
+    padding: 12px
+    border: 1px solid #ed5400
+    text-shadow: 1px 1px 1px rgba(#000, .3)
+    +box-shadow("inset 0 1px 0 rgba(255, 255, 255, 0.6), 1px 1px 3px rgba(0,0,0,.3)")
+
+  #more-actions
+    margin-top: 80px
+    a
+      display: block
+      text-align: center
+      color: #8a8a8a
+      text-decoration: none
+      font-size: 17px
+      font-family: 'PT Sans', sans-serif
+      -webkit-font-smoothing: antialiased
+
+      &:first-child
+        +bold
+        margin-bottom: 10px
+
+      &:last-child
+
+
+

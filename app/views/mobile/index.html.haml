@@ -1,20 +1,23 @@
-%h1#logo
-  NetworkMill
-
 #sign-in
+  #gradient
+  %h1
+    NetworkMill
+
   = form_for(resource, :as => resource_name, :url => session_path(resource_name), :remote => true) do |f|
-    = f.email_field :email, placeholder: 'your@email.com', class: 'email-field'
-    = f.password_field :password, placeholder: 'secret password', class: 'password-field'
+    = f.email_field :email, placeholder: 'your@email.com', class: 'email'
+    = f.password_field :password, placeholder: 'secret password', class: 'password'
 
     / - if devise_mapping.rememberable?
     /   = f.check_box :remember_me
     /   = f.label :remember_me
 
-    = f.submit "hit it &raquo;".html_safe, class: 'sign-in-submit'
+    = f.submit "sign in &raquo;".html_safe, class: 'sign-in-submit'
 
 
-#more-actions
-  - if devise_mapping.recoverable? && controller_name != 'passwords'
-    = link_to "forgot password?", forgot_password_path
+  #more-actions
+    = link_to "sign up", root_url(:subdomain => false)
 
-  = link_to "Sign Up", root_url(:subdomain => false)
+    - if devise_mapping.recoverable? && controller_name != 'passwords'
+      = link_to "forgot password?", forgot_password_path
+
+    
