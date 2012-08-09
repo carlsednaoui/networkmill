@@ -280,15 +280,16 @@ $ ->
   # Check Email Domain Name Logic (mailcheck.js)
   # ---------------------------------------
   
-  #TODO - Carl needs to do this
+  # TODO - Carl needs to do this
   # http://andrewberls.com/blog/post/reducing-bad-signup-emails
+  
   $email = $('input[type=email]')
   $hint = $("#hint")
 
   $email.blur ->
-    console.log(this)
-
-
+    console.log($(this).val())
+    # Make the email available to Jquery in the browser window
+    window.email = $(this).val()
 
 
 
