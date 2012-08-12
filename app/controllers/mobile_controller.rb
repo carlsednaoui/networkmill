@@ -47,6 +47,7 @@ before_filter :authenticate_user!, :except => ['index', 'forgot_password']
     @feedback.user_id = current_user.id if current_user.present?
     @feedback.message = params[:feedback][:message]
     @feedback.save!
+    UserMailer.delay.send_feedback_to_team(@feedback)
     redirect_to add_mobile_contact_path
   end
 
