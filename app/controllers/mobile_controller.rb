@@ -38,4 +38,16 @@ before_filter :authenticate_user!, :except => ['index', 'forgot_password']
     end
   end
 
+  def feedback
+    @feedback = Feedback.new
+  end
+
+  def post_feedback
+    @feedback = Feedback.new
+    @feedback.user_id = current_user.id if current_user.present?
+    @feedback.message = params[:feedback][:message]
+    @feedback.save!
+    redirect_to add_mobile_contact_path
+  end
+
 end

@@ -10,5 +10,17 @@ class HomeController < ApplicationController
     @contacts = Contact.find_all_by_user_id(current_user.id).reverse
     @contact = Contact.new
   end
+
+  def feedback
+    @feedback = Feedback.new
+  end
+
+  def post_feedback
+    @feedback = Feedback.new
+    @feedback.user_id = current_user.id if current_user.present?
+    @feedback.message = params[:feedback][:message]
+    @feedback.save!
+    redirect_to root_url
+  end
   
 end

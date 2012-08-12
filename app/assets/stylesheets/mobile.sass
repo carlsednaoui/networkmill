@@ -222,7 +222,7 @@
     font-size: 15px
     margin-top: -3px
 
-  #account-settings
+  .account-settings
     background-color: #1f1f20
     font-size: 10px
     padding: 3px 5px
@@ -235,6 +235,8 @@
     color: #a4a4a4
     text-decoration: none
     display: block
+  #feedback-tab
+    margin-left: 20px
 
   #network-mode
     +bold
@@ -265,6 +267,7 @@
 // ================================================================
 // Sign In Page
 // Forgot Password Page
+// Feedback Page
 // ================================================================
 
 =mobile-homepage-gradient
@@ -277,7 +280,7 @@
   background: linear-gradient(to right,  #d20e68 0%,#ff170a 51%,#ff9400 100%)
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d20e68', endColorstr='#ff9400',GradientType=1 )
 
-#sign-in, #forgot-password
+#sign-in, #forgot-password, #feedback
   margin: 0 auto
   display: block
   background-color: white
@@ -308,6 +311,26 @@
     margin: 17px auto
     width: 77%
     padding: 13px
+    border: 1px solid #c9c9c9
+    +box-shadow("inset 0px 3px 7px rgba(0,0,0,.12)")
+    +round(3px)
+
+    &:focus
+      outline: 0
+
+  p
+    font-size: 18px
+    text-align: center
+
+  textarea
+    height: 250px
+    width: 320px
+    margin: 15px 30px 0px 30px
+    padding: 6px
+    background: #f9f9f9
+    font-size: 18px
+    font-family: 'PT Sans', sans-serif
+    -webkit-font-smoothing: antialiased
     border: 1px solid #c9c9c9
     +box-shadow("inset 0px 3px 7px rgba(0,0,0,.12)")
     +round(3px)
