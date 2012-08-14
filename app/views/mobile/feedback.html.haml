@@ -1,0 +1,14 @@
+#feedback
+  #gradient
+  %h1
+    NetworkMill
+
+  %p
+    We want to hear your feedback to make NetworkMill better.
+
+  = form_for(@feedback, :url => post_mobile_feedback_path, :method => 'post') do |f|
+    .field
+      = f.text_area :message
+
+    .actions
+      = f.submit "send feedback &raquo;".html_safe

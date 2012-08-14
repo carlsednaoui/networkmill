@@ -1,0 +1,12 @@
+%h1
+  Feedback
+
+%p
+  We want to hear your feedback to make NetworkMill better.
+
+= form_for(@feedback, :url => post_feedback_path, :method => 'post') do |f|
+  .field
+    = f.text_area :message, :id => "feedback-box"
+
+  .actions
+    = f.submit "Send", :id => "send-feedback"

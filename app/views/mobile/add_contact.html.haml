@@ -30,7 +30,8 @@
         = @user.name.titleize
       #email
         = @user.email
-      = link_to "account settings &raquo;".html_safe, root_url(:subdomain => false), :id =>"account-settings"
+      = link_to "account settings &raquo;".html_safe, root_url(:subdomain => false), :class =>"account-settings"
+      = link_to "feedback &raquo;".html_safe, mobile_feedback_path, :class => "account-settings", :id => "feedback-tab"
 
     #signature
       = form_tag(update_mobile_user_path, :method => "post") do

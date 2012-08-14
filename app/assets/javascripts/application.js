@@ -9,3 +9,4 @@
 //= require master
 //= require spin.min
 //= require mobile
+//= require mailcheck

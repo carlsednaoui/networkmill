@@ -3,10 +3,11 @@ class User < ActiveRecord::Base
   has_many :contacts
   has_many :emails
   has_many :social_networks
+  has_many :feedback
   accepts_nested_attributes_for :social_networks, :allow_destroy => true
   mount_uploader :avatar, AvatarUploader
   validates :contact_intensity, :numericality => { :only_integer => true, :less_than_or_equal_to => :contact_validation}, :on => :update
-  attr_accessible :name, :email, :unsubscribed, :desktop_client, :network_mode, :contact_intensity, :avatar, :password, :remember_me, :signature, :social_networks_attributes
+  attr_accessible :name, :email, :unsubscribed, :desktop_client, :network_mode, :contact_intensity, :avatar, :password, :remember_me, :signature, :feedback, :social_networks_attributes
     
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

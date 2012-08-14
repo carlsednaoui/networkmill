@@ -273,4 +273,38 @@ $ ->
     $('#user_email').css maxWidth: $('#user_email').textWidth() + 3
     $('#user_email').on 'keyup', ->
       $(this).css maxWidth: $(this).textWidth() + 3
-      $('.contact-card .email').text($(this).val())
+      $('.contact-card .email').text $(this).val()
+
+
+  # ---------------------------------------
+  # Check Email Domain Name Logic (mailcheck.js)
+  # ---------------------------------------
+  
+  $('input[type=email]').on "blur", ->
+    $(@).mailcheck
+      suggested: (el, suggestion) ->
+        $("#hint").show()
+        $('#hint span').text(suggestion['full']).on 'click', ->
+          $(el).val suggestion['full']
+          $('#hint').hide()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+>>>>>>> f95318407a23d62c7bd09e905124bdf2f1d13271

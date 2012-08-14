@@ -17,6 +17,9 @@ Networkmill::Application.routes.draw do
   post "/update-mobile-user" => "mobile#update_mobile_user", :as => 'update_mobile_user'
   get "/forgot-password" => "mobile#forgot_password", :as =>'forgot_password'
 
+  get "/m-feedback" => "mobile#feedback", :as => 'mobile_feedback'
+  post "/m-feedback" => "mobile#post_feedback", :as => 'post_mobile_feedback'
+
 
   #============================
   # Desktop Routes
@@ -39,6 +42,9 @@ Networkmill::Application.routes.draw do
   get "/tos" => "home#tos", :as => 'tos'
   get "/faq" => "home#faq", :as => 'faq'
 
+  get "/feedback" => "home#feedback", :as => 'feedback'
+  post "/feedback" => "home#post_feedback", :as => 'post_feedback'
+
   #============================
   # Devise overrides
   #============================
@@ -46,7 +52,7 @@ Networkmill::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
 
  	# Overriding devise root_url
-	devise_for :users do
+	devise_scope :users do
 	 get 'users', :to => 'home#dashboard', :as => :user_root
   end
 

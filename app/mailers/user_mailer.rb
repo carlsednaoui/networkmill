@@ -75,5 +75,20 @@ class UserMailer < ActionMailer::Base
     mail to: user.email, subject: "NetworkMill - Here is Your Networking Event Summary"
     Email.create(:user_id => user.id, :sent_to => user.email, :title => "networking_contact_summary")
   end
+
+  #=========================================
+  # Send user feedback to hi@networkmill.com
+  #=========================================
+  def send_feedback_to_team(feedback)
+    @message = feedback.message
+
+    if feedback.user.present?
+      @name = feedback.user.name if feedback.user.name.present?
+      @email = feedback.user.email if feedback.user.email.present?
+    end
+
+    mail to: "hi@networkmill.com", subject: "Feedback for NetworkMill"
+    Email.create(:sent_to => "hi@networkmill.com", :title => "send_feedback_to_team")
+  end
   
 end
