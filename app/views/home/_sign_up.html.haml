@@ -5,6 +5,8 @@
   = f.email_field :email, placeholder: 'email', class: 'email-field'
   / Provide a hint for Kicksend email checker
   #hint
+    did you mean
+    %span
   = f.password_field :password, placeholder: 'password', class: 'password-field'\
   %input.pass-visible{ type: 'text', placeholder: 'password' }
   .show-checkbox
