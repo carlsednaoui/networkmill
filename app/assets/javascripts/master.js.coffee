@@ -274,31 +274,3 @@ $ ->
     $('#user_email').on 'keyup', ->
       $(this).css maxWidth: $(this).textWidth() + 3
       $('.contact-card .email').text($(this).val())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-

@@ -63,7 +63,7 @@
     margin: 0 auto
     display: block
     background-color: #e2dddb
-    padding: 15px 75px
+    padding: 15px 15px
     text-align: center
     border: 4px solid rgba(255, 255, 255, .15)
     background-clip: padding-box
@@ -74,6 +74,7 @@
     font-size: 22px
     color: #444
     cursor: pointer
+    width: 80%
 
     &:focus
       outline: 0
@@ -83,7 +84,7 @@
     +transition
     margin: 0 auto
     display: block
-    width: 340px
+    width: 82%
     background-color: rgba(0, 0, 0, .6)
     font-size: 14px
     border: 4px solid rgba(255, 255, 255, .08)
@@ -97,9 +98,9 @@
     overflow: hidden
     margin-top: 30px
 
-    &::-webkit-input-placeholder
-      color: #fff
-      opacity: .3
+    // &::-webkit-input-placeholder
+    //   color: #fff
+    //   opacity: .3
 
     &:focus
       outline: 0
@@ -119,6 +120,7 @@
     margin: 15px auto
     display: block
     +transition
+    width: 85%
 
     &:hover
       background-position: 0 -20px
@@ -166,7 +168,7 @@
   height: 100%
 
   #bio
-    width: 380px
+    width: 94%
     margin: 0 auto
     margin-bottom: 15px
     +group
@@ -200,7 +202,8 @@
     color: #444
     cursor: pointer  
     height: 150px
-    width: 230px 
+    width: 94%
+    +prefix(box-sizing, border-box)
 
   #picture
     width: 100px
@@ -259,8 +262,14 @@
     -webkit-font-smoothing: antialiased
     +box-shadow("inset 0 1px 0 rgba(255, 255, 255, 0.6), 1px 1px 3px rgba(0,0,0,.3)")
     +round(4px)
-    padding: 10px 100px
+    padding: 10px 0
     text-shadow: -1px -1px 1px rgba(#fff,.9)
+    width: 94%
+    +transition(all .2s ease)
+
+    &:active
+      +box-shadow(inset 0 3px 10px rgba(0,0,0,.8))
+      text-shadow: -1px -1px 1px rgba(#fff,.4)
 
 // ================================================================
 // Sign In Page
@@ -281,7 +290,7 @@
   margin: 0 auto
   display: block
   background-color: white
-  width: 400px
+  width: 100%
   height: 100%
 
   #gradient
@@ -311,9 +320,11 @@
     border: 1px solid #c9c9c9
     +box-shadow("inset 0px 3px 7px rgba(0,0,0,.12)")
     +round(3px)
+    +transition
 
     &:focus
       outline: 0
+      +box-shadow("inset 0px 3px 7px rgba(0,0,0,.12), 0 0 8px rgba(246,97,4,.7)")      
 
   input[type=submit]
     display: block
@@ -332,6 +343,12 @@
     border: 1px solid #ed5400
     text-shadow: 1px 1px 1px rgba(#000, .3)
     +box-shadow("inset 0 1px 0 rgba(255, 255, 255, 0.6), 1px 1px 3px rgba(0,0,0,.3)")
+    +transition
+
+    &:active
+      +box-shadow("inset 0 3px 14px #8E3602")
+      text-shadow: -1px -1px 1px rgba(#000, .3)
+      background-position: 0 -10px
 
   #more-actions
     margin-top: 80px
