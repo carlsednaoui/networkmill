@@ -52,7 +52,7 @@ Networkmill::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
 
  	# Overriding devise root_url
-	devise_for :users do
+	devise_scope :users do
 	 get 'users', :to => 'home#dashboard', :as => :user_root
   end
 
