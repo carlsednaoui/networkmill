@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+# we can probably remove ujs here. eventually we will want to convert this to zepto
 
 $ ->
 
