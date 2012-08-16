@@ -23,6 +23,8 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'launchy' #use $save_and_open_page to see where rspec is at
 end
 
 group :production do
