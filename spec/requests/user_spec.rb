@@ -1,44 +1,68 @@
 require 'spec_helper'
 
+# save_and_open_page
+
 describe "Users" do
   describe "GET Homepage" do
     it "goes to homepage" do
-      visit root_url
+      visit root_path
       page.should have_content("networkmill keeps track of your contacts and makes")
     end
   end
 
-  # describe "user registration" do
+  # describe "Register user" do
   #   it "allows new users to register with an email address and password" do
-  #     visit new_user_registration_path
+  #     visit root_path
 
-  #     fill_in "user[email]", :with => "myemail@example.com"
+  #     click_link "sign up"
+  #     fill_in "user_email", :with => "myemail@example.com"
   #     fill_in "user_password", :with => "mypassword"
-  #     click_button "Sign up"
+  #     save_and_open_page
+
+  #     click_button "let's go"
 
   #     page.should have_content("Let's get to know each other, why don't you tell")
   #   end
   # end
 
-  ### NOTE THIS IS DRIVING TO MOBILE PAGE FOR SOME REASON
-  describe "user signin" do
+  describe "Sign in user", :js => true do
     it "should allow a registered user to sign in" do
       user = create(:user, name: "im_a_test_user")
-      # visit new_user_session_path
-      visit('http://localhost:3000/users/sign_in')
+
+      visit root_path
+      page.find('.sign-in').trigger(:mouseover)
       fill_in "user_email", :with => user.email
       fill_in "user_password", :with => user.password
       click_button "hit it"
-      # save_and_open_page
       page.should have_content("Here are the people you want to stay in touch with")
      end
+   end
 
-     it "should not allow an unregistered user to sign in" do
-      visit new_user_session_path
-      fill_in "Email", :with => "notarealuser@example.com"
-      fill_in "Password", :with => "fakepassword"
+  describe "Sign in user - without name", :js => true do
+    it "user without name" do
+      user = create(:user)
+      
+      visit root_path
+      page.find('.sign-in').trigger(:mouseover)
+      fill_in "user_email", :with => user.email
+      fill_in "user_password", :with => user.password
       click_button "hit it"
-      page.should_not have_content("Event Mode")
+      page.should have_content("Here are the people you want to stay in touch with")
+     
+      page.find('.account').trigger(:mouseover)
+      click_link "preferences"
+      page.should have_content("Let's get to know each other, why don't you tell")
      end
    end
+
+  describe "Sign in unregistered user", :js => true do
+    it "non users shouldnt be able to log in" do
+      visit root_path
+      page.find('.sign-in').trigger(:mouseover)
+      fill_in "user_email", :with => "notarealuser@example.com"
+      fill_in "user_password", :with => "fakepassword"
+      click_button "hit it"
+      page.should_not have_content("Here are the people")
+    end
+  end
 end

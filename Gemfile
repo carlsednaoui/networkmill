@@ -23,8 +23,17 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'capybara'
+  gem "capybara-webkit"
   gem 'factory_girl_rails'
   gem 'launchy' #use $save_and_open_page to see where rspec is at
+  gem 'database_cleaner'
+end
+
+group :test do
+  # gem 'capybara'
+  # gem "capybara-webkit"
+  # gem 'factory_girl_rails'
+  # gem 'launchy' #use $save_and_open_page to see where rspec is at
 end
 
 group :production do
