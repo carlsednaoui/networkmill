@@ -3,6 +3,7 @@ layout "mobile"
 before_filter :authenticate_user!, :except => ['index', 'forgot_password']
 
   def index
+    redirect_to add_mobile_contact_path if current_user
   end
 
   def update_mobile_user

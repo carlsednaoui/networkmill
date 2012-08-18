@@ -17,6 +17,7 @@ describe "Mobile Users" do
       click_link "sign up"
 
       # Take user to web app
+      page.should_not have_css("body#mobile")
       page.should have_content("networkmill keeps track of your contacts")
     end
   end
@@ -30,9 +31,8 @@ describe "Mobile Users" do
       fill_in "user_password", :with => user.password
       click_button "sign in"
 
-      # TODO/ NOTE: This test passes even though it should be failing
-      print page.html
       page.should have_css("#write-note")
+      page.should have_css("body#mobile")
     end
   end
 end
