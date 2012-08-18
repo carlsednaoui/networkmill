@@ -4,6 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
+require 'capybara/rails'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -14,7 +15,7 @@ RSpec.configure do |config|
   # Include Factory Girl
   config.include FactoryGirl::Syntax::Methods
 
-  # Use Capybara webkit to enable javascript
+  # Enable and use Capybara webkit to enable javascript
   Capybara.javascript_driver = :webkit
 
   # ## Mock Framework
@@ -44,14 +45,7 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-  # config.before(:suite) do
-  #   DatabaseCleaner.strategy = :truncation
-  # end
-
-  # config.before(:each) do
-  #   DatabaseCleaner.start
-  # end
-
+  # Clean the database after '$rake spec' is run
   config.before :each do
     if Capybara.current_driver == :rack_test
       DatabaseCleaner.strategy = :transaction
