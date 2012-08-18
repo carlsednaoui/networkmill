@@ -1,16 +1,17 @@
 #===============================
-# Useful methods available:
+# Useful commands:
+# $rake spec:requests
 # $save_and_open_page
 # $print page.html
 #===============================
 
 require 'spec_helper'
 
-describe "Users" do
+describe "Web Users" do
   describe "GET Homepage" do
     it "goes to homepage" do
       visit root_path
-      page.should have_content("networkmill keeps track of your contacts and makes")
+      page.should have_content("networkmill keeps track of your contacts")
     end
   end
 
@@ -75,7 +76,6 @@ describe "Users" do
       page.should_not have_content("Here are the people")
       page.should_not have_content("Let's get to know each other")
       page.find('.sign-in').trigger(:mouseover)
-      print page.html
       page.should have_css("#sign-in-error")
     end
   end

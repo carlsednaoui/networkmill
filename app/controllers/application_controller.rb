@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   # Devise: Redirect users once they have logged in
   def after_sign_in_path_for(resource)
     if request.subdomain.present?
+      puts "********************"
+      puts "********************"
+      puts "********************"
+      puts request.subdomain.inspect
+      puts resource.inspect
       add_mobile_contact_path
     else
     	dashboard_path
@@ -14,7 +19,8 @@ class ApplicationController < ActionController::Base
   # == Commented this out to make rspec tests work
   # ===============================================
   # Override Devise create session controller
-  # Devise::SessionsController.class_eval do
+  # NOTE: This is what allows mobile user to be redirected to /networking after logging in
+ #   Devise::SessionsController.class_eval do
 	# 	def create
 	# 	 resource = warden.authenticate!(auth_options)
 	#     set_flash_message(:notice, :signed_in) if is_navigational_format?
