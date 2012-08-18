@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   # ===============================================
   # == Commented this out to make rspec tests work
+  # == NOTE: Dont think we need this anymore, found a work around
   # ===============================================
   # Override Devise create session controller
   # NOTE: This is what allows mobile user to be redirected to /networking after logging in
