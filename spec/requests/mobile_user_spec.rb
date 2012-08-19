@@ -22,8 +22,8 @@ describe "Mobile Users" do
     end
   end
 
-  describe "Sign in user" do
-    it "should allow a registered user to sign in" do
+  describe "Signin user" do
+    it "allows a registered user to signin" do
       user = create(:user, name: "im_a_test_user")
 
       visit("http://m.lvh.me:3000/")
@@ -40,8 +40,8 @@ describe "Mobile Users" do
     end
   end
 
-  describe "Sign in user - without name" do
-    it "user without name" do
+  describe "Signin user - without name" do
+    it "allows a registered user without name to signin" do
       user = create(:user)
 
       visit("http://m.lvh.me:3000/")
@@ -59,8 +59,8 @@ describe "Mobile Users" do
   end
 
 
-  describe "Sign in unregistered user", :js => true do
-    it "non users should not be able to sign in" do
+  describe "Signin unregistered user", :js => true do
+    it "should not allow non registered users to signin" do
       visit("http://m.lvh.me:3000/")
       fill_in "user_email", :with => "notarealuser@example.com"
       fill_in "user_password", :with => "fakepassword"
@@ -68,6 +68,7 @@ describe "Mobile Users" do
 
       page.should_not have_css("#write-note")
       page.should have_css("body#mobile")
+      # TODO Page should have sign-in-error validation
     end
   end
 end

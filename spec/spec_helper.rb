@@ -46,12 +46,25 @@ RSpec.configure do |config|
   config.order = "random"
 
   # Clean the database after '$rake spec' is run
-  config.before :each do
-    if Capybara.current_driver == :rack_test
-      DatabaseCleaner.strategy = :transaction
-    else
-      DatabaseCleaner.strategy = :truncation
-    end
+  # config.before :each do
+  #   if Capybara.current_driver == :rack_test
+  #     DatabaseCleaner.strategy = :transaction
+  #   else
+  #     DatabaseCleaner.strategy = :truncation
+  #   end
+  #   DatabaseCleaner.start
+  # end
+
+  # config.after(:each) do
+  #   DatabaseCleaner.clean
+  # end
+
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
     DatabaseCleaner.start
   end
 
@@ -59,3 +72,13 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
+
+class ActiveRecord::Base
+  mattr_accessor :shared_connection
+  @@shared_connection = nil
+
+  def self.connection
+    @@shared_connection || retrieve_connection
+  end
+end
+ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection

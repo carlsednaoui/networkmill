@@ -1,5 +1,6 @@
 #===============================
 # Useful commands:
+# $rails g integration_test foobar
 # $rake spec:requests
 # $save_and_open_page
 # $print page.html
@@ -20,7 +21,7 @@ describe "Web Users" do
       visit root_path
 
       within("#sign-up") do
-        fill_in 'user_email', :with => 'myemail@example.com'
+        fill_in "user_email", :with => "myemail@example.com"
         fill_in "user_password", :with => "mypassword"
       end
       click_button "let's go"
@@ -29,8 +30,8 @@ describe "Web Users" do
     end
   end
 
-  describe "Sign in user", :js => true do
-    it "should allow a registered user to sign in" do
+  describe "Signin user", :js => true do
+    it "allows a registered user to signin" do
       user = create(:user, name: "im_a_test_user")
 
       visit root_path
@@ -47,8 +48,8 @@ describe "Web Users" do
      end
    end
 
-  describe "Sign in user - without name", :js => true do
-    it "user without name" do
+  describe "Signin user - without name", :js => true do
+    it "allows a registered user without name to signin" do
       user = create(:user)
       
       visit root_path
@@ -65,8 +66,8 @@ describe "Web Users" do
      end
    end
 
-  describe "Sign in unregistered user", :js => true do
-    it "non users should not be able to sign in" do
+  describe "Signin unregistered user", :js => true do
+    it "should not allow non registered users to signin" do
       visit root_path
       page.find('.sign-in').trigger(:mouseover)
       fill_in "user_email", :with => "notarealuser@example.com"
