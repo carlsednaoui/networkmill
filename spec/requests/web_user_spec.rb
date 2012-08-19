@@ -1,5 +1,6 @@
 #===============================
 # Useful commands:
+# $rake db:test:prepare
 # $rails g integration_test foobar
 # $rake spec:requests
 # $save_and_open_page

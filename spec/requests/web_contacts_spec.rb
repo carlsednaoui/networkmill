@@ -62,7 +62,7 @@ describe "WebUsers" do
   describe "Edit contact", :js => true do
     it "allows user to edit contact" do
       create_test_contact
-
+      
       # Edit contact
       within(".contacts") do
         find("li").find(".edit-contact").click
@@ -72,9 +72,12 @@ describe "WebUsers" do
         # Edit notes
         find("#edit_contact_1").find(".add-notes").click
         fill_in "contact_note", :with => "modified contact note"
+        # print page.html
+        # Test FAILS HERE
         # click_button("edit contact")
       end
-        # find(".add-notes").find("#contact_note").should have_content("this is a contact note")
+      
+      # find(".add-notes").find("#contact_note").should have_content("this is a contact note")
 
     end
   end
