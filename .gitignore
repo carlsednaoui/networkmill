@@ -16,3 +16,4 @@
 .powder
 .DS_Store
 public/uploads
+.rspec

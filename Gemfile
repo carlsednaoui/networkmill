@@ -30,6 +30,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'launchy' #used to run $save_and_open_page with capybara
   gem 'database_cleaner'
+  gem 'nyan-cat-formatter' # In $.rspec add "$--format NyanCatFormatter"
 end
 
 group :production do
