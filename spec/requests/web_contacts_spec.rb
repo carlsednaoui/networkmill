@@ -41,8 +41,8 @@ describe "WebUsers" do
     end
   end
 
-  describe "Add contact", :js => true do
-    it "allows user to add a contact" do
+  describe "Add and edit contact", :js => true do
+    it "allows user to add and edit a contact" do
       create_test_contact
 
       # Ensure that contact was created
@@ -56,13 +56,7 @@ describe "WebUsers" do
         find("#edit_contact_1").find(".add-notes").click
         find(".add-notes").find("#contact_note").should have_content("this is a contact note")
       end
-    end
-  end
 
-  describe "Edit contact", :js => true do
-    it "allows user to edit contact" do
-      create_test_contact
-      
       # Edit contact
       within(".contacts") do
         find("li").find(".edit-contact").click
@@ -72,13 +66,22 @@ describe "WebUsers" do
         # Edit notes
         find("#edit_contact_1").find(".add-notes").click
         fill_in "contact_note", :with => "modified contact note"
-        # print page.html
-        # Test FAILS HERE
-        # click_button("edit contact")
+        click_button("edit contact")
       end
-      
-      # find(".add-notes").find("#contact_note").should have_content("this is a contact note")
 
+      page.should have_content("Contact was successfully updated")
+      page.should_not have_content("mycontact@example.com")
+      page.should_not have_content("my contact name")
+      page.should have_content("modifiedcontact@example.com")
+      page.should have_content("modified contact name")
+
+      # Click on edit_contact, click on notes, find the edited contact notes
+      within(".contacts") do
+        find("li").find(".edit-contact").click
+        find("#edit_contact_1").find(".add-notes").click
+        find(".add-notes").find("#contact_note").should_not have_content("this is a contact note")
+        find(".add-notes").find("#contact_note").should have_content("modified contact note")
+      end
     end
   end
 

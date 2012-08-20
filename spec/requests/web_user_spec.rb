@@ -5,6 +5,7 @@
 # $rake spec:requests
 # $save_and_open_page
 # $print page.html
+# $tail -f log/test.log
 #===============================
 
 require 'spec_helper'
