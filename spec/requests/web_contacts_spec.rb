@@ -1,40 +1,11 @@
 require 'spec_helper'
 
 describe "WebUsers" do
-  # Create and login a user
-  # Remeber to set :js => true
-  def log_user_in
-    user = create(:user, name: "im_a_test_user")
-
-    visit root_path
-    page.find('.sign-in').trigger(:mouseover)
-    fill_in "user_email", :with => user.email
-    fill_in "user_password", :with => user.password
-    click_button "hit it"
-  end
-
-  # Create a contact
-  def create_test_contact
-    log_user_in
-    click_link("add new contact")
-
-    within(".new_contact") do
-      fill_in "contact_email", :with => "mycontact@example.com"
-      fill_in "contact_name", :with => "my contact name"
-    end
-
-    # Add notes to a contact
-    find(".add-notes").click
-    within(".new_contact") do
-      fill_in "contact_note", :with => "this is a contact note"
-    end
-
-    click_button("add contact")
-  end
+  include Helpers
 
   describe "Test log_user_in", :js => true do
     it "works. Now it's time to write some real shiats" do
-      log_user_in
+      log_web_user_in
 
       page.should have_content("Here are the people")
       page.should have_content("add new contact")
