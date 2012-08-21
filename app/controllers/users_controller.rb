@@ -50,7 +50,7 @@ class UsersController < ApplicationController
       else
         @user.update_with_password(params[:user])
       end
-      render 'edit'
+      redirect_to dashboard_path, :notice => "sweet, your preferences have been updated!"
     end
 
   end

@@ -1,5 +1,4 @@
 module Helpers
-  include FactoryGirl::Syntax::Methods
 
   # Create and login a user
   def log_web_user_in
@@ -14,7 +13,7 @@ module Helpers
   end
 
   # Create a contact
-  def create_test_contact
+  def create_web_test_contact
     log_web_user_in
     click_link("add new contact")
 

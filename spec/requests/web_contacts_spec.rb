@@ -14,7 +14,7 @@ describe "WebUsers" do
 
   describe "Add and edit contact", :js => true do
     it "allows user to add and edit a contact" do
-      create_test_contact
+      create_web_test_contact
 
       # Ensure that contact was created
       page.should have_content("contact saved")
