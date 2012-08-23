@@ -2,7 +2,7 @@ $('.error').remove()
 
 if ("<%= @success %>" == "true") {
 
-  $('header').after("<div class='flash success'>Contact saved!</div>");
+  $('#errors').after("<div class='flash success'>Contact saved!</div>");
   setTimeout(function(){ window.location.reload() }, 500);
 
 } else {
@@ -11,7 +11,7 @@ if ("<%= @success %>" == "true") {
   <% @contact.errors.full_messages.each do |err| %>
     errors.push("<%= err %>")
   <% end %>
-  $('header').after("<div class='flash error'></div>");
+  $('#errors').after("<div class='flash error'></div>");
   for (var i = 0; i < errors.length; i++) {
     $('.error').append("<div>" + errors[i] + "</div>");
   }
