@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 describe "Mobile Users" do
   describe "GET Homepage" do
     it "goes to homepage" do
@@ -10,6 +9,7 @@ describe "Mobile Users" do
       page.should have_css("#sign-in")
     end
   end
+
 
   describe "Register user" do
     it "allows new users to register with an email address and password" do
@@ -21,6 +21,7 @@ describe "Mobile Users" do
       page.should have_content("networkmill keeps track of your contacts")
     end
   end
+
 
   describe "Signin user" do
     it "allows a registered user to signin" do
@@ -40,6 +41,7 @@ describe "Mobile Users" do
     end
   end
 
+
   describe "Signin user - without name" do
     it "allows a registered user without name to signin" do
       user = create(:user)
@@ -58,7 +60,7 @@ describe "Mobile Users" do
     end
   end
 
-
+  
   describe "Signin unregistered user", :js => true do
     it "should not allow non registered users to signin" do
       visit("http://m.networkmill.dev")

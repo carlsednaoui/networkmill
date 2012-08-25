@@ -18,6 +18,7 @@ describe "Web Users" do
     end
   end
 
+
   describe "Register user", :js => true do
     it "allows new users to register with an email address and password" do
       visit root_path
@@ -31,6 +32,7 @@ describe "Web Users" do
       page.should have_content("Let's get to know each other, why don't you tell")
     end
   end
+
 
   describe "Signin user", :js => true do
     it "allows a registered user to signin" do
@@ -50,6 +52,7 @@ describe "Web Users" do
      end
    end
 
+
   describe "Signin user - without name", :js => true do
     it "allows a registered user without name to signin" do
       user = create(:user)
@@ -67,6 +70,7 @@ describe "Web Users" do
       page.should have_content("Let's get to know each other")
      end
    end
+
 
   describe "Signin unregistered user", :js => true do
     it "should not allow non registered users to signin" do

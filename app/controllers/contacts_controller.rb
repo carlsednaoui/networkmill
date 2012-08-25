@@ -43,7 +43,7 @@ class ContactsController < ApplicationController
   def destroy
     @contact = Contact.find(params[:id])
     @contact.destroy
-    redirect_to dashboard_path
+    redirect_to dashboard_path, :notice => "contact deleted"
   end
 
 end
