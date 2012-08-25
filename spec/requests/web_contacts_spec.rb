@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "WebUsers" do
+describe "Web Users" do
   include Helpers
 
   describe "Test log_user_in", :js => true do
