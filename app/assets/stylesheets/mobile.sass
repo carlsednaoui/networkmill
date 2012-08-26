@@ -57,7 +57,7 @@
     background: image-url('logo-mobile.png') no-repeat
     width: 172px
     height: 28px
-    margin: 45px auto
+    margin: 25px auto
 
   input[type=text], input[type=email]
     margin: 0 auto
@@ -75,6 +75,7 @@
     color: #444
     cursor: pointer
     width: 80%
+    font-family: 'PT Sans', sans-serif
 
     &:focus
       outline: 0
@@ -97,6 +98,7 @@
     color: #fff
     overflow: hidden
     margin-top: 30px
+    font-family: 'PT Sans', sans-serif
 
     // &::-webkit-input-placeholder
     //   color: #fff
@@ -111,16 +113,17 @@
     +bold
     padding: 10px 94px
     border: 1px solid #00AAD1
-    +round(4px)
+    border-radius: 4px
     text-shadow: 1px 1px 1px rgba(#000, .3)
     font-family: 'PT Sans', sans-serif
     font-size: 22px
     -webkit-font-smoothing: antialiased
-    +box-shadow("inset 0 1px 0 rgba(255, 255, 255, 0.6), 1px 1px 3px rgba(0,0,0,.3)")
+    // +box-shadow("inset 0 1px 0 rgba(255, 255, 255, 0.6), 1px 1px 3px rgba(0,0,0,.3)")
     margin: 15px auto
     display: block
     +transition
     width: 85%
+    font-family: 'PT Sans', sans-serif
 
     &:hover
       background-position: 0 -20px
@@ -188,11 +191,10 @@
     margin: 0 auto
     background-color: #b9baba
     padding: 15px 75px
-    text-align: center
     border: 3px solid rgba(0, 0, 0, .2) 
     background-clip: padding-box
     +box-shadow("inset 0px 1px 3px rgba(0,0,0,.8)")
-    +round(4px)
+    border-radius: 4px
     font-family: "PT Sans"
     display: block
     margin-bottom: 15px
@@ -204,6 +206,7 @@
     height: 150px
     width: 94%
     +prefix(box-sizing, border-box)
+    font-family: 'PT Sans', sans-serif
 
   #picture
     width: 100px
@@ -228,10 +231,9 @@
   .account-settings
     background-color: #1f1f20
     font-size: 10px
-    padding: 3px 5px
-    +round(4px)
+    padding: 3px 7px
+    border-radius: 4px
     +group
-    width: 78px
     text-align: center
     margin-top: 10px
     float: left
@@ -239,7 +241,7 @@
     text-decoration: none
     display: block
   #feedback-tab
-    margin-left: 20px
+    margin-left: 10px
 
   #network-mode
     +bold
