@@ -4,7 +4,10 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
 require 'capybara/rails'
-require 'helpers.rb' # Say no to bloated tests, include test helpers
+require 'helpers.rb' # Include test helpers
+
+#================ To delete, maybe ====================
+# Delayed::Worker.delay_jobs = false
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
