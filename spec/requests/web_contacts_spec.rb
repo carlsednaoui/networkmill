@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "WebUsers" do
+describe "Web Users" do
   include Helpers
 
   describe "Test log_user_in", :js => true do
@@ -11,6 +11,7 @@ describe "WebUsers" do
       page.should have_content("add new contact")
     end
   end
+
 
   describe "Add and edit contact", :js => true do
     it "allows user to add and edit a contact" do
@@ -56,4 +57,23 @@ describe "WebUsers" do
     end
   end
 
+
+  describe "Delete contact", :js => true do
+    it "allows a user to delete contacts" do
+      create_web_test_contact
+
+      # Ensure that contact was created
+      page.should have_content("contact saved")
+      page.should have_content("mycontact@example.com")
+      page.should have_content("my contact name")
+
+      # Click on delete_contact
+      find(".contacts").find("li").find(".delete-contact").click
+
+      # Ensure that contact was created
+      page.should have_content("contact deleted")
+      page.should_not have_content("mycontact@example.com")
+      page.should_not have_content("my contact name")
+    end
+  end
 end

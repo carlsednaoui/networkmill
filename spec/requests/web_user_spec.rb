@@ -18,6 +18,7 @@ describe "Web Users" do
     end
   end
 
+
   describe "Register user", :js => true do
     it "allows new users to register with an email address and password" do
       visit root_path
@@ -31,6 +32,7 @@ describe "Web Users" do
       page.should have_content("Let's get to know each other, why don't you tell")
     end
   end
+
 
   describe "Signin user", :js => true do
     it "allows a registered user to signin" do
@@ -50,6 +52,7 @@ describe "Web Users" do
      end
    end
 
+
   describe "Signin user - without name", :js => true do
     it "allows a registered user without name to signin" do
       user = create(:user)
@@ -65,8 +68,9 @@ describe "Web Users" do
       page.find('.account').trigger(:mouseover)
       click_link "preferences"
       page.should have_content("Let's get to know each other")
-     end
-   end
+    end
+  end
+
 
   describe "Signin unregistered user", :js => true do
     it "should not allow non registered users to signin" do
@@ -82,4 +86,33 @@ describe "Web Users" do
       page.should have_css("#sign-in-error")
     end
   end
+
+
+  describe "Edit user profile", :js => true do
+    include Helpers
+    it "should allow user to change name" do
+      log_web_user_in
+      page.should have_content("Here are the people")
+      page.should have_content("add new contact")
+
+      page.find('.account').trigger(:mouseover)
+      click_link "preferences"
+      page.should have_content("Edit Introductory Email")
+
+      # Change user name and email
+      within(".address-fields") do
+        fill_in "user_name", :with => "new funky name"
+        fill_in "user_email", :with => "newemail@tits.com"
+      end
+      click_button "update"
+      page.should have_content("preferences have been updated")
+
+      page.find('.account').trigger(:mouseover)
+      click_link "preferences"
+
+      find_field('user_name').value.should have_content("new funky name")
+      find_field('user_email').value.should have_content("newemail@tits.com")
+    end
+  end
+
 end
