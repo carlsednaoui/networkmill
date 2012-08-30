@@ -19,3 +19,11 @@ $ ->
     $(@).css height: 100
   .on 'keydown', ->
     $(@).css textAlign: 'left'
+
+  # Login Validation
+
+  $('#new_user').bind "ajax:error", (e, data, status, xhr) ->
+    $('#user_email').before("<div id='sign-in-error'>#{data.responseText}</div>")
+  
+  $('#new_user .form-submit').click ->
+    $('#sign-in-error').remove()

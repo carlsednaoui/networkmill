@@ -6,7 +6,7 @@ Networkmill::Application.routes.draw do
  
   # Enable mobile subdomain
   # To access it use http://m.lvh.me:3000 or http://m.networkmill.dev
-  match '', :to => 'mobile#index', :constraints => lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  match '', :to => 'mobile#index', :constraints => lambda { |r| r.subdomain == "m" && r.subdomain != 'www' }
   
   get "/networking" => "mobile#add_contact", :as => 'add_mobile_contact'
   post "/mobile-create-contact" => "mobile#create_contact", :as => 'mobile_create_contact'
@@ -22,7 +22,7 @@ Networkmill::Application.routes.draw do
   #============================
 
   root :to => "home#index"
-  
+
   resources :contacts
   resources :users, :only => [:new, :update]
 
@@ -47,9 +47,9 @@ Networkmill::Application.routes.draw do
   # Overriding devise after_sign_up_path to take you to the registration controller
   devise_for :users, :controllers => { :registrations => "registrations" }
 
- 	# Overriding devise root_url
-	devise_scope :users do
-	 get 'users', :to => 'home#dashboard', :as => :user_root
+  # Overriding devise root_url
+  devise_scope :users do
+    get 'users', :to => 'home#dashboard', :as => :user_root
   end
 
 end
