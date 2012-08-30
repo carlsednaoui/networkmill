@@ -6,9 +6,6 @@ require 'capybara/rspec'
 require 'capybara/rails'
 require 'helpers.rb' # Include test helpers
 
-#================ To delete, maybe ====================
-# Delayed::Worker.delay_jobs = false
-
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
