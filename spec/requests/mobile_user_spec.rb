@@ -70,7 +70,8 @@ describe "Mobile Users" do
 
       page.should_not have_css("#write-note")
       page.should have_css("body#mobile")
-      # TODO Page should have sign-in-error validation
+      page.should have_css("#sign-in-error")
+      page.should have_content("Invalid email or password.")
     end
   end
 end
