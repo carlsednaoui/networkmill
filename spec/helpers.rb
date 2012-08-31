@@ -30,4 +30,5 @@ module Helpers
 
     click_button("add contact")
   end
+  
 end
