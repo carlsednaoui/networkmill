@@ -41,6 +41,9 @@ Networkmill::Application.routes.draw do
   get "/feedback" => "home#feedback", :as => 'feedback'
   post "/feedback" => "home#post_feedback", :as => 'post_feedback'
 
+  # Allow user to text himself the app url
+  post "/send-text" => "home#send_text", :as => 'send_text'
+
   #============================
   # Devise overrides
   #============================

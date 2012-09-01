@@ -5,6 +5,17 @@ class HomeController < ApplicationController
     redirect_to dashboard_path if current_user
   end
 
+  # Use Twilio to send user the app URL
+  def send_text
+    @client = Twilio::REST::Client.new TWILIO_SID, TWILIO_AUTH
+    @client.account.sms.messages.create(
+      :from => '+14155992671',
+      :to => "+#{number}",
+      :body => "Woo, it works! Go to www.awesome.com"
+    )
+    redirect_to root_url
+  end
+
   def dashboard
     @user = current_user
     @contacts = Contact.find_all_by_user_id(current_user.id).reverse

@@ -8,6 +8,7 @@ gem 'haml'
 gem 'rmagick'
 gem 'carrierwave'
 gem 'delayed_job_active_record'
+gem 'twilio-ruby'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
