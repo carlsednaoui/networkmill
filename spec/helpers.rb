@@ -30,5 +30,23 @@ module Helpers
 
     click_button("add contact")
   end
+
+  def log_mobile_user_in
+    # Remember to run $ rails s -e test
+    
+    user = create(:user, name: "im_a_test_user")
+
+    visit("http://m.lvh.me:3000")
+    fill_in "user_email", :with => user.email
+    fill_in "user_password", :with => user.password
+    click_button "sign in"
+
+    page.should have_css("#write-note")
+    page.should have_css("body#mobile")
+
+    find(".cog").click
+    page.should have_content("#{user.email}")
+    page.should have_content("Im A Test User")
+  end
   
 end

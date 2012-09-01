@@ -37,7 +37,7 @@
       = form_tag(update_mobile_user_path, :method => "post") do
         = text_area_tag :signature, @user.signature
         
-        #network-mode
+        #networking-mode
           %p
             Event Mode
             = select_tag :network_mode, options_for_select([["On", true], ["Off", false]], @user.network_mode)

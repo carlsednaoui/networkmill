@@ -1,4 +1,5 @@
 require 'spec_helper'
+include Helpers
 
 describe "Mobile Users" do
   describe "GET Homepage" do
@@ -23,21 +24,9 @@ describe "Mobile Users" do
   end
 
 
-  describe "Signin user" do
+  describe "Signin user", :js => true do
     it "allows a registered user to signin" do
-      user = create(:user, name: "im_a_test_user")
-
-      visit("http://m.networkmill.dev")
-      fill_in "user_email", :with => user.email
-      fill_in "user_password", :with => user.password
-      click_button "sign in"
-
-      page.should have_css("#write-note")
-      page.should have_css("body#mobile")
-
-      find(".cog").click
-      page.should have_content("#{user.email}")
-      page.should have_content("Im A Test User")
+      log_mobile_user_in
     end
   end
 
@@ -72,6 +61,21 @@ describe "Mobile Users" do
       page.should have_css("body#mobile")
       page.should have_css("#sign-in-error")
       page.should have_content("Invalid email or password.")
+    end
+  end
+
+  describe "Change mobile preferences" do
+    it "makes sure mobile preferences work" do
+      log_mobile_user_in
+
+      page.should have_select('network_mode', :selected => 'Off')
+      # Update mobile preferences
+      find(".cog").click
+      select("On", :from => "network_mode")
+      click_button "start networking"
+
+      find(".cog").click
+      page.should have_select('network_mode', :selected => 'On')
     end
   end
 end
