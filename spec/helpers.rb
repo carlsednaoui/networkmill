@@ -6,6 +6,7 @@
 # $save_and_open_page
 # $print page.html
 # $tail -f log/test.log
+# Remember to run $ rails s -e test
 #===============================
 
 # Allow user to upload profile picture
