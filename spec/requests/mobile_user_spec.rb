@@ -2,9 +2,10 @@ require 'spec_helper'
 include Helpers
 
 describe "Mobile Users" do
+
   describe "GET Homepage" do
     it "goes to homepage" do
-      visit("http://m.networkmill.dev")
+      visit("http://m.lvh.me:3000")
 
       page.should have_css("body#mobile")
       page.should have_css("#sign-in")
@@ -14,7 +15,7 @@ describe "Mobile Users" do
 
   describe "Register user" do
     it "allows new users to register with an email address and password" do
-      visit("http://m.networkmill.dev")
+      visit("http://m.lvh.me:3000")
       click_link "sign up"
 
       # Take user to web app
@@ -35,7 +36,7 @@ describe "Mobile Users" do
     it "allows a registered user without name to signin" do
       user = create(:user)
 
-      visit("http://m.networkmill.dev")
+      visit("http://m.lvh.me:3000")
       fill_in "user_email", :with => user.email
       fill_in "user_password", :with => user.password
       click_button "sign in"
@@ -52,7 +53,7 @@ describe "Mobile Users" do
   
   describe "Signin unregistered user", :js => true do
     it "should not allow non registered users to signin" do
-      visit("http://m.networkmill.dev")
+      visit("http://m.lvh.me:3000")
       fill_in "user_email", :with => "notarealuser@example.com"
       fill_in "user_password", :with => "fakepassword"
       click_button "sign in"
@@ -64,18 +65,11 @@ describe "Mobile Users" do
     end
   end
 
-  describe "Change mobile preferences" do
-    it "makes sure mobile preferences work" do
-      log_mobile_user_in
 
-      page.should have_select('network_mode', :selected => 'Off')
-      # Update mobile preferences
-      find(".cog").click
-      select("On", :from => "network_mode")
-      click_button "start networking"
-
-      find(".cog").click
-      page.should have_select('network_mode', :selected => 'On')
+  describe "Turn networkmode on" do
+    it "makes sure mobile preferences work" do      
+      turn_networkmode_on
     end
   end
+
 end

@@ -1,16 +1,8 @@
-#===============================
-# Useful commands:
-# $rake db:test:prepare
-# $rails g integration_test foobar
-# $rake spec:requests
-# $save_and_open_page
-# $print page.html
-# $tail -f log/test.log
-#===============================
-
 require 'spec_helper'
+include Helpers
 
 describe "Web Users" do
+
   describe "GET Homepage" do
     it "goes to homepage" do
       visit root_path
@@ -89,7 +81,6 @@ describe "Web Users" do
 
 
   describe "Edit user profile", :js => true do
-    include Helpers
     it "should allow user to change name, email, contact_intensity" do
       log_web_user_in
       page.should have_content("Here are the people")
@@ -125,8 +116,3 @@ describe "Web Users" do
   end
 
 end
-
-# Allow user to upload profile picture
-# Allow user to change password
-# Allow user to send himself test email
-# Allow user to unsubsribe (try sending him an email)
