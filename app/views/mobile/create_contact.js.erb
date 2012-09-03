@@ -1,8 +1,9 @@
-$('.error').remove()
+$('.mobile-flash > *').remove()
 
 if ("<%= @success %>" == "true") {
 
-  $('#errors').after("<div class='flash success'>Contact saved!</div>");
+  $('.mobile-flash').append("<div class='flash success'>Contact saved!</div>");
+  $('.mobile-flash > *').delay(2000).fadeOut();
   setTimeout(function(){ window.location.reload() }, 500);
 
 } else {
@@ -11,7 +12,8 @@ if ("<%= @success %>" == "true") {
   <% @contact.errors.full_messages.each do |err| %>
     errors.push("<%= err %>")
   <% end %>
-  $('#errors').after("<div class='flash error'></div>");
+  $('.mobile-flash').append("<div class='flash error'></div>")
+  $('.mobile-flash > *').delay(2000).fadeOut();
   for (var i = 0; i < errors.length; i++) {
     $('.error').append("<div>" + errors[i] + "</div>");
   }
