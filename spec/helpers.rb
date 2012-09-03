@@ -10,7 +10,6 @@
 #===============================
 
 # Allow user to upload profile picture
-# Allow user to change password
 # Allow user to send himself test email
 # Allow user to unsubsribe (try sending him an email)
 
@@ -39,6 +38,15 @@ module Helpers
     page.should have_content("add new contact")
 
     return user
+  end
+
+  # ===============================
+  # Take user to preferences page
+  # ===============================
+  def go_to_preferences
+    page.find('.account').trigger(:mouseover)
+    click_link "preferences"
+    page.should have_content("Edit Introductory Email")
   end
 
   # ===============================
