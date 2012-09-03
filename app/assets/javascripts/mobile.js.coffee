@@ -1,6 +1,9 @@
 //= require jquery
 //= require jquery_ujs
+
+# notes:
 # we can probably remove ujs here. eventually we will want to convert this to zepto
+# any on click needs to be converted to a touch event for speed (saves about 1ms)
 
 $ ->
 
@@ -27,3 +30,17 @@ $ ->
   
   $('#new_user .sign-in-submit').click ->
     $('#sign-in-error').remove()
+
+  # Get all information about the device's state
+
+  if window.navigator.standalone
+    console.log 'user is running it as a mobile web app'
+    if window.navigator.onLine
+      console.log 'we have an interner connection'
+    else
+      console.log 'no internet, its going to be tough to send emails'
+  else
+    if navigator.userAgent.match /like Mac OS X/i
+      console.log 'user is visiting from mobile safari'
+    else
+      console.log 'user is visiting from android or other mobile OS'

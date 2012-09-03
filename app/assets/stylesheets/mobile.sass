@@ -12,7 +12,8 @@
 #card
   width: 100%
   height: 100%
-  position: absolute
+  position: fixed
+  overflow: auto
   -webkit-transform-style: preserve-3d
   -webkit-transition: -webkit-transform 1.3s ease
 
@@ -308,6 +309,8 @@
   background-color: white
   width: 100%
   height: 100%
+  position: fixed
+  overflow: auto
 
   #gradient
     +mobile-homepage-gradient
@@ -388,6 +391,7 @@
 
   #more-actions
     margin-top: 80px
+    margin-bottom: 30px
     a
       display: block
       text-align: center
