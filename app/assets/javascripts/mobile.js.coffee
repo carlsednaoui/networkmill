@@ -31,6 +31,9 @@ $ ->
   $('#new_user .sign-in-submit').click ->
     $('#sign-in-error').remove()
 
+  # fade out flash messages
+  $('.flash').delay(1500).fadeOut 500
+
   # Get all information about the device's state
 
   if window.navigator.standalone

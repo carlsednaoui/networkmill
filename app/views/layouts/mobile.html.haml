@@ -10,9 +10,10 @@
 -# ------------------------------------------------------------------------------------------
 
 %body#mobile
-
-  - flash.each do |k,v|
-    .flash{ :class => "#{k}"}= v
+  
+  .mobile-flash
+    - flash.each do |k,v|
+      .flash{ :class => "#{k}"}= v
 
   = yield
 

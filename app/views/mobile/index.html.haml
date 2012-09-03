@@ -5,7 +5,7 @@
 
   = form_for(resource, :as => resource_name, :url => session_path(resource_name), :remote => true) do |f|
     = f.email_field :email, placeholder: 'your@email.com', class: 'email'
-    = f.password_field :password, placeholder: 'secret password', class: 'password'
+    = f.password_field :password, placeholder: 'password', class: 'password'
 
     / - if devise_mapping.rememberable?
     /   = f.check_box :remember_me
