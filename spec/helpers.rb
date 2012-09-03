@@ -37,6 +37,8 @@ module Helpers
     # Make sure you're logged in
     page.should have_content("Here are the people")
     page.should have_content("add new contact")
+
+    return user
   end
 
   # ===============================
