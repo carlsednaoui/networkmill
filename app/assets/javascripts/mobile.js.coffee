@@ -14,7 +14,10 @@ $ ->
 
   $('#start-networking').on 'click', ->
     $('#card').removeClass 'flipped'
-    setTimeout (-> $('#preference form').submit()), 1300
+    setTimeout ->
+      $('#preference form').submit()
+      $('.loading').show()
+    , 1300
     false
 
   # slide down the note section
