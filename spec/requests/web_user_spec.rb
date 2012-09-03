@@ -38,8 +38,8 @@ describe "Web Users" do
 
       page.should have_content("Here are the people")
 
-      page.find('.account').trigger(:mouseover)
-      click_link "preferences"
+      go_to_preferences
+      # Users with name should not see welcome message
       page.should_not have_content("Let's get to know each other")
      end
    end
@@ -57,8 +57,8 @@ describe "Web Users" do
       
       page.should have_content("Here are the people")
      
-      page.find('.account').trigger(:mouseover)
-      click_link "preferences"
+      go_to_preferences
+      # Users without name should see welcome message
       page.should have_content("Let's get to know each other")
     end
   end
@@ -84,9 +84,7 @@ describe "Web Users" do
     it "should allow user to change name, email, contact_intensity" do
       log_web_user_in
 
-      page.find('.account').trigger(:mouseover)
-      click_link "preferences"
-      page.should have_content("Edit Introductory Email")
+      go_to_preferences
       find_field('user_contact_intensity').value.should have_content("3")
 
       # Change user name and email
@@ -101,27 +99,21 @@ describe "Web Users" do
       click_button "update"
       page.should have_content("preferences have been updated")
 
-      page.find('.account').trigger(:mouseover)
-      click_link "preferences"
+      go_to_preferences
 
       find_field('user_name').value.should have_content("new funky name")
       find_field('user_email').value.should have_content("newemail@tits.com")
       find_field('user_contact_intensity').value.should have_content("2")
-
-      # Send test email to networkmill@gmail.com
-      # click_link "send me a test copy"
     end
   end
 
   describe "Change user password", :js => true do
     it "should allow a user to change password" do
+      # Create a login user
       user = log_web_user_in
 
       # Go to preferences
-      page.find('.account').trigger(:mouseover)
-      click_link "preferences"
-      page.should have_content("Edit Introductory Email")
-      find_field('user_contact_intensity').value.should have_content("3")
+      go_to_preferences
 
       within("#other-prefs") do
         fill_in "user_current_password", :with => user.password
@@ -140,7 +132,7 @@ describe "Web Users" do
 
       page.should have_content("Invalid email or password.")
 
-      # Login with new password
+      # Login with new password, this should work
       page.find('.sign-in').trigger(:mouseover)
       fill_in "user_email", :with => user.email
       fill_in "user_password", :with => "awesomepassword"
@@ -150,5 +142,24 @@ describe "Web Users" do
       page.should have_content("add new contact")
     end
   end
+
+  # # NOTE: This causes Ruby to crash!
+  # describe "allow user to upload picture", :js => true do
+  #   it "lets a user upload a profile pic" do
+  #     user = log_web_user_in
+  #     go_to_preferences
+
+  #     # Upload profile image
+  #     image_path =  File.expand_path('public') + "/capybara_test_image.jpg"
+  #     attach_file('user_avatar', image_path)
+  #     # click_button "update"
+
+  #     # See if it worked
+  #     # go_to_preferences
+
+  #     # save_and_open_page
+  #     # print page.html
+  #   end
+  # end
 
 end
