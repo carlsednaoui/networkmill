@@ -21,8 +21,10 @@ $ ->
     false
 
   # slide down the note section
-  $('#write-note').on 'click', ->
-    $(@).css height: 100
+  $('#write-note').on 'focus', ->
+    $(@).css height: 100, color: "rgba(255,255,255,1)"
+  .on 'blur', ->
+    $(@).css height: 18, color: "rgba(255,255,255,.4)"
   .on 'keydown', ->
     $(@).css textAlign: 'left'
 
