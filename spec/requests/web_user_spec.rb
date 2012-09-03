@@ -83,8 +83,6 @@ describe "Web Users" do
   describe "Edit user profile", :js => true do
     it "should allow user to change name, email, contact_intensity" do
       log_web_user_in
-      page.should have_content("Here are the people")
-      page.should have_content("add new contact")
 
       page.find('.account').trigger(:mouseover)
       click_link "preferences"
@@ -112,6 +110,44 @@ describe "Web Users" do
 
       # Send test email to networkmill@gmail.com
       # click_link "send me a test copy"
+    end
+  end
+
+  describe "Change user password", :js => true do
+    it "should allow a user to change password" do
+      user = log_web_user_in
+
+      # Go to preferences
+      page.find('.account').trigger(:mouseover)
+      click_link "preferences"
+      page.should have_content("Edit Introductory Email")
+      find_field('user_contact_intensity').value.should have_content("3")
+
+      within("#other-prefs") do
+        fill_in "user_current_password", :with => user.password
+        fill_in "user_password", :with => "awesomepassword"
+        click_button "save"
+      end
+      
+      # User is redirected to root_path when password is changed
+      page.should have_content("You need to sign in or sign up before continuing.")
+
+      # Lets try to login with old password, this should fail
+      page.find('.sign-in').trigger(:mouseover)
+      fill_in "user_email", :with => user.email
+      fill_in "user_password", :with => user.password
+      click_button "hit it"
+
+      page.should have_content("Invalid email or password.")
+
+      # Login with new password
+      page.find('.sign-in').trigger(:mouseover)
+      fill_in "user_email", :with => user.email
+      fill_in "user_password", :with => "awesomepassword"
+      click_button "hit it"
+
+      page.should have_content("Here are the people")
+      page.should have_content("add new contact")
     end
   end
 
