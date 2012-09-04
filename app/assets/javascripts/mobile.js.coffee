@@ -16,7 +16,7 @@ $ ->
     $('#card').removeClass 'flipped'
     setTimeout ->
       $('#preference form').submit()
-      $('.loading').show()
+      $('.loading').show().find('.spinner').css position: 'absolute'
     , 1300
     false
 
@@ -27,6 +27,11 @@ $ ->
     $(@).css height: 18, color: "rgba(255,255,255,.4)"
   .on 'keydown', ->
     $(@).css textAlign: 'left'
+
+  $('#preference textarea').on 'focus', ->
+    $(@).css height: 155
+  .on 'blur', ->
+    $(@).css height: 125
 
   # Login Validation
 
