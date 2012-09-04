@@ -43,12 +43,10 @@ $ ->
 
   if window.navigator.standalone
     console.log 'user is running it as a mobile web app'
-    if window.navigator.onLine
-      console.log 'we have an interner connection'
-    else
-      console.log 'no internet, its going to be tough to send emails'
   else
     if navigator.userAgent.match /like Mac OS X/i
-      console.log 'user is visiting from mobile safari'
+      setTimeout (-> window.scrollTo(0,1)), 1000
+      $('#sign-in, #card').hide()
+      $('.splash').show()
     else
       console.log 'user is visiting from android or other mobile OS'
