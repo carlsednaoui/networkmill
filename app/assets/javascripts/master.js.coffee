@@ -176,6 +176,14 @@ $ ->
             $(el).val suggestion['full']
             $('#hint').hide()
 
+    # Send text validation
+    $('#text-app .form-submit').on 'click', ->
+      $('.form-error').remove()
+
+      if $('.telephone-field').val().length < 10
+        $('#text-app .telephone-field').before "<div class='form-error'>woops, this doesn't seem to be a valid number</div>"
+        false
+
   # ---------------------------------------
   # Scripts for the dashboard
   # ---------------------------------------

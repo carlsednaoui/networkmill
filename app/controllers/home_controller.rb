@@ -7,6 +7,8 @@ class HomeController < ApplicationController
 
   # Use Twilio to send user the app URL
   def send_text
+    number = params[:number]
+
     @client = Twilio::REST::Client.new TWILIO_SID, TWILIO_AUTH
     @client.account.sms.messages.create(
       :from => '+14155992671',

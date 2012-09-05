@@ -1,4 +1,5 @@
 / Allow user to send him/herself the networkmill app download URL
-/ = form_tag("/send-text", class: "text_user", method: "post") do
-/   = text_field_tag "number",nil, placeholder: "tel number"
-/   = submit_tag "send me the app link &raquo;".html_safe
+#text-app
+  = form_tag("/send-text", class: "text_user", method: "post") do
+    = text_field_tag "number",nil, placeholder: "what's your number", :class => "telephone-field"
+    = submit_tag "send me the app link &raquo;".html_safe, :class => "form-submit"
