@@ -3,16 +3,15 @@ include Helpers
 
 describe "Web Users" do
 
-  describe "Test log_user_in", :js => true do
+  describe "Test log_web_user_in", :js => true do
     it "works. Now it's time to write some real shiats" do
       log_web_user_in
     end
   end
 
-
   describe "Add and edit contact", :js => true do
     it "allows user to add and edit a contact" do
-      # Create user and contact
+      # Create and login user, create contact
       create_web_test_contact
 
       # Edit contact
@@ -43,15 +42,9 @@ describe "Web Users" do
     end
   end
 
-
   describe "Delete contact", :js => true do
     it "allows a user to delete contacts" do
       create_web_test_contact
-
-      # Ensure that contact was created
-      page.should have_content("contact saved")
-      page.should have_content("mycontact@example.com")
-      page.should have_content("my contact name")
 
       # Click on delete_contact
       find(".contacts").find("li").find(".delete-contact").click

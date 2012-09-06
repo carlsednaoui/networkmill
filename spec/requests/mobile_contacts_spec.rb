@@ -10,10 +10,9 @@ describe "Mobile Users" do
     end
   end
 
-
   describe "add a contact", :js => true do
     it "adds a contact on your mobile phone" do
-      # Create user
+      # Create and login mobile user
       user = log_mobile_user_in
 
       # Create contact
@@ -32,18 +31,18 @@ describe "Mobile Users" do
       fill_in "user_password", :with => user.password
       click_button "hit it"
 
+      # Make sure contact is there
       page.should have_content("#{test_contact_name}")
       page.should have_content("#{test_contact_email}")
     end
   end
 
-
   describe "network mode in action", :js => true do
     it "allows a mobile user to add contacts to their networking queue" do
-      # Create user
+      # Create and login mobile user, turn networkmode on
       user = turn_networkmode_on
 
-      # Create contact
+      # Create contact 1
       test_contact_email = "testcontact@example.com"
       test_contact_name = "test contact"
 
@@ -72,6 +71,7 @@ describe "Mobile Users" do
       fill_in "user_password", :with => user.password
       click_button "hit it"
 
+      # Make sure contacts are there
       page.should have_content("#{test_contact_name}")
       page.should have_content("#{test_contact_email}")
       page.should have_content("#{test_contact_2_name}")
