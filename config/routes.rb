@@ -6,8 +6,8 @@ Networkmill::Application.routes.draw do
  
   # Enable mobile subdomain
   # To access it use http://m.lvh.me:3000 or http://m.networkmill.dev
-  match '', :to => 'mobile#index', :constraints => lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
-  
+  match '', :to => 'mobile#index', :constraints => lambda { |r| r.subdomain == "m" && r.subdomain != 'www' }
+
   get "/networking" => "mobile#add_contact", :as => 'add_mobile_contact'
   post "/mobile-create-contact" => "mobile#create_contact", :as => 'mobile_create_contact'
   post "/update-mobile-user" => "mobile#update_mobile_user", :as => 'update_mobile_user'
