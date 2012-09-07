@@ -1,8 +1,11 @@
 Networkmill::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
+  
+  # Make subdomain work on networkmill-staging.heroku.com
+  config.action_dispatch.tld_length = 2
 
   # Code is not reloaded between requests
-  config.cache_classes = true
+  config.cache_classes = false
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
@@ -31,7 +34,7 @@ Networkmill::Application.configure do
   # config.force_ssl = true
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+  config.log_level = :debug
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
