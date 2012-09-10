@@ -8,8 +8,8 @@ gem 'haml'
 gem 'rmagick'
 gem 'carrierwave'
 gem 'delayed_job_active_record'
-gem 'hirefire'
 gem 'twilio-ruby'
+gem 'foreman' # Used for Jobs queue. Run "$ foreman start" for local tests
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
