@@ -5,15 +5,15 @@ class HomeController < ApplicationController
     redirect_to dashboard_path if current_user
   end
 
-  # Use Twilio to send user the app URL
+  # Use Twilio to send mobile app URL
   def send_text
     number = params[:number]
 
     @client = Twilio::REST::Client.new TWILIO_SID, TWILIO_AUTH
     @client.account.sms.messages.create(
-      :from => '+14155992671',
-      :to => "+#{number}",
-      :body => "Woo, it works! Go to www.awesome.com"
+      :from => '+16464806552',
+      :to => "#{number}",
+      :body => "Hey there goodlooking, go to m.networkmill.com to network like a boss."
     )
     redirect_to root_url
   end
