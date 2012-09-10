@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     @client.account.sms.messages.create(
       :from => '+16464806552',
       :to => "#{number}",
-      :body => "Hey there goodlooking, go to m.networkmill.com to network like a boss."
+      :body => "Hey there good looking, go to m.networkmill.com to network like a boss."
     )
     redirect_to root_url
   end
