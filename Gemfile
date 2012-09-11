@@ -7,9 +7,12 @@ gem 'devise'
 gem 'haml'
 gem 'rmagick'
 gem 'carrierwave'
-gem 'delayed_job_active_record'
 gem 'twilio-ruby'
-gem 'foreman' # Used for Jobs queue. Run "$ foreman start" for local tests
+
+# Delayed job dependencies 
+gem 'delayed_job_active_record'
+gem 'hirefire'
+gem 'heroku-api'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
@@ -28,11 +31,11 @@ end
 
 group :test do
   gem 'capybara'
-  gem "capybara-webkit"
-  gem 'factory_girl_rails'
-  gem 'launchy' #used to run $save_and_open_page with capybara
-  gem 'database_cleaner'
-  gem 'nyan-cat-formatter' # In $.rspec add "$--format NyanCatFormatter"
+  gem 'capybara-webkit'
+  gem 'factory_girl_rails' 
+  gem 'launchy'             # Run "$save_and_open_page" with capybara
+  gem 'database_cleaner'    # Clean test dabase after specs 
+  gem 'nyan-cat-formatter'  # In $.rspec add "$--format NyanCatFormatter"
 end
 
 group :production do
