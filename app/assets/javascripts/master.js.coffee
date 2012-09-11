@@ -136,6 +136,7 @@ $ ->
         return false
       else if saved_pass.length < 6
         $('#sign-up .email-field').before "<div class='form-error'>password must be more than 6 characters</div>"
+        return false
       else
         if $('#show-pass').is(':checked')
           saved_pass = $('.pass-visible').val()
@@ -169,6 +170,7 @@ $ ->
     # Check Email Domain Name Logic (mailcheck.js)
     
     $('input[type=email]').on 'blur', ->
+      $("#hint").hide()
       $(@).mailcheck
         suggested: (el, suggestion) ->
           $("#hint").show()
