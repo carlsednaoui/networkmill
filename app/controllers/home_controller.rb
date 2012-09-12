@@ -15,7 +15,11 @@ class HomeController < ApplicationController
       :to => "#{number}",
       :body => "Hey there good looking, go to m.networkmill.com to network like a boss."
     )
-    redirect_to root_url
+    if current_user
+      redirect_to dashboard_path, :notice => "Schweet, check your phone..."
+    else
+      redirect_to root_url, :notice => "Schweet, check your phone..."
+    end
   end
 
   def dashboard

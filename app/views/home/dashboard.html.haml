@@ -3,7 +3,6 @@
   - @contact.errors.full_messages.each do |err|
     = err
 
-
 .top
   %h3 Here are the people you want to stay in touch with:
   = link_to new_contact_path, :class => 'new-contact-button' do
@@ -25,3 +24,13 @@
         = link_to 'Edit', edit_contact_path(contact), class: 'edit-contact'
     .editing-contact
       = render partial: 'contact_form', :locals => { :contact => contact , :verb => 'edit' }
+
+-if @contacts.size < 3
+  .few-contacts
+    %h3
+      Ohh no, looks like you haven't added that many contacts yet. 
+    %p
+      Why not add some of your ex co-workers? Or what about that entrepreneurial friend of yours - yes, the one that's building the next Facebook for cats. You could also add the people who's business cards you have in your wallet or even those that have sent you a recommendation on LinkedIn.
+    %p
+      Heading out to an event? We've got you covered with our fancy little mobile app.
+    = render partial: "text_app_url"

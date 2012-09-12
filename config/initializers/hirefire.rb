@@ -2,8 +2,7 @@
 ## $ heroku config:add APP_NAME=<appname> --app <appname>
 ## $ heroku config:add HEROKU_API_KEY=<apikey> --app <appname>
 ## $ heroku config:add HIREFIRE_EMAIL=<heroku email> --app <appname>
-## $ heroku config:add HIREFIRE_PASSWORD=<heroku api key> --app <appname>
-### Note: The HIREFIRE_PASSWORD may not be necessary - going to look into this
+## No longer needed since patch: $ heroku config:add HIREFIRE_PASSWORD=<heroku api key> --app <appname>
 
 HireFire.configure do |config|
 
