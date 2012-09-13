@@ -1,4 +1,5 @@
 # This file is called by the Heroku scheduler add-on
+# https://devcenter.heroku.com/articles/scheduler
 
 desc "picks random contacts and sends them to the user in an email"
   task :all => :environment do
