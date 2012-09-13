@@ -30,7 +30,7 @@ namespace :mill do
   task :event_mode_check => :environment do
     puts ""
     User.where(:network_mode => true).each do |user| 
-      user.destroy_queue_and_send_email if user.event_queue.created_at < Time.now - 5.hours
+      user.destroy_queue_and_send_email if user.event_queue.created_at < Time.now - 1.minutes # TODO - Change this before going live
     end
     puts ""
   end
