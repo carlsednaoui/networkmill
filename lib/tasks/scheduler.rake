@@ -1,6 +1,19 @@
 # This file is called by the Heroku scheduler add-on
 # https://devcenter.heroku.com/articles/scheduler
 
+def run_the_mill(user)
+  if user.contact_intensity > user.contacts.count
+    puts "#{user.email} has low contacts. Sending an email now."
+    puts "we're already contacted #{user.email}" if user.emails.find_by_title("user_has_few_contacts").present?
+    UserMailer.user_has_few_contacts(user).deliver unless user.emails.find_by_title("user_has_few_contacts").present?
+  else
+    contacts = user.pick_random_contacts
+    UserMailer.send_random_contacts(user, contacts).deliver
+  end
+end
+
+
+
 desc "picks random contacts and sends them to the user in an email"
   task :all => :environment do
     puts ""
