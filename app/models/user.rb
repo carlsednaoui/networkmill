@@ -8,6 +8,17 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   validates :contact_intensity, :numericality => { :only_integer => true, :less_than_or_equal_to => :contact_validation}, :on => :update
   attr_accessible :name, :email, :unsubscribed, :desktop_client, :network_mode, :contact_intensity, :avatar, :password, :remember_me, :signature, :feedback, :social_networks_attributes
+
+
+  # Validate invite code
+
+  before_validation :beta_invited?
+
+  def beta_invited?
+    unless BetaInvite.exists?(:email=>email)
+      errors.add :email, "is not on our beta list"  
+    end
+  end
     
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

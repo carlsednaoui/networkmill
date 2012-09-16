@@ -71,7 +71,9 @@ class UsersController < ApplicationController
 
   def check_email
     if User.find_by_email(params[:email])
-      render :text => "true"
+      render :text => "registered"
+    elsif BetaInvite.find_by_email(params[:email]).nil?
+      render :text => "not_beta"
     else
       render :text => "false"
     end

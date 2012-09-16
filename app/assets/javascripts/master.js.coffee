@@ -153,11 +153,12 @@ $ ->
       $.ajax
         url: "/check_email/#{$('#sign-up .email-field').val()}"
         success: (data) ->
-          if data == "true"
+          if data == "registered"
             $('#sign-up .email-field').before "<div class='form-error'>email has already been taken</div>"
+          else if data == "not_beta"
+            $('#sign-up .email-field').before "<div class='form-error'>fak, this email has not yet been invited to the beta<br/> we'll make sure to get to it soon</div>"
           else
             $('#sign-up .new_user').submit()
-            
       return false
 
     # Login Validation
