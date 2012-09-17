@@ -9,10 +9,8 @@ class User < ActiveRecord::Base
   validates :contact_intensity, :numericality => { :only_integer => true, :less_than_or_equal_to => :contact_validation}, :on => :update
   attr_accessible :name, :email, :unsubscribed, :desktop_client, :network_mode, :contact_intensity, :avatar, :password, :remember_me, :signature, :feedback, :social_networks_attributes
 
-
-  # Validate invite code
-
-  before_validation :beta_invited?
+  # Validate that user has been added to the beta list
+  before_validation :beta_invited?, :on => :create
 
   def beta_invited?
     unless BetaInvite.exists?(:email=>email)
