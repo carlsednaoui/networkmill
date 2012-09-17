@@ -8,6 +8,8 @@ FactoryGirl.define do
   factory :user do
     email
     password "factorypassword"
+
+    # Add factory user email to beta invite
     after(:build) {|user| BetaInvite.create({:email => "#{user.email}"})}
   end 
 end

@@ -80,22 +80,21 @@ describe "Web Users" do
     it "should allow user to change name, email, contact_intensity" do
       log_web_user_in
       go_to_preferences
-      find_field('user_contact_intensity').value.should have_content("3")
+      find_field('user_contact_intensity').value.should have_content("3")     
 
       # Change user name and email
-      # within(".address-fields") do
+      within(".address-fields") do
         fill_in "user_name", :with => "new funky name"
         fill_in "user_email", :with => "newemail@tits.com"
-      # end
+      end
 
       # Change user contact_intensity
       fill_in "user_contact_intensity", :with => "2"
-      
-      print page.html
 
       click_button "update"
       page.should have_content("preferences have been updated")
 
+      go_to_preferences
       find_field('user_name').value.should have_content("new funky name")
       find_field('user_email').value.should have_content("newemail@tits.com")
       find_field('user_contact_intensity').value.should have_content("2")
