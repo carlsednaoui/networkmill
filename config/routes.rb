@@ -55,4 +55,11 @@ Networkmill::Application.routes.draw do
     get 'users', :to => 'home#dashboard', :as => :user_root
   end
 
+  #============================
+  # Add beta codes
+  #============================
+
+  get "/invite" => "home#beta_invite_dashboard", :as => "beta_invite"
+  post "/invite" => "home#create_beta_invite", :as => "create_beta_invite"
+
 end

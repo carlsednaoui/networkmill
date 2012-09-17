@@ -1,0 +1,15 @@
+%h1
+  Create a new invite
+  
+= form_for @new_beta do |f|
+  = f.text_field :email
+  = f.submit
+
+%br
+
+%h2 
+  Emails already invited
+
+- @emails_already_in_beta.each do |beta|
+  %li
+    = beta.email 

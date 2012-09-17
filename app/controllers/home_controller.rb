@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!, :only => :dashboard
+  before_filter :auth_admin, :only => [:beta_invite_dashboard, :create_beta_invite]
   
   def index
     redirect_to dashboard_path if current_user
@@ -39,6 +40,28 @@ class HomeController < ApplicationController
     @feedback.save!
     UserMailer.delay.send_feedback_to_team(@feedback)
     redirect_to root_url
+  end
+
+  # =================================
+  # Manage beta invites
+  # =================================
+
+  def beta_invite_dashboard
+    @new_beta = BetaInvite.new
+    @emails_already_in_beta = BetaInvite.all
+  end
+
+  def create_beta_invite
+    @new_beta = BetaInvite.new(params[:beta_invite])
+    redirect_to beta_invite_path if @new_beta.save
+  end
+
+  protected
+
+  def auth_admin
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "ilove" && password == "tits"
+    end
   end
   
 end
