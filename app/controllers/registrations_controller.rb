@@ -4,7 +4,11 @@
 class RegistrationsController < Devise::RegistrationsController
   protected
 
+  # The below code is technically not needed as users are directly redirected to
+  # the welcome path if first_time == true. We are automatically adding
+  # firt_time == true from the db migration. However, the below code saves one
+  # 302 redirect and avoids going from dashboard_path to welcome_path.
   def after_sign_up_path_for(resource)
-  	preferences_path
+    welcome_path
   end
 end

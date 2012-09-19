@@ -156,7 +156,7 @@ $ ->
           if data == "registered"
             $('#sign-up .email-field').before "<div class='form-error'>email has already been taken</div>"
           else if data == "not_beta"
-            $('#sign-up .email-field').before "<div class='form-error'>fak, this email has not yet been invited to the beta<br/> we'll make sure to get to it soon</div>"
+            $('#sign-up .email-field').before "<div class='form-error'>ohh no, it seems that this email <br/> is not yet part of our beta"
           else
             $('#sign-up .new_user').submit()
       return false

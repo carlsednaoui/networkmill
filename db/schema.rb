@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(:version => 20120919010128) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.boolean  "first_time"
+    t.boolean  "first_time",             :default => true
     t.integer  "tel_number"
   end
 

@@ -26,6 +26,7 @@ Networkmill::Application.routes.draw do
   resources :contacts
   resources :users, :only => [:new, :update]
 
+  get "welcome" => "home#welcome", :as => 'welcome'
   get "/dashboard" => "home#dashboard", :as => 'dashboard'
   # the trick
   get "/preferences" => "users#edit", :as => 'preferences'
@@ -59,7 +60,7 @@ Networkmill::Application.routes.draw do
   # Add beta codes
   #============================
 
-  get "/invite" => "home#beta_invite_dashboard", :as => "beta_invite"
+  get "/invite" => "home#beta_invite_dashboard", :as => "beta_invites"
   post "/invite" => "home#create_beta_invite", :as => "create_beta_invite"
 
 end

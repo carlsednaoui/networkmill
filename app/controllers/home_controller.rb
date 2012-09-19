@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 
     @client = Twilio::REST::Client.new TWILIO_SID, TWILIO_AUTH
     @client.account.sms.messages.create(
-      :from => '+16464806552',
+      :from => '+16464806552', # This is our Twilio number
       :to => "#{number}",
       :body => "Hey there good looking, go to m.networkmill.com to network like a boss."
     )
@@ -24,7 +24,12 @@ class HomeController < ApplicationController
     end
   end
 
+  def welcome
+    redirect_to dashboard_path if !current_user.first_time
+  end
+
   def dashboard
+    redirect_to welcome_path if current_user.first_time
     @user = current_user
     @contacts = Contact.find_all_by_user_id(current_user.id).reverse
     @contact = Contact.new
@@ -49,12 +54,12 @@ class HomeController < ApplicationController
 
   def beta_invite_dashboard
     @new_beta = BetaInvite.new
-    @emails_already_in_beta = BetaInvite.all
+    @emails_already_in_beta = BetaInvite.all.reverse
   end
 
   def create_beta_invite
     @new_beta = BetaInvite.new(params[:beta_invite])
-    redirect_to beta_invite_path if @new_beta.save
+    redirect_to beta_invites_path if @new_beta.save
   end
 
   protected
