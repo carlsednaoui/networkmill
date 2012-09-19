@@ -1,7 +1,7 @@
 require 'spec_helper'
 include Helpers
 
-describe "Mobile Users" do
+describe "Mobile Contacts" do
 
   describe "Test mobile user login", :js => true do
     it "works. Now it's time to write some real shiats" do
@@ -30,6 +30,9 @@ describe "Mobile Users" do
       fill_in "user_email", :with => user.email
       fill_in "user_password", :with => user.password
       click_button "hit it"
+
+      # Disable the welcome screen
+      no_tutorial
 
       # Make sure contact is there
       page.should have_content("#{test_contact_name}")
@@ -70,6 +73,9 @@ describe "Mobile Users" do
       fill_in "user_email", :with => user.email
       fill_in "user_password", :with => user.password
       click_button "hit it"
+
+      # Disable the welcome screen
+      no_tutorial
 
       # Make sure contacts are there
       page.should have_content("#{test_contact_name}")

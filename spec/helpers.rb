@@ -37,6 +37,9 @@ module Helpers
     fill_in "user_password", :with => user.password
     click_button "hit it"
 
+    # Disable the tutorial screen
+    no_tutorial
+
     # Make sure you're logged in
     page.should have_content("Here are the people")
     page.should have_content("add new contact")
@@ -51,6 +54,15 @@ module Helpers
     page.find('.account').trigger(:mouseover)
     click_link "preferences"
     page.should have_content("Edit Introductory Email")
+  end
+
+  # ===============================
+  # Turn tutorial off
+  # ===============================
+  def no_tutorial
+    go_to_preferences
+    select('No', :from => 'user_first_time')
+    click_button "save"
   end
 
   # ===============================
@@ -97,7 +109,7 @@ module Helpers
     
     # Create user
     user = create_factory_user
-
+    
     # Log mobile user in
     # Remember to run $ rails s -e test
     visit("http://m.lvh.me:3000")

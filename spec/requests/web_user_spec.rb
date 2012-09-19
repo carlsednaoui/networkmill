@@ -21,7 +21,7 @@ describe "Web Users" do
       click_button "let's go"
 
       # Users without name should see welcome message
-      page.should have_content("fak, this email has not yet been invited to the beta")
+      page.should have_content("ohh no, it seems that this email")
     end
   end
 
@@ -46,6 +46,9 @@ describe "Web Users" do
       fill_in "user_email", :with => user.email
       fill_in "user_password", :with => user.password
       click_button "hit it"
+
+      # Deactivate tutorial
+      no_tutorial
       
       # Verify login == success
       page.should have_content("Here are the people")

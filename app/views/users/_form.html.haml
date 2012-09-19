@@ -85,7 +85,11 @@
         = f.password_field :current_password
       .new
         = f.label :password, "new password"
-        = f.password_field :password, :autocomplete => "off"     
+        = f.password_field :password, :autocomplete => "off" 
+
+      .first_time
+        = f.label :first_time, "turn tutorial on"
+        = f.select  :first_time, {"Yes" => true, "No" => false}    
 
       = f.submit "save"
       

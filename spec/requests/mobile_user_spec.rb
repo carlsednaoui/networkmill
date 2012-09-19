@@ -25,7 +25,7 @@ describe "Mobile Users" do
     end
   end
 
-  describe "Signin user", :js => true do
+  describe "Signin user" do
     it "allows a registered user to signin" do
       log_mobile_user_in
     end
