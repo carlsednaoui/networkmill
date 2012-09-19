@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :social_networks, :allow_destroy => true
   mount_uploader :avatar, AvatarUploader
   validates :contact_intensity, :numericality => { :only_integer => true, :less_than_or_equal_to => :contact_validation}, :on => :update
-  attr_accessible :name, :email, :unsubscribed, :desktop_client, :network_mode, :contact_intensity, :avatar, :password, :remember_me, :signature, :feedback, :social_networks_attributes
+  attr_accessible :name, :email, :unsubscribed, :desktop_client, :network_mode, :contact_intensity, :avatar, :password, :remember_me, :signature, :feedback, :social_networks_attributes, :tel_number
 
   # Validate that user has been added to the beta list
   before_validation :beta_invited?, :on => :create

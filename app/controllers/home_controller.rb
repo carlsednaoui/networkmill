@@ -17,6 +17,7 @@ class HomeController < ApplicationController
       :body => "Hey there good looking, go to m.networkmill.com to network like a boss."
     )
     if current_user
+      current_user.update_attributes(:tel_number => number)
       redirect_to dashboard_path, :notice => "Schweet, check your phone..."
     else
       redirect_to root_url, :notice => "Schweet, check your phone..."

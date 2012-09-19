@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918025002) do
+ActiveRecord::Schema.define(:version => 20120919010128) do
 
   create_table "beta_invites", :force => true do |t|
     t.string   "email"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20120918025002) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "first_time"
+    t.integer  "tel_number"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
