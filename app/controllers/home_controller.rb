@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_filter :authenticate_user!, :only => :dashboard
+  before_filter :authenticate_user!, :only => [:dashboard, :welcome]
   before_filter :auth_admin, :only => [:beta_invite_dashboard, :create_beta_invite]
   
   def index
@@ -26,6 +26,18 @@ class HomeController < ApplicationController
 
   def welcome
     redirect_to dashboard_path if !current_user.first_time
+  end
+
+  # Turn first_time off from welcome screen
+  def first_time_off
+    current_user.update_attributes(:first_time => false)
+    redirect_to dashboard_path if !current_user.first_time
+  end
+
+  # Turn first_time on from preference menu
+  def first_time_on
+    current_user.update_attributes(:first_time => true)
+    redirect_to welcome_path if current_user.first_time
   end
 
   def dashboard

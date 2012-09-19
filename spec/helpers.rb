@@ -60,15 +60,12 @@ module Helpers
   # Turn tutorial on/ off
   # ===============================
   def no_tutorial
-    go_to_preferences
-    select('No', :from => 'user_first_time')
-    click_button "save"
+    click_link "ok, got it"
   end
 
   def yes_tutorial
     go_to_preferences
-    select('Yes', :from => 'user_first_time')
-    click_button "save"
+    click_link "Show me the welcome tutorial"
   end
 
   # ===============================

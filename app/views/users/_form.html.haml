@@ -87,17 +87,14 @@
         = f.label :password, "new password"
         = f.password_field :password, :autocomplete => "off" 
 
-      .first_time
-        = f.label :first_time, "turn tutorial on"
-        = f.select  :first_time, {"Yes" => true, "No" => false}    
-
       = f.submit "save"
       
       = link_to "Export my contacts (.csv)", export_contacts_path, class: 'export-contacts'
+      = link_to "Show me the welcome tutorial", first_time_on_path, :method => :post, class: 'export-contacts'
 
     #bad-things
       .field
         = f.label :unsubscribed, "Do not receive any email from us"
-        = f.select :unsubscribed, {"Yes" => true, "No" => false}
+        = f.select :unsubscribed, {"yes" => true, "no" => false}
       .field
         = link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete

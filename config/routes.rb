@@ -26,7 +26,11 @@ Networkmill::Application.routes.draw do
   resources :contacts
   resources :users, :only => [:new, :update]
 
+  # first_time aka: onboarding/ tutorial
   get "welcome" => "home#welcome", :as => 'welcome'
+  post "first-time-off" => "home#first_time_off", :as => 'first_time_off'
+  post "first-time-on" => "home#first_time_on", :as => 'first_time_on'
+
   get "/dashboard" => "home#dashboard", :as => 'dashboard'
   # the trick
   get "/preferences" => "users#edit", :as => 'preferences'
