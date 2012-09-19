@@ -1,3 +1,7 @@
+BetaInvite.create(email: "networkmill@gmail.com")
+BetaInvite.create(email: "network.mill@gmail.com")
+BetaInvite.create(email: "net.workmill@gmail.com")
+
 User.create(:name => "seed user 1", :email => "networkmill@gmail.com", :password => "network")
 User.create(:name => "seed user 2", :email => "network.mill@gmail.com", :password => "network")
 User.create(:name => "seed user 3", :email => "net.workmill@gmail.com", :password => "network")
