@@ -11,7 +11,7 @@ describe "Web Users" do
   end
 
   describe "Register user", :js => true do
-    it "allows new users to register with an email address and password" do
+    it "Does not allowa new users to register if they are not part of the beta" do
       visit root_path
 
       within("#sign-up") do
@@ -22,6 +22,40 @@ describe "Web Users" do
 
       # Users without name should see welcome message
       page.should have_content("ohh no, it seems that this email")
+    end
+  end
+
+  describe "User tutorial", :js => true do
+    it "Takes a user to the welcome screen when signing up, turn tutorial on/ off" do
+      user = create_factory_user
+
+      # Signin
+      visit root_path
+      page.find('.sign-in').trigger(:mouseover)
+      fill_in "user_email", :with => user.email
+      fill_in "user_password", :with => user.password
+      click_button "hit it"
+
+      # User should see the welcome message
+      page.should have_content("Hi there, it's nice to see around here!")
+
+      # Turn tutorial off
+      no_tutorial
+
+      # User should now see the dashboard
+      page.should have_content("Here are the people")
+      page.should have_content("add new contact")
+
+      # Turn tutorial back on
+      yes_tutorial
+      page.should have_content("Hi there, it's nice to see around here!") 
+
+      # Turn tutorial back off
+      no_tutorial
+
+      # User should now see the dashboard
+      page.should have_content("Here are the people")
+      page.should have_content("add new contact")     
     end
   end
 

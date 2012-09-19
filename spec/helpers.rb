@@ -57,11 +57,17 @@ module Helpers
   end
 
   # ===============================
-  # Turn tutorial off
+  # Turn tutorial on/ off
   # ===============================
   def no_tutorial
     go_to_preferences
     select('No', :from => 'user_first_time')
+    click_button "save"
+  end
+
+  def yes_tutorial
+    go_to_preferences
+    select('Yes', :from => 'user_first_time')
     click_button "save"
   end
 
