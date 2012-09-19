@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120919010128) do
+ActiveRecord::Schema.define(:version => 20120916212611) do
 
   create_table "beta_invites", :force => true do |t|
     t.string   "email"
@@ -86,6 +86,9 @@ ActiveRecord::Schema.define(:version => 20120919010128) do
     t.string   "avatar"
     t.boolean  "unsubscribed",           :default => false
     t.boolean  "network_mode",           :default => false
+    t.boolean  "first_time",             :default => true
+    t.boolean  "boolean",                :default => true
+    t.integer  "tel_number"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.string   "email",                  :default => "",    :null => false
@@ -98,8 +101,6 @@ ActiveRecord::Schema.define(:version => 20120919010128) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.boolean  "first_time",             :default => true
-    t.integer  "tel_number"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

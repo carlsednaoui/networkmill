@@ -8,6 +8,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :avatar
       t.boolean :unsubscribed, :default => false
       t.boolean :network_mode, :default => false
+      t.boolean :first_time, :boolean, :default => true
+      t.integer :tel_number
 
       t.timestamps
     end

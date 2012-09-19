@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   end
 
   # Send user welcome email upon sign up
-  after_create :send_welcome_mail
+  after_create :send_welcome_mail if Rails.env != "test"
   def send_welcome_mail
     UserMailer.delay.send_welcome_email(self)
   end
