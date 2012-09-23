@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :emails
   has_many :social_networks
   has_many :feedback
+  has_many :categories
   accepts_nested_attributes_for :social_networks, :allow_destroy => true
   mount_uploader :avatar, AvatarUploader
   validates :contact_intensity, :numericality => { :only_integer => true, :less_than_or_equal_to => :contact_validation}, :on => :update
