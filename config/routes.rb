@@ -32,10 +32,13 @@ Networkmill::Application.routes.draw do
   post "first-time-on" => "home#first_time_on", :as => 'first_time_on'
 
   get "/dashboard" => "home#dashboard", :as => 'dashboard'
+  post "/new-category" => "home#create_category", :as => 'new_category'
+  
   # the trick
   get "/preferences" => "users#edit", :as => 'preferences'
   put "/preferences" => "users#update", :as => 'update_preferences'
   # end
+  
   get "/check_email/:email" => "users#check_email", :as => 'check_email', :constraints => { :email => /[^\/]+/ }
   get "/export-contacts" => "users#export_contacts", :as => 'export_contacts'
   post "/send_test_email" => "users#send_test_email", :as => 'send_test_email'

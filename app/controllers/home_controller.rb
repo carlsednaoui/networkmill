@@ -1,12 +1,46 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!, :only => [:dashboard, :welcome]
-  before_filter :auth_admin, :only => [:beta_invite_dashboard, :create_beta_invite]
+  before_filter :beta_invite_auth_admin, :only => [:beta_invite_dashboard, :create_beta_invite]
   
   def index
     redirect_to dashboard_path if current_user
+  end  
+
+  def welcome
+    redirect_to dashboard_path if !current_user.first_time
   end
 
-  # Use Twilio to send mobile app URL
+  def dashboard
+    redirect_to welcome_path if current_user.first_time
+    @user = current_user
+    
+    @contacts = Contact.find_all_by_user_id(current_user.id).reverse
+    @contact = Contact.new
+
+    @categories = current_user.categories
+    @category = Category.new
+  end
+
+  # =================================
+  # First time (tutorial mode)
+  # =================================
+
+  # Turn first_time off from welcome screen
+  def first_time_off
+    current_user.update_attributes(:first_time => false)
+    redirect_to dashboard_path if !current_user.first_time
+  end
+
+  # Turn first_time on from preference menu
+  def first_time_on
+    current_user.update_attributes(:first_time => true)
+    redirect_to welcome_path if current_user.first_time
+  end
+
+  # =================================
+  # Twilio
+  # =================================
+
   def send_text
     number = params[:number]
 
@@ -24,28 +58,23 @@ class HomeController < ApplicationController
     end
   end
 
-  def welcome
-    redirect_to dashboard_path if !current_user.first_time
+  # =================================
+  # Contact categories
+  # =================================
+
+  def create_category
+    @category = Category.new(params[:category])
+    @category.user = current_user
+    if @category.save
+      redirect_to dashboard_path, notice: "new contact category created" 
+    else
+      redirect_to dashboard_path, notice: "ohh no, a blank category - no bueno"
+    end
   end
 
-  # Turn first_time off from welcome screen
-  def first_time_off
-    current_user.update_attributes(:first_time => false)
-    redirect_to dashboard_path if !current_user.first_time
-  end
-
-  # Turn first_time on from preference menu
-  def first_time_on
-    current_user.update_attributes(:first_time => true)
-    redirect_to welcome_path if current_user.first_time
-  end
-
-  def dashboard
-    redirect_to welcome_path if current_user.first_time
-    @user = current_user
-    @contacts = Contact.find_all_by_user_id(current_user.id).reverse
-    @contact = Contact.new
-  end
+  # =================================
+  # Feedback
+  # =================================
 
   def feedback
     @feedback = Feedback.new
@@ -61,7 +90,7 @@ class HomeController < ApplicationController
   end
 
   # =================================
-  # Manage beta invites
+  # Beta invites
   # =================================
 
   def beta_invite_dashboard
@@ -76,7 +105,8 @@ class HomeController < ApplicationController
 
   protected
 
-  def auth_admin
+  # Basic HTML Authentication for beta invistations
+  def beta_invite_auth_admin
     authenticate_or_request_with_http_basic do |username, password|
       username == "ilove" && password == "tits"
     end

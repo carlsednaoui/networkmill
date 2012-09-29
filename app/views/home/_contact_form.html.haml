@@ -10,6 +10,8 @@
       = f.text_field :email, placeholder: 'email'
     .field
       = f.text_field :name, placeholder: 'name'
+    .field
+      = f.collection_select(:category_id, current_user.categories.all, :id, :name)
     .add-notes
       %span add notes...
       .field

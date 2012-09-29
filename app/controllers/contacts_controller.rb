@@ -21,7 +21,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(params[:contact])
     @contact.user = current_user
     @contact.state = "in"
-    
+
     if @contact.save
       redirect_to dashboard_path, :notice => "contact saved!"
     else

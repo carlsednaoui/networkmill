@@ -45,6 +45,11 @@ class User < ActiveRecord::Base
     self.desktop_client = 'false'
   end
 
+  after_create :create_default_contact_category
+  def create_default_contact_category
+    self.categories.create(:name => "uncategorized")
+  end
+
   # Send user welcome email upon sign up
   after_create :send_welcome_mail if Rails.env != "test"
   def send_welcome_mail

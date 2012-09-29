@@ -1,0 +1,9 @@
+/ Create new category
+= form_for @category, url: new_category_path do |f|
+  = f.text_field :name
+  = f.submit "create contact category"
+
+/ List all categories
+- @categories.each do |category|
+  %li
+    = category.name
