@@ -5,31 +5,31 @@ class User < ActiveRecord::Base
   has_many :social_networks
   has_many :feedback
   has_many :categories
-  accepts_nested_attributes_for :social_networks, :allow_destroy => true
-  mount_uploader :avatar, AvatarUploader
-  validates :contact_intensity, :numericality => { :only_integer => true, :less_than_or_equal_to => :contact_validation}, :on => :update
+
   attr_accessible :name, :email, :unsubscribed, :desktop_client, :network_mode, :contact_intensity, :avatar, :password, :remember_me, :signature, :feedback, :social_networks_attributes, :first_time, :tel_number
+
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+
+  accepts_nested_attributes_for :social_networks, :allow_destroy => true
+
+  mount_uploader :avatar, AvatarUploader
+
+  # =================================
+  # Validations
+  # =================================
 
   # Validate that user has been added to the beta list
   before_validation :beta_invited?, :on => :create
-
   def beta_invited?
     unless BetaInvite.exists?(:email=>email)
       errors.add :email, "is not on our beta list"  
     end
   end
-    
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-  def password_validation
-    validates_presence_of :password
-  end
-
-  $initial_contact_intensity = 3
-
-  # Validation: Ensure that contact intensity is less than the No. of user contacts. Default intensity = 3
+  validates :contact_intensity, :numericality => { :only_integer => true, :less_than_or_equal_to => :contact_validation}, :on => :update
+  # Ensure that contact intensity is less than the # of contacts the user has. Default intensity = 3
   def contact_validation
     if contacts.count > $initial_contact_intensity
       contacts.count
@@ -38,9 +38,15 @@ class User < ActiveRecord::Base
     end
   end
 
-  # Add default values to user upon creation with Devise
-  before_create :default_values
-  def default_values
+  # =================================
+  # Default values & after create
+  # =================================
+
+  $initial_contact_intensity = 3
+
+  # User defaul values once created with Devise
+  before_create :user_default_values
+  def user_default_values
     self.contact_intensity = $initial_contact_intensity
     self.desktop_client = 'false'
   end
@@ -55,6 +61,10 @@ class User < ActiveRecord::Base
   def send_welcome_mail
     UserMailer.delay.send_welcome_email(self)
   end
+
+  # =================================
+  # Select random contacts
+  # =================================
 
   # Picks n random contacts from those in rotation
   # - resets the list as soon as it's finished a rotation
@@ -85,7 +95,7 @@ class User < ActiveRecord::Base
     contacts.select{ |c| c.state == "just_sent" }
   end
 
-  # Get the contacts that currently out of rotation
+  # Get the contacts that are currently out of rotation
   def contacts_out
     contacts.select{ |c| c.state == "out" }
   end
@@ -103,6 +113,10 @@ class User < ActiveRecord::Base
       c.update_attributes :state => "in"
     end
   end
+
+  # =================================
+  # Mobile networking mode
+  # =================================
 
   # This is triggered from the User Controller or the Rake task. This will destroy the
   # event queue and send a summary email of contacts the user just met

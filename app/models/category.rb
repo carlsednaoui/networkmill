@@ -1,7 +1,9 @@
 class Category < ActiveRecord::Base
   belongs_to :user
   has_many :contacts
+
   attr_accessible :intensity, :name, :user_id
+  
   validates_presence_of :name
   validates_uniqueness_of :name
 
