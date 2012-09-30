@@ -68,7 +68,7 @@ class HomeController < ApplicationController
     if @category.save
       redirect_to dashboard_path, notice: "new contact category created" 
     else
-      redirect_to dashboard_path, notice: "ohh no, a blank category - no bueno"
+      redirect_to dashboard_path, notice: "ohh no, we can't create a blank category"
     end
   end
 
