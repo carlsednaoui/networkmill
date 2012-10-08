@@ -24,6 +24,34 @@
       margin-top: -1px
       padding-right: 5px
 
+#expand-categories
+  text-decoration: none
+  &:link, &:visited 
+    color: #ff4517
+  &:hover
+    text-decoration: underline
+
+#manage-categories
+  display: none
+
+#add-category-field
+  background: #FDFDFD
+  padding: 4px
+  +round(5px)
+
+#add-category-button
+  +button(#FF9300)
+  +gradient(#FF9300, #FF5900)
+  +rounded
+  +transition
+  margin-right: 25px
+
+.category-error
+  color: $red
+  font-size: 13px
+  margin-bottom: 7px
+  // text-align: center
+
 .add-contact, .editing-contact
   background: #FDFDFD
   margin-top: 57px

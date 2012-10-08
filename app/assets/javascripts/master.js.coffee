@@ -16,7 +16,7 @@ $ ->
 
   # deal with flash notices
 
-  $('.notice').delay(1000).fadeOut()
+  $('.notice').delay(2000).fadeOut()
 
   # account menu (needs a lot of work)
 
@@ -254,6 +254,20 @@ $ ->
         li_element.next().slideDown()
         li_element.next().find('.preview').fadeIn()
       false
+
+    # Manage Categories
+
+    $('#expand-categories').on 'click', ->
+      $('#manage-categories').slideToggle()
+      false
+
+    $('#add-category-field').on 'click', ->
+      $('.category-error').remove()
+
+    $('#add-category-button').on 'click', ->
+      if $('#add-category-field').val().length == 0
+        $('#add-category-field').before "<div class='category-error'>woops, we can't create a blank category</div>"
+        false
 
   # ---------------------------------------
   # Scripts for preferences page

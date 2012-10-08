@@ -12,8 +12,11 @@
   .add-contact
     = render partial: 'contact_form', :locals => { :contact => @contact }
 
-.create-category
-  = render partial: 'categories', :locals => { :contact => @contact }
+.categories
+  %p
+    = link_to 'manage contact categories', "#", :id => "expand-categories"
+  #manage-categories
+    = render partial: 'categories', :locals => { :contact => @contact }
 
 %ul.contacts
   - @contacts.each do |contact|
