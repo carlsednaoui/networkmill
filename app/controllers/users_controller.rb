@@ -6,9 +6,9 @@ class UsersController < ApplicationController
   require 'csv'
   def export_contacts
       file = CSV.generate do |csv|
-        csv << ["Name", "Email", "Note"]
+        csv << ["Name", "Email", "Category", "Note"]
         current_user.contacts.each do |c|
-          csv << [c.name, c.email, c.note]
+          csv << [c.name, c.email, Category.find_by_id(c.category_id).name, c.note]
         end
       end
       send_data file, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment;filename=my_networkmill_contacts.csv" 
