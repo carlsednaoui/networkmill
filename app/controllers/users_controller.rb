@@ -14,6 +14,29 @@ class UsersController < ApplicationController
       send_data file, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment;filename=my_networkmill_contacts.csv" 
   end
 
+  #Allow user to import contacts in csv
+  def import_contacts
+    # Get the csv file from the params
+    file = params[:csv_file]
+
+    # Loop through each row of the csv file
+    CSV.foreach(file.tempfile, :headers => true) do |row|
+      # Find or create the cotact category for the current_user  
+      category = current_user.categories.find_or_create_by_name(row[2])
+      
+      # Create contacts for the current user, csv columns are found with row[position]
+      @new_contact = Contact.create(user_id: current_user, name: row[0], email: row[1], category_id: category.id,note: row[3])
+    end
+
+    # Check that the last row was saved, note: this needs to be revised to avoid edge cases
+    if @new_contact.save
+      redirect_to preferences_path, notice: "contacts saved"
+    else
+      redirect_to preferences_path, notice: "ohh no, there seem to have been an error"
+    end
+  end
+
+
   def index
     @users = User.find_all_by_id(current_user)
   end
