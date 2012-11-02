@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
 
   after_create :create_default_contact_category
   def create_default_contact_category
-    self.categories.create(:name => "uncategorized")
+    self.categories.create(:name => "Uncategorized")
   end
 
   # Send user welcome email upon sign up
