@@ -23,6 +23,7 @@ desc "picks random contacts and sends them to the user in an email"
     end
   end
 
+desc "test the weekly email"
   task :test => :environment do
     User.where(:unsubscribed => false).each { |user| run_the_mill(user) }
   end
