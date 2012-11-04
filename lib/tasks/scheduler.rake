@@ -2,7 +2,7 @@
 # https://devcenter.heroku.com/articles/scheduler
 
 def run_the_mill(user)
-  if user.contact_intensity > user.contacts.count
+  if user.contact_intensity > user.contacts.count || user.contacts.count == 0
     puts "#{user.email} has low contacts. Sending an email now."
     puts "we're already contacted #{user.email}" if user.emails.find_by_title("user_has_few_contacts").present?
     UserMailer.user_has_few_contacts(user).deliver unless user.emails.find_by_title("user_has_few_contacts").present?
