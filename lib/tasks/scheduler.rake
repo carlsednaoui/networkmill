@@ -4,6 +4,7 @@
 def run_the_mill(user)
   puts "============================="
   puts user.contact_intensity, user.contacts.count
+  puts user.name
   puts "============================="
   if user.contact_intensity > user.contacts.count
     puts "#{user.email} has low contacts. Sending an email now."
