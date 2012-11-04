@@ -117,7 +117,7 @@ class User < ActiveRecord::Base
 
   # Set contacts that were "out" to "in"
   def reset_list
-    contacts_out.each do |c| 
+    contacts.each do |c| 
       c.update_attributes :state => "in"
     end
   end
