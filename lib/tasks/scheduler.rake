@@ -16,11 +16,15 @@ end
 desc "picks random contacts and sends them to the user in an email"
   task :all => :environment do
     # Run the mill on Tuesdays
-    # if Time.now.tuesday?
+    if Time.now.tuesday?
       puts ""
       User.where(:unsubscribed => false).each { |user| run_the_mill(user) }
       puts ""
-    # end
+    end
+  end
+
+  task :test => :environment do
+    User.where(:unsubscribed => false).each { |user| run_the_mill(user) }
   end
 
 desc "Find all users with open queues, if the queue is more than 5 hrs old send them a summary email and delete the queue."

@@ -75,14 +75,6 @@ class User < ActiveRecord::Base
     return nil if n > contacts.count
     move_just_sent_to_out
     while result.count < n
-      puts "********************************"
-      puts contacts_in_rotation.inspect
-      puts "********************************"
-      puts contacts_in_rotation.count.inspect
-      puts "********************************"
-      puts contacts
-      puts "********************************"
-
       reset_list if contacts_in_rotation.count == 0
       contact = contacts_in_rotation.shuffle.first
       unless result.include?(contact)
