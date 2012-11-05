@@ -375,9 +375,12 @@
                                                                   <% @contacts.each do |c| %>
                                                                     <li>
                                                                       <a href='mailto:<%= c.email %>'>
-                                                                        <%= c.name + ": " + c.note %>
+                                                                        <%= c.name %>
                                                                       </a>
                                                                     </li>
+                                                                    <% if c.note.present? %>
+                                                                    <li><%= c.note %></li>
+                                                                    <% end %>
                                                                   <% end %>
                                                                 </ul>
                                                             </div>
