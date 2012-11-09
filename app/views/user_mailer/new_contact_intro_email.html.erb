@@ -370,12 +370,13 @@
                                                             <div mc:edit="std_content00">
                                                                 <h4 class="h4">Hi there,</h4>
                                                                 <p><%= @name %> wants to stay in touch with you!</p>
-                                                                <br />
+
                                                                 <p>
                                                                   Email address: <%= @email %>
 
                                                                   <!-- Ensure that a User signature has been created -->
                                                                   <% if @signature.present? && @signature.length > 0 %>
+                                                                  <br />
                                                                   About: <%= @signature %>
                                                                   <% end %>
                                                                 </p>
