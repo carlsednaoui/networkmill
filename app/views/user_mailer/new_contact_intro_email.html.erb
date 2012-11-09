@@ -373,11 +373,12 @@
 
                                                                 <p>
                                                                   Email address: <%= @email %>
-
+                                                                </p>
                                                                   <!-- Ensure that a User signature has been created -->
                                                                   <% if @signature.present? && @signature.length > 0 %>
-                                                                  <br />
-                                                                  About: <%= @signature %>
+                                                                  <p>
+                                                                    About: <%= @signature %>
+                                                                  </p>
                                                                   <% end %>
                                                                 </p>
                                                             </div>
