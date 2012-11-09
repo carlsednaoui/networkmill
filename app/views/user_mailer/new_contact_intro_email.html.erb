@@ -368,14 +368,14 @@
                                                     <tr>
                                                         <td valign="top">
                                                             <div mc:edit="std_content00">
-                                                                <h4 class="h4">Hi there,&ndash;</h4>
+                                                                <h4 class="h4">Hi there,</h4>
                                                                 <p><%= @name %> wants to stay in touch with you!</p>
-
+                                                                <br />
                                                                 <p>
                                                                   Email address: <%= @email %>
 
                                                                   <!-- Ensure that a User signature has been created -->
-                                                                  About: <% if @signature.present? && @signature.length > 0 %>
+                                                                  <% if @signature.present? && @signature.length > 0 %>
                                                                   About: <%= @signature %>
                                                                   <% end %>
                                                                 </p>
@@ -403,7 +403,7 @@
                                                     <tr>
                                                         <td colspan="2" valign="middle" id="social">
                                                             <div mc:edit="std_social">
-                                                                &nbsp;<a href="http://networkmill.com">your dashboard &raquo;</a>
+                                                                &nbsp;<a href="http://networkmill.com">visit networkmill.com &raquo;</a>
                                                             </div>
                                                         </td>
                                                     </tr>
