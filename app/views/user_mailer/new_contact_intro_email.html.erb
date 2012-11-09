@@ -379,26 +379,6 @@
                                                                   About: <%= @signature %>
                                                                   <% end %>
                                                                 </p>
-
-
-
-
-
-
-
-                                                                <br />
-                                                                <ul>
-                                                                  <% @contacts.each do |c| %>
-                                                                    <li>
-                                                                      <a href='mailto:<%= c.email %>'>
-                                                                        <%= c.name %>
-                                                                      </a>
-                                                                    </li>
-                                                                    <% if c.note.present? %>
-                                                                    <li><%= c.note %></li>
-                                                                    <% end %>
-                                                                  <% end %>
-                                                                </ul>
                                                             </div>
                             </td>
                                                     </tr>
