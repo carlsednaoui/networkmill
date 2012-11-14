@@ -16,7 +16,7 @@ $ ->
 
   # deal with flash notices
 
-  $('.notice').delay(2000).fadeOut()
+  $('.notice').delay(3000).fadeOut()
 
   # account menu (needs a lot of work)
 

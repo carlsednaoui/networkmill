@@ -26,7 +26,10 @@ class ContactsController < ApplicationController
       redirect_to dashboard_path, :notice => "contact saved!"
     else
       # This should not ever happen
-      render 'edit'
+      # render 'edit'
+
+      # Temporary fix by Carl
+      redirect_to dashboard_path, :notice => "there was a problem saving your contact. make sure this contact doesn't already exist"
     end
   end
 
