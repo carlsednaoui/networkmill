@@ -49,7 +49,7 @@ class UserMailer < ActionMailer::Base
     end
 
     @signature = user.signature
-    @signature = @signature.gsub('/r/n', '<br/>') # replace line breaks to html format
+    @signature = @signature.gsub(/\r\n/, '<br/>') # replace line breaks to html format
 
     @email = user.email
 
