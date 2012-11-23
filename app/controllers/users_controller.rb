@@ -58,7 +58,6 @@ class UsersController < ApplicationController
   end
 
   def update
-  
     # TODO: before deploying, we should test this to make sure authentication is working
 
     # if user is resetting password, reset the password and redirect to root
@@ -73,11 +72,18 @@ class UsersController < ApplicationController
       # if they are updating anything except the password, no need to pass authenticate
       if password_fields.reject {|p| p.empty? }.empty?
         @user.update_without_password(params[:user])
+        send_test_email if params[:send_test_email]
       # if they are trying to update their password, make sure it's right
       else
         @user.update_with_password(params[:user])
       end
-      redirect_to dashboard_path, :notice => "sweet, your preferences have been updated!"
+
+      # If user is using test email show one notice, if not show another
+      if params[:send_test_email]
+        redirect_to preferences_path, :notice => "check your email for a special surprise ;)"
+      else
+        redirect_to dashboard_path, :notice => "sweet, your preferences have been updated!"
+      end
     end
 
   end
@@ -87,8 +93,8 @@ class UsersController < ApplicationController
     # Send mail without delayed job:
     # UserMailer.new_contact_intro_email(current_user, current_user).deliver
     # Send mail with delayed job (to get delayed_job working in development run $rake jobs:work)
+
     UserMailer.delay.new_contact_intro_email(current_user, current_user)
-    redirect_to preferences_path, :notice => "check your email for a special surprise ;)"
   end
 
   def destroy
