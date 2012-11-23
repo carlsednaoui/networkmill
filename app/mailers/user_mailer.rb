@@ -49,8 +49,6 @@ class UserMailer < ActionMailer::Base
     end
 
     @signature = user.signature
-    # @signature = @signature.gsub(/\r\n/, '<br/>') # replace line breaks to html format
-
     @email = user.email
 
     mail to: contact.email, reply_to: @email, from: "\"#{@name}\" <#{@email}>", subject: "#{@name} wants to stay in touch with you!"
