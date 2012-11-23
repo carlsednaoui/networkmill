@@ -377,8 +377,7 @@
                                                                   <!-- Ensure that a User signature has been created -->
                                                                   <% if @signature.present? && @signature.length > 0 %>
                                                                   <p>
-                                                                    :plain
-                                                                      <%= @signature %>
+                                                                    <%= simple_format(@signature) %>
                                                                   </p>
                                                                   <% end %>
                                                                 </p>
