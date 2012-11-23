@@ -19,21 +19,25 @@ class UsersController < ApplicationController
     # Get the csv file from the params
     file = params[:csv_file]
 
-    # Loop through each row of the csv file
-    CSV.foreach(file.tempfile, :headers => true) do |row|
-      # Find or create the cotact category for the current_user  
-      category = current_user.categories.find_or_create_by_name(row[2])
-      
-      # Create contacts for the current user, csv columns are found with row[position]
-      @new_contact = Contact.create(user_id: current_user, name: row[0], email: row[1], category_id: category.id,note: row[3])
-    end
+    if file.present? && file.content_type == "text/csv"
+      # Loop through each row of the csv file
+      CSV.foreach(file.tempfile, :headers => true) do |row|
+        # Find or create the cotact category for the current_user  
+        category = current_user.categories.find_or_create_by_name(row[2])
+        
+        # Create contacts for the current user, csv columns are found with row[position]
+        @new_contact = Contact.create(user_id: current_user.id, name: row[0], email: row[1], category_id: category.id,note: row[3])
+      end
 
-    # Check that the last row was saved, note: this needs to be revised to avoid edge cases
-    if @new_contact.save
-      redirect_to preferences_path, notice: "contacts saved"
+      # Check that the last row was saved, note: this needs to be revised to avoid edge cases
+      if @new_contact.save
+        redirect_to preferences_path, notice: "contacts saved"
+      else
+        redirect_to preferences_path, notice: "ohh no, there was an error - are you sure these are new contacts?"
+      end
     else
-      redirect_to preferences_path, notice: "ohh no, there seem to have been an error"
-    end
+      redirect_to preferences_path, :notice => "hmm, you need a csv file for this to work"
+    end 
   end
 
 

@@ -311,7 +311,7 @@ $ ->
 
     # auto adjust the width of the user name input
 
-    $('#user_name').css maxWidth: $('#user_name').textWidth() + 15
+    $('#user_name').css maxWidth: $('#user_name').textWidth() + 45
     $('#user_name').on 'keyup', ->
       $(@).css maxWidth: $(@).textWidth() + 15
       $('.contact-card .name').text $(@).val()
